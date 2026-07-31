@@ -1,45 +1,11 @@
 ---
 import services from "@/data/services.json";
-const brands: string[] = ["/images/brands/1.svg", "/images/brands/2.svg", "/images/brands/3.svg", "/images/brands/4.svg", "/images/brands/5.svg"];
-const tickerBrands = [...brands, ...brands];
+import ServiceSectionHeader from "@/components/home/ServiceSectionHeader.astro";
 ---
 
 <section class="pb-41">
   <div class="container">
-    <div class="mb-20">
-      <div class="grid grid-cols-2 gap-10">
-        <div class="">
-          <h2 class="text-[80px] uppercase leading-[80%] tracking-[-4%] font-jersey text-white">
-            Creative solutions built
-            <span class="text-dark-shades-60"> around clarity and growth</span>
-          </h2>
-        </div>
-        <div class="relative h-40 w-40 overflow-hidden mask-[linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] ml-auto">
-          <div class="ticker-wrapper flex flex-col gap-3">
-            <ul role="list" class="ticker-list flex flex-col gap-3">
-              {
-                brands.map((logo, index) => (
-                  <li class="flex h-16 items-center justify-center bg-dark-shades-90 px-10">
-                    <img src={logo} alt={`Brand logo ${index + 1}`} class="max-h-full max-w-full object-contain" />
-                  </li>
-                ))
-              }
-            </ul>
-
-            <!-- Duplicate -->
-            <ul role="list" class="ticker-list flex flex-col gap-3">
-              {
-                brands.map((logo, index) => (
-                  <li class="flex h-16 items-center justify-center bg-dark-shades-90 px-10">
-                    <img src={logo} alt={`Brand logo ${index + 1}`} class="max-h-full max-w-full object-contain" />
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ServiceSectionHeader />
     <ul role="list" class="service-list flex flex-col space-y-10">
       {
         services.map((s) => (
@@ -62,13 +28,13 @@ const tickerBrands = [...brands, ...brands];
                   <h3 class="service-title text-[40px] tracking-[-2%] text-white leading-none font-jersey">{s.title.toUpperCase()}</h3>
 
                   <div class="service-details h-0 overflow-hidden opacity-0 will-change-[height,opacity]">
-                    <div class="service-details-inner origin-top translate-y-3 pt-2 opacity-0">
+                    <div class="service-details-inner origin-top translate-y-3 pt-3 opacity-0">
                       <p class="text-lg leading-normal text-dark-shades-50">{s.description}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Tags: collapsed via height, not just opacity, so it reserves no space at rest */}
+                {/* Tags */}
                 <div class="service-tags-wrapper h-0 overflow-hidden will-change-[height] max-w-mdd">
                   <div class="service-tags flex flex-wrap gap-2 opacity-0 will-change-[opacity,transform]">
                     {s.tags.map((tag) => (
@@ -159,33 +125,6 @@ const tickerBrands = [...brands, ...brands];
     });
   }
 
-  const initTicker = () => {
-    const wrapper = document.querySelector<HTMLElement>(".ticker-wrapper");
-    const firstList = document.querySelector<HTMLElement>(".ticker-list");
-
-    if (!wrapper || !firstList) return;
-
-    gsap.killTweensOf(wrapper);
-    const distance = firstList.offsetHeight + 6;
-
-    gsap.set(wrapper, { y: 0 });
-
-    gsap.to(wrapper, {
-      y: -distance,
-      duration: 8,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        y: gsap.utils.unitize((value) => {
-          const y = parseFloat(value);
-          return y % distance;
-        }),
-      },
-    });
-  };
-
-  initTicker();
   initServiceHover();
-  document.addEventListener("astro:page-load", initTicker);
   document.addEventListener("astro:page-load", initServiceHover);
 </script>
