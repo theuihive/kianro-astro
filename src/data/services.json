@@ -1,166 +1,37 @@
 [
   {
-    "id": 101,
-    "slug": "garden-maintenance",
-    "title": "Garden Maintenance",
-    "thumbnail": "/images/services/service-1.jpg",
-    "description": "Every garden has its own story, its own rhythm. We don't just maintain plants—we thoughtfully honor the life and beauty you've cultivated",
-    "images": ["/images/services/service-details-01.jpg", "/images/services/service-details-02.jpg", "/images/services/service-details-03.jpg"],
-    "section": {
-      "heading": "Comprehensive Garden Maintenance Services & Care",
-      "services": [
-        {
-          "id": "01",
-          "name": "Lawn Mowing & Edging",
-          "image": "/images/services/service-thumb-01.jpg",
-          "description": "Keep your lawn clean and well-defined with precise mowing and crisp edging. We maintain the ideal grass height for healthy growth while giving your outdoor space a neat, polished look.",
-          "price": { "amount": 12, "unit": "sq ft" }
-        },
-        {
-          "id": "02",
-          "name": "Pruning & Trimming",
-          "image": "/images/services/service-thumb-02.jpg",
-          "description": "Expert pruning and trimming to shape your trees, shrubs, and hedges. This not only enhances visual aesthetics but also promotes structural health and prevents overgrowth.",
-          "price": { "amount": 15, "unit": "sq ft" }
-        },
-        {
-          "id": "03",
-          "name": "Weed Control",
-          "image": "/images/services/service-thumb-03.jpg",
-          "description": "Effective weed management and surface control. We eliminate invasive plants from borders and lawn spaces to ensure your primary landscape gets nutrients properly.",
-          "price": { "amount": 10, "unit": "sq ft" }
-        },
-        {
-          "id": "04",
-          "name": "Regular Upkeep Visits",
-          "image": "/images/services/service-thumb-04.jpg",
-          "description": "Scheduled maintenance programs to keep your gardens looking pristine year-round. Includes general cleaning, seasonal touch-ups, and structural health checks.",
-          "price": { "amount": 45, "unit": "visit" }
-        }
-      ]
-    }
+    "number": "01",
+    "title": "Brand Identity",
+    "description": "Crafting distinctive visual identities — logo, color, and typography systems that make a brand instantly recognizable.",
+    "tags": ["Logo Design", "Color System", "Typography", "Brand Guidelines"],
+    "image": "/images/services/service-01.jpg"
   },
   {
-    "id": 102,
-    "slug": "outdoor-upgrades",
-    "title": "Outdoor Upgrades",
-    "thumbnail": "/images/services/service-2.jpg",
-    "description": "Outdoor Upgrades refresh your space with thoughtful improvements that add beauty, function, and a renewed sense of comfort every time you step outside.",
-    "images": ["/images/services/service-details-04.jpg", "/images/services/service-details-03.jpg", "/images/services/service-details-09.jpg"],
-    "section": {
-      "heading": "Complete Outdoor Upgrades & Garden Care",
-      "services": [
-        {
-          "id": "05",
-          "name": "Mulching",
-          "image": "/images/services/service-thumb-01.jpg",
-          "description": "Enhance your garden with professional mulching that retains moisture, regulates soil temperature, and suppresses weeds, keeping your plants healthy and your outdoor space clean and well-finished.",
-          "price": { "amount": 12, "unit": "sq ft" }
-        },
-        {
-          "id": "06",
-          "name": "New planting",
-          "image": "/images/services/service-thumb-02.jpg",
-          "description": "Refresh your garden with new planting that brings color, structure, and life to your outdoor space. We select and position plants based on soil, sunlight, and seasonal conditions to ensure healthy growth and long-lasting beauty.",
-          "price": { "amount": 15, "unit": "sq ft" }
-        },
-        {
-          "id": "07",
-          "name": "Landscape refresh",
-          "image": "/images/services/service-thumb-03.jpg",
-          "description": "Refresh your outdoor space with a landscape update that improves structure, balance, and appearance. We enhance elements, adjust plant layouts, and restore areas to bring new life and a clean, cohesive look to your garden.",
-          "price": { "amount": 10, "unit": "sq ft" }
-        },
-        {
-          "id": "08",
-          "name": "Irrigation support / drainage fixes",
-          "image": "/images/services/service-thumb-04.jpg",
-          "description": "Improve garden with irrigation and drainage fixes that ensure water flow and prevent buildup. We adjust systems, clear blockages, and optimize drainage to keep your landscape healthy and protected year-round.",
-          "price": { "amount": 45, "unit": "visit" }
-        }
-      ]
-    }
+    "number": "02",
+    "title": "Web Design",
+    "description": "Creating responsive, visually refined websites that balance aesthetics, usability, and performance to deliver exceptional digital experiences.",
+    "tags": ["Responsive Design", "Landing Pages", "Website Design", "User Experience"],
+    "image": "/images/services/service-02.jpg"
   },
   {
-    "id": 103,
-    "slug": "plant-soil-health",
-    "title": "Plant & Soil Health",
-    "thumbnail": "/images/services/service-3.jpg",
-    "description": "Plant & Soil Health care strengthens your garden from the ground up, restoring soil quality and helping plants grow stronger and vibrant over time.",
-    "images": ["/images/services/service-details-05.jpg", "/images/services/service-details-01.jpg", "/images/services/service-details-04.jpg"],
-    "section": {
-      "heading": "Healthy Soil & Thriving Plants Care",
-      "services": [
-        {
-          "id": "09",
-          "name": " Fertilization",
-          "image": "/images/services/service-thumb-01.jpg",
-          "description": "Enhance your garden with professional fertilization that nourishes the soil, strengthens root systems, and promotes lush, healthy plant growth for a greener, more vibrant outdoor space.",
-          "price": { "amount": 12, "unit": "sq ft" }
-        },
-        {
-          "id": "10",
-          "name": "Pest and disease treatment",
-          "image": "/images/services/service-thumb-02.jpg",
-          "description": "Protect your garden with professional pest and disease treatment that targets harmful insects and infections early, helping your plants stay healthy, strong, and beautifully thriving all season.",
-          "price": { "amount": 15, "unit": "sq ft" }
-        },
-        {
-          "id": "11",
-          "name": "Soil improvement",
-          "image": "/images/services/service-thumb-03.jpg",
-          "description": "Enhance your garden with professional soil improvement that enriches soil quality, boosts nutrient levels, and creates the perfect foundation for stronger, healthier plant growth and a more vibrant outdoor space.",
-          "price": { "amount": 10, "unit": "sq ft" }
-        },
-        {
-          "id": "12",
-          "name": "Seasonal planting care",
-          "image": "/images/services/service-thumb-04.jpg",
-          "description": "Seasonal planting care keeps your garden fresh and vibrant year-round. We select and replace plants by season to ensure a healthy, well-maintained outdoor space in every weather condition.",
-          "price": { "amount": 45, "unit": "visit" }
-        }
-      ]
-    }
+    "number": "03",
+    "title": "UI/UX Design",
+    "description": "Designing intuitive interfaces and user flows that feel effortless, backed by research and iterative testing.",
+    "tags": ["Wireframing", "Prototyping", "User Research", "Design Systems"],
+    "image": "/images/services/service-03.jpg"
   },
   {
-    "id": 104,
-    "slug": "seasonal-services",
-    "title": "Seasonal Services",
-    "thumbnail": "/images/services/service-4.jpg",
-    "description": "Seasonal Services keep your garden healthy, clean, and visually appealing year-round with timely cleanups, planting, and weather preparation.",
-    "images": ["/images/services/service-details-08.jpg", "/images/services/service-details-06.jpg", "/images/services/service-details-07.jpg"],
-    "section": {
-      "heading": "Complete Seasonal Services & Year-Round Care",
-      "services": [
-        {
-          "id": "13",
-          "name": " Spring cleanup",
-          "image": "/images/services/service-thumb-01.jpg",
-          "description": "Give your outdoor space a fresh seasonal reset with professional spring cleanup that removes winter debris, clears dead growth, and prepares your landscape for healthy new growth and a clean, vibrant look.",
-          "price": { "amount": 12, "unit": "sq ft" }
-        },
-        {
-          "id": "14",
-          "name": "Monsoon / storm prep",
-          "image": "/images/services/service-thumb-02.jpg",
-          "description": "Protect your outdoor space with professional monsoon and storm preparation that strengthens plants, clears drainage, and secures vulnerable areas to reduce damage and keep your landscape safe during heavy weather.",
-          "price": { "amount": 15, "unit": "sq ft" }
-        },
-        {
-          "id": "15",
-          "name": "Leaf cleanup",
-          "image": "/images/services/service-thumb-03.jpg",
-          "description": "Keep your outdoor space clean, fresh, and refreshed with professional leaf cleanup that removes fallen leaves, clears debris, and restores a neat, healthy, and well-maintained landscape.",
-          "price": { "amount": 10, "unit": "sq ft" }
-        },
-        {
-          "id": "16",
-          "name": "Holiday / event garden prep",
-          "image": "/images/services/service-thumb-04.jpg",
-          "description": "Give your outdoor space a festive, polished look with professional holiday and event garden preparation that includes cleaning, styling, and arranging plants to create a welcoming and beautifully presented setting for any occasion.",
-          "price": { "amount": 45, "unit": "visit" }
-        }
-      ]
-    }
+    "number": "04",
+    "title": "Framer Development",
+    "description": "Building fast, animated, no-code-friendly websites in Framer — production-ready and easy for teams to maintain.",
+    "tags": ["CMS Setup", "Interactions", "Responsive Layout", "SEO Basics"],
+    "image": "/images/services/service-04.jpg"
+  },
+  {
+    "number": "05",
+    "title": "Webflow Development",
+    "description": "Translating designs into pixel-perfect, scalable Webflow builds with clean structure and smooth interactions.",
+    "tags": ["Custom Code", "CMS Collections", "Animations", "Performance"],
+    "image": "/images/services/service-05.jpg"
   }
 ]

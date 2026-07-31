@@ -1,0 +1,128 @@
+---
+import services from "@/data/services.json";
+---
+
+<section class="pb-41">
+  <div class="container">
+    <ul role="list" class="service-list flex flex-col space-y-10">
+      {
+        services.map((s) => (
+          <li class="service-row group cursor-pointer overflow-hidden border border-stroke px-6 py-9.5 transition-colors duration-500" data-service>
+            {/* Grid Layout: Fixed slots for Image & Title */}
+            <div class="grid grid-cols-[36px_1fr_auto] items-start gap-4 md:grid-cols-[48px_384px_1fr_auto] md:gap-16">
+              {/* Number */}
+              <span class="service-num text-[40px] tracking-[-2%] text-dark-shades-60 leading-none font-jersey">{s.number}.</span>
+
+              {/* Desktop Image Container Slot */}
+              <div class="service-img-wrapper hidden h-0 overflow-hidden will-change-[height] md:block">
+                <div class="service-img-inner h-72 w-96 scale-0 origin-top">
+                  <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
+                </div>
+              </div>
+
+              {/* Title and description */}
+              <div class="service-content flex flex-col justify-between self-stretch">
+                <div>
+                  <h3 class="service-title text-[40px] tracking-[-2%] text-white leading-none font-jersey">{s.title.toUpperCase()}</h3>
+
+                  <div class="service-details h-0 overflow-hidden opacity-0 will-change-[height,opacity]">
+                    <div class="service-details-inner origin-top translate-y-3 pt-2 opacity-0">
+                      <p class="text-lg leading-normal text-dark-shades-50">{s.description}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tags: collapsed via height, not just opacity, so it reserves no space at rest */}
+                <div class="service-tags-wrapper h-0 overflow-hidden will-change-[height] max-w-mdd">
+                  <div class="service-tags flex flex-wrap gap-2 opacity-0 will-change-[opacity,transform]">
+                    {s.tags.map((tag) => (
+                      <span class="border border-stroke px-3 py-1.5 text-base text-white">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Plus/Minus Icon */}
+              <div class="service-icon relative mt-1 h-3.5 w-3.5 shrink-0 self-start">
+                <span class="absolute left-0 top-1/2 h-[1.5px] w-3.5 -translate-y-1/2 bg-white" />
+                <span class="service-icon-v absolute left-1/2 top-0 h-3.5 w-[1.5px] -translate-x-1/2 bg-white transition-transform duration-300" />
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  function initServiceHover(): void {
+    const rows = document.querySelectorAll<HTMLLIElement>(".service-row");
+
+    rows.forEach((row) => {
+      const imgWrapper = row.querySelector<HTMLDivElement>(".service-img-wrapper");
+      const imgInner = row.querySelector<HTMLDivElement>(".service-img-inner");
+      const details = row.querySelector<HTMLDivElement>(".service-details");
+      const detailsInner = row.querySelector<HTMLDivElement>(".service-details-inner");
+      const tagsWrapper = row.querySelector<HTMLDivElement>(".service-tags-wrapper");
+      const tags = row.querySelector<HTMLDivElement>(".service-tags");
+      const iconV = row.querySelector<HTMLSpanElement>(".service-icon-v");
+      const num = row.querySelector<HTMLSpanElement>(".service-num");
+
+      if (!details || !detailsInner || !tagsWrapper || !tags || !iconV || !num) return;
+
+      let tl: gsap.core.Timeline | null = null;
+
+      const play = () => {
+        if (tl) tl.kill();
+
+        tl = gsap.timeline({
+          defaults: { ease: "none" },
+        });
+
+        // Image expands
+        if (imgWrapper && imgInner) {
+          tl.to(imgWrapper, { height: 288, duration: 0.7 }, 0).to(imgInner, { scale: 1, duration: 0.7 }, 0);
+        }
+
+        // Description
+        const targetDetailsHeight = detailsInner.scrollHeight;
+        tl.to(details, { height: targetDetailsHeight, opacity: 1, duration: 0.5 }, 0).to(detailsInner, { y: 0, opacity: 1, duration: 0.5 }, 0);
+
+        // Tags
+        const targetTagsHeight = tags.scrollHeight;
+        tl.to(tagsWrapper, { height: targetTagsHeight, duration: 0.5 }, 0).to(tags, { opacity: 1, y: 0, duration: 0.5 }, 0.1);
+
+        // Icon
+        tl.to(iconV, { rotate: 90, scaleY: 0, duration: 0.5, ease: "none" }, 0).to(num, { color: "#FFFFFF", duration: 0.5 }, 0);
+      };
+
+      const reverse = () => {
+        if (tl) tl.kill();
+
+        tl = gsap.timeline({
+          defaults: { ease: "none" },
+        });
+
+        // Reverse order: content leaves first, then the image collapses
+        tl.to(tags, { opacity: 0, y: 12, duration: 0.35 }, 0).to(tagsWrapper, { height: 0, duration: 0.5 }, 0.05);
+
+        tl.to(detailsInner, { y: 0, opacity: 0, duration: 0.5 }, 0).to(details, { height: 0, opacity: 0, duration: 0.5 }, 0);
+
+        if (imgWrapper && imgInner) {
+          tl.to(imgWrapper, { height: 0, duration: 0.7 }, 0).to(imgInner, { scale: 0, duration: 0.7 }, 0);
+        }
+
+        tl.to(iconV, { rotate: 0, scaleY: 1, duration: 0.5 }, 0).to(num, { color: "#6E6E6E", duration: 0.5 }, 0);
+      };
+
+      row.addEventListener("mouseenter", play);
+      row.addEventListener("mouseleave", reverse);
+    });
+  }
+
+  initServiceHover();
+  document.addEventListener("astro:page-load", initServiceHover);
+</script>
