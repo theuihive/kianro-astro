@@ -1,0 +1,59 @@
+---
+interface Brand {
+  name: string;
+}
+
+interface Stat {
+  value: string;
+  label: string;
+  colStart?: string;
+  rowStart?: string;
+}
+
+const brands: Brand[] = [{ name: "GO" }, { name: "OOO" }, { name: "///" }, { name: "LYYY" }, { name: "LOC" }];
+
+const stats: Stat[] = [
+  { value: "230+", label: "Projects Delivered", colStart: "lg:col-start-3", rowStart: "lg:row-start-1" },
+  { value: "98%", label: "Satisfaction Rate", colStart: "lg:col-start-2", rowStart: "lg:row-start-2" },
+  { value: "80+", label: "Long-Term Clients", colStart: "lg:col-start-1", rowStart: "lg:row-start-3" },
+  { value: "12+", label: "Years Creating", colStart: "lg:col-start-3", rowStart: "lg:row-start-3" },
+];
+---
+
+<section class="py-41">
+  <div class="container">
+    <div class="grid lg:grid-cols-2 gap-16">
+      <!-- left column: heading + trusted-by logos -->
+      <div class="flex flex-col justify-between">
+        <h2 class="text-[40px] uppercase leading-none tracking-[-2%] font-jersey">
+          <span class="text-white">From first conversations to final delivery, every collaboration focuses on creating</span>
+          <span class="text-dark-shades-60"> purposeful design, measurable results, and experiences that leave a lasting impression.</span>
+        </h2>
+
+        <div class="mt-16">
+          <p class="mb-5 text-sm text-dark-shades-20">Trusted By 200+ Brands</p>
+          <ul role="list" class="flex flex-wrap items-center gap-3">
+            {brands.map((b) => <li class="flex h-14 w-24 items-center justify-center bg-dark-shades-90 text-sm font-semibold uppercase tracking-wide text-dark-shades-50">{b.name}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <!-- right column: bento stat grid -->
+      <div class="grid grid-cols-1 grid-rows-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          stats.map((s) => (
+            <div class={`flex min-h-36 flex-col justify-between bg-dark-shades-90 p-6 lg:min-h-0 ${s.colStart ?? ""} ${s.rowStart ?? ""}`}>
+              <span class="text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">{s.value}</span>
+              <span class="text-lg text-dark-shades-50">{s.label}</span>
+            </div>
+          ))
+        }
+
+        <!-- empty filler cards to preserve the bento rhythm on large screens -->
+        <!-- <div class="hidden bg-dark-primary lg:col-start-2 lg:row-start-1 lg:block"></div>
+        <div class="hidden bg-dark-primary lg:col-start-3 lg:row-start-2 lg:block"></div>
+        <div class="hidden bg-dark-primary lg:col-start-2 lg:row-start-3 lg:block"></div> -->
+      </div>
+    </div>
+  </div>
+</section>

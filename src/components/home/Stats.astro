@@ -1,0 +1,82 @@
+---
+interface Brand {
+  name: string;
+}
+
+interface Stat {
+  value: string;
+  label: string;
+  colStart: string;
+  rowStart: string;
+}
+
+const brands: string[] = ["/images/brands/1.svg", "/images/brands/2.svg", "/images/brands/3.svg", "/images/brands/4.svg", "/images/brands/5.svg"];
+
+const tickerBrands = [...brands, ...brands];
+
+const stats: Stat[] = [
+  { value: "230+", label: "Projects Delivered", colStart: "lg:col-start-3", rowStart: "lg:row-start-1" },
+  { value: "98%", label: "Satisfaction Rate", colStart: "lg:col-start-2", rowStart: "lg:row-start-2" },
+  { value: "80+", label: "Long-Term Clients", colStart: "lg:col-start-1", rowStart: "lg:row-start-3" },
+  { value: "12+", label: "Years Creating", colStart: "lg:col-start-3", rowStart: "lg:row-start-3" },
+];
+---
+
+<section class="py-41">
+  <div class="container">
+    <div class="grid lg:grid-cols-[1fr_auto] gap-4 items-stretch relative">
+      <!-- LEFT COLUMN: Flexible Width for wider Heading -->
+      <div class=""></div>
+      <div class="space-y-18 absolute left-0 max-w-196">
+        <h2 class="text-[40px] uppercase leading-none tracking-[-2%] font-jersey">
+          <span class="text-white">From first conversations to final delivery, every collaboration focuses on creating</span>
+          <span class="text-dark-shades-60"> purposeful design, measurable results, and experiences that leave a lasting impression.</span>
+        </h2>
+
+        <div class="max-w-162 overflow-hidden">
+          <p class="mb-8 text-lg leading-normal text-dark-shades-20">Trusted By 200+ Brands</p>
+          <!-- Ticker Track -->
+          <div class="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <ul role="list" class="flex w-max items-center gap-3 animate-ticker hover:[animation-play-state:paused]">
+              {
+                tickerBrands.map((logo, index) => (
+                  <li class="flex h-16 shrink-0 items-center justify-center bg-dark-shades-90 px-10">
+                    <img src={logo} alt={`Brand logo ${(index % brands.length) + 1}`} class="max-h-full max-w-full object-contain" loading="lazy" />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: Exact Bento Grid  -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[308px_228px_308px] lg:grid-rows-[246px_285px_246px]">
+        {
+          stats.map((s) => (
+            <div class={`flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-full ${s.colStart} ${s.rowStart}`}>
+              <span class="text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">{s.value}</span>
+              <span class="text-lg text-dark-shades-50">{s.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker Animation CSS Setup -->
+<style>
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-ticker {
+    animation: ticker 15s linear infinite;
+  }
+</style>
