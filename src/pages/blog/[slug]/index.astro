@@ -1,0 +1,24 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.mdx?$/, "") },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<MainLayout title={post.data.title || "Article details | Premium Portfolio Theme"} description={post.data.description}>
+  <div class="py-15 sm:py-20">
+    <h1>{post.data.title}</h1>
+    <p>{post.data.description}</p>
+    <Content />
+  </div>
+</MainLayout>

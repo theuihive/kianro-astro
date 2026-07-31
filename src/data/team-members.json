@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Marcel A. Taylor",
+    "role": "Landscape Specialist",
+    "description": "Designs outdoor spaces with a focus on balance, beauty, and functionality. He turns simple areas into calming, well-structured gardens that feel alive and structured.",
+    "image": "/images/members/member-1.png"
+  },
+  {
+    "name": "Lila M. Chen",
+    "role": "Garden Maintenance Supervisor",
+    "description": "Ensures year-round health and vitality of flora. Expert in soil biology, seasonal pruning, and sustainable pest management strategies.",
+    "image": "/images/members/member-2.png"
+  },
+  {
+    "name": "Ravi P. Kumar",
+    "role": "Landscape Technician",
+    "description": "Specializes in hardscaping integration, irrigation blueprints, and structural execution of sophisticated garden transformations.",
+    "image": "/images/members/member-3.png"
+  },
+  {
+    "name": "Sarah Jenkins",
+    "role": "Horticultural Consultant",
+    "description": "Brings extensive botanical knowledge to curate native plant selections that thrive in local microclimates while maximizing aesthetic impact.",
+    "image": "/images/members/member-4.png"
+  },
+  {
+    "name": "Lila M. Chen",
+    "role": "Garden Maintenance Supervisor",
+    "description": "Ensures year-round health and vitality of flora. Expert in soil biology, seasonal pruning, and sustainable pest management strategies.",
+    "image": "/images/members/member-5.png"
+  },
+  {
+    "name": "Ravi P. Kumar",
+    "role": "Landscape Technician",
+    "description": "Specializes in hardscaping integration, irrigation blueprints, and structural execution of sophisticated garden transformations.",
+    "image": "/images/members/member-6.png"
+  },
+  {
+    "name": "Sarah Jenkins",
+    "role": "Horticultural Consultant",
+    "description": "Brings extensive botanical knowledge to curate native plant selections that thrive in local microclimates while maximizing aesthetic impact.",
+    "image": "/images/members/member-7.png"
+  }
+]

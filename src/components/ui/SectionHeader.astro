@@ -1,0 +1,30 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  title: string;
+  description?: string;
+  date?: string;
+  className?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
+}
+
+const { title, description, className, titleClassName, descriptionClassName, date } = Astro.props;
+---
+
+<div class={cn("mb-11.5 mx-auto max-w-xl text-center", className)}>
+  <h2 class={cn("text-primary text-[32px] sm:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-[-1.5px]", titleClassName)}>
+    {title}
+  </h2>
+
+  {description && <p class={cn("text-[#3C4733] mt-3 text-base sm:text-xl font-medium leading-[1.58] tracking-[-0.5px]", descriptionClassName)}>{description}</p>}
+  {
+    date && (
+      <p class={cn("text-[#3C4733] mt-3 text-base sm:text-xl font-bold leading-[1.58] tracking-[-0.5px]", descriptionClassName)}>
+        {" "}
+        <span class="text-[#858C80] font-medium">Effective Date:</span> {date}
+      </p>
+    )
+  }
+</div>

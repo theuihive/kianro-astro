@@ -1,0 +1,52 @@
+---
+import "@/assets/css/global.css";
+import "@/assets/css/switzer.css";
+import "@fontsource/jersey-20";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const siteName = "Kainro";
+const siteUrl = "https://kainro-astro.netlify.app";
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL("/images/og-image.jpg", siteUrl).toString();
+const { title = "Home", description = "Kainro agency portfolio theme" } = Astro.props;
+const pageTitle = title ? `${title} | ${siteName}` : siteName;
+const metaDescription = description || "Kainro agency portfolio theme";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="title" content={pageTitle} />
+    <meta name="description" content={metaDescription} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={`${siteName} agency portfolio theme`} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteName} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <title>{pageTitle}</title>
+  </head>
+
+  <body class="min-h-screen">
+    <slot />
+    <script type="module">
+      import "@/scripts/smooth-scroll";
+    </script>
+  </body>
+</html>

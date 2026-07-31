@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #ECFDAD;
+  --color-dark-primary: #0E0E0E;
+  --color-dark-shades-20: #E6E4E4;
+  --color-dark-shades-30: #DBD7D7;
+  --color-dark-shades-50: #B9B8B8;
+  --color-dark-shades-60: #666666;
+  --color-dark-shades-70: #484848;
+  --color-dark-shades-80: #202020;
+  --color-dark-shades-90: #151515;
+  --color-stroke: #262626;
+  --font-jersey: "Jersey 20", sans-serif;
+  --font-switzer: "Switzer", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply text-white leading-normal font-switzer;
+  }
+}
+
+.container {
+  max-width: 1352px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.container-fluid {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}

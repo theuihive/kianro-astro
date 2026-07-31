@@ -1,0 +1,147 @@
+---
+import BarIcon from "@/components/icons/BarIcon.astro";
+import CloseIcon from "@/components/icons/CloseIcon.astro";
+import Button from "@/components/ui/Button.astro";
+import Logo from "@/components/header/Logo.astro";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Services", href: "/services" },
+  { label: "Blog", href: "/blog" },
+];
+---
+
+<header class="py-6.5 bg-dark-primary border-b border-stroke" id="site-header">
+  <div class="container relative">
+    <div class="flex items-center justify-between gap-4">
+      <!-- Logo -->
+      <a href="/" class="shrink-0">
+        <Logo />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        {
+          navLinks.map((link) => (
+            <a href={link.href} class="text-sm font-medium uppercase text-dark-shades-30 hover:text-white transition-colors duration-300">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- CTA -->
+        <div class="hidden md:block">
+          <Button href="/contact">book a call </Button>
+        </div>
+
+        <!-- Mobile menu toggle -->
+        <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" class="lg:hidden relative inline-flex shrink-0 items-center justify-center size-12 border border-[#3C4733] text-white rounded-full transition-colors duration-300">
+          <span class="relative inline-flex items-center justify-center size-5">
+            <span id="icon-bar" class="absolute inset-0 flex items-center justify-center">
+              <BarIcon />
+            </span>
+            <span id="icon-close" class="absolute inset-0 flex items-center justify-center opacity-0">
+              <CloseIcon />
+            </span>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- mobile nav panel -->
+    <nav id="mobile-nav" class="lg:hidden absolute left-0 top-full mt-1 w-full bg-primary shadow-2xl p-4 opacity-0 -translate-y-2 pointer-events-none z-50 flex flex-col gap-1 max-h-[75vh] overflow-y-auto">
+      {
+        navLinks.map((link) => (
+          <a href={link.href} class="text-lg font-bold text-white py-3 border-b border-secondary last:border-b-0">
+            {link.label}
+          </a>
+        ))
+      }
+
+      <div class="mt-2 md:hidden">
+        <Button href="/contact" size="sm" grow>book a call</Button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { gsap } from "gsap";
+
+  function initHeaderMenu() {
+    const menuToggle = document.getElementById("menu-toggle") as HTMLButtonElement | null;
+    const iconBar = document.getElementById("icon-bar") as HTMLElement | null;
+    const iconClose = document.getElementById("icon-close") as HTMLElement | null;
+    const mobileNav = document.getElementById("mobile-nav") as HTMLElement | null;
+    const siteHeader = document.getElementById("site-header") as HTMLElement | null;
+
+    if (!menuToggle || !iconBar || !iconClose || !mobileNav) return;
+
+    // ---------- STICKY HEADER SCROLL STATE ----------
+    if (siteHeader) {
+      const SCROLL_THRESHOLD = 12;
+
+      const updateScrolledState = () => {
+        siteHeader.classList.toggle("is-scrolled", window.scrollY > SCROLL_THRESHOLD);
+      };
+
+      updateScrolledState();
+      window.addEventListener("scroll", updateScrolledState, { passive: true });
+    }
+
+    let isOpen = false;
+    let isAnimating = false;
+
+    // ---------- MOBILE OPEN/CLOSE (dropdown panel below header) ----------
+    const openMobileMenu = () => {
+      mobileNav.style.pointerEvents = "auto";
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isAnimating = false;
+        },
+      });
+
+      tl.to(iconBar, { opacity: 0, duration: 0.25, ease: "power1.out" }, 0).to(iconClose, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0.1).to(mobileNav, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 0);
+    };
+
+    const closeMobileMenu = () => {
+      mobileNav.style.pointerEvents = "none";
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isAnimating = false;
+        },
+      });
+
+      tl.to(mobileNav, { opacity: 0, y: -8, duration: 0.25, ease: "power1.in" }, 0).to(iconClose, { opacity: 0, duration: 0.2, ease: "power1.out" }, 0).to(iconBar, { opacity: 1, duration: 0.25, ease: "power1.out" }, 0.1);
+    };
+
+    menuToggle.addEventListener("click", () => {
+      if (isAnimating) return;
+      isAnimating = true;
+      isOpen = !isOpen;
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      isOpen ? openMobileMenu() : closeMobileMenu();
+    });
+
+    // reset mobile-nav state if the viewport crosses into desktop while it's open
+    const mq = window.matchMedia("(min-width: 1024px)");
+    mq.addEventListener("change", () => {
+      if (!isOpen) return;
+      isOpen = false;
+      isAnimating = false;
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      gsap.set(iconBar, { opacity: 1 });
+      gsap.set(iconClose, { opacity: 0 });
+      gsap.set(mobileNav, { opacity: 0, y: -8 });
+      mobileNav.style.pointerEvents = "none";
+    });
+  }
+
+  document.addEventListener("astro:page-load", initHeaderMenu);
+</script>

@@ -1,0 +1,124 @@
+---
+interface Work {
+  id: string;
+  seed: string;
+  image: string;
+  alt: string;
+}
+
+const works: Work[] = [
+  {
+    id: "01",
+    seed: "sneaker-form",
+    image: "/images/hero/gal-01.jpg",
+    alt: "Product photography — running shoe",
+  },
+  {
+    id: "02",
+    seed: "toy-craft",
+    image: "/images/hero/gal-02.jpg",
+    alt: "Character design — collectible toy",
+  },
+  {
+    id: "03",
+    seed: "race-motion",
+    image: "/images/hero/gal-03.jpg",
+    alt: "Motion study — race car",
+  },
+  {
+    id: "04",
+    seed: "gender-fluid",
+    image: "/images/hero/gal-04.jpg",
+    alt: "Campaign — Gender Fluid",
+  },
+  {
+    id: "05",
+    seed: "desert-classic",
+    image: "/images/hero/gal-05.jpg",
+    alt: "Automotive — desert shoot",
+  },
+  {
+    id: "06",
+    seed: "concept-form",
+    image: "/images/hero/gal-06.jpg",
+    alt: "Concept render — future form",
+  },
+];
+
+const socials = ["BE", "IG", "X", "FB"];
+---
+
+<section class="relative overflow-hidden">
+  <!-- vertical corner label -->
+  <div class="container relative">
+    <p class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 rotate-180 [writing-mode:vertical-rl] text-sm font-medium text-dark-shades-50" aria-hidden="true">( AVAILABLE GLOBALLY )</p>
+
+    <div class="max-w-266 mx-auto pt-35">
+      <!-- top bar -->
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 -mt-4">
+        <nav aria-label="Social links" class="flex items-center gap-1.5 text-sm font-medium text-dark-shades-50">
+          <span>(</span>
+          {
+            socials.map((s, i) => (
+              <>
+                <a href="#" class="hover:text-primary transition-colors duration-300">
+                  {s}
+                </a>
+                {i < socials.length - 1 && <span>/</span>}
+              </>
+            ))
+          }
+          <span>)</span>
+        </nav>
+      </div>
+
+      <!-- wordmark -->
+      <div class="text-center">
+        <h1 class="text-[240px] font-jersey leading-none tracking-[-4%] text-white uppercase relative inline-block">
+          kianro <span class="absolute top-12 -right-26 size-22 rounded-full border-10 border-white flex items-center justify-center text-6xl font-switzer font-medium">R</span>
+        </h1>
+        <p class="text-2xl font-medium leading-normal text-white tracking-[-1%]">Designing brands that people remember.</p>
+      </div>
+
+      <!-- portfolio grid -->
+      <ul role="list" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-35 mb-16">
+        {
+          works.map((w) => (
+            <li class="group relative aspect-square overflow-hidden bg-[#141414]">
+              <img src={w.image} alt={w.alt} loading="lazy" class="h-full w-full object-cover" />
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- marquee -->
+      <div class="overflow-hidden max-w-62 mx-auto border border-stroke py-2.25">
+        <div class="flex w-max animate-[marquee_18s_linear_infinite] motion-reduce:animate-none">
+          {
+            Array.from({ length: 2 }).map(() => (
+              <span class="flex items-center">
+                {Array.from({ length: 4 }).map(() => (
+                  <span class="inline-flex items-center gap-2 whitespace-nowrap px-1.5 text-base tracking-[-1%] leading-normal text-dark-shades-20">
+                    <span class="inline-block size-2.5 rounded-full border-2 border-primary" />
+                    Available for work
+                  </span>
+                ))}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

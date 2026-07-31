@@ -1,0 +1,13 @@
+---
+interface Props {
+  isOpen?: boolean;
+  class?: string;
+}
+
+const { isOpen = false, class: className = "" } = Astro.props;
+---
+
+<svg class={`accordion-icon-svg size-4 overflow-visible ${className}`} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style={`transform: rotate(${isOpen ? "45deg" : "0deg"})`}>
+  <path d="M8 2V14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+  <path d="M2 8H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+</svg>

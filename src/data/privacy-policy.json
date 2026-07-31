@@ -1,0 +1,52 @@
+[
+  {
+    "sectionId": "introduction",
+    "category": "Introduction",
+    "content": "<p>At Plantz, we believe privacy should feel clear, not complicated. This policy explains how we collect, use, and protect your information when you interact with our website or use our gardening services. Our goal is simple: to be transparent, respectful, and responsible with your data every step of the way.</p>"
+  },
+  {
+    "sectionId": "information-we-collect",
+    "category": "Information We Collect",
+    "content": "<p>When you interact with Plantz, we may collect information that helps us provide our services effectively and improve your experience. This includes details you provide directly such as when requesting a quote, booking a service, or contacting our team—as well as basic technical data collected automatically when you browse our website.</p><ul><li>Your name, email, phone, and service address</li><li>Website usage data like pages visited, time spent, and device or browser information</li><li>Communication data including messages, inquiries, and feedback you share with us</li></ul>"
+  },
+  {
+    "sectionId": "how-we-use-your-information",
+    "category": "How We Use Your Information",
+    "content": "<p>We use your information to deliver a smooth, reliable, and personalized experience. This allows us to understand your needs, maintain consistent service quality, and communicate clearly with you throughout your journey with Plantz.</p><p>Your data helps us manage bookings, offer accurate recommendations, answer questions, and enhance our website and services. We use your information only to improve your experience and deliver our services effectively.</p>"
+  },
+  {
+    "sectionId": "how-we-protect-your-information",
+    "category": "How We Protect Your Information",
+    "content": "<p>We prioritize protecting your information by using secure systems and safeguards to prevent unauthorized access, misuse, or loss of your data.</p><ul><li>Secure storage systems and monitored infrastructure</li><li>Controlled access limited to trained and authorized team members</li><li>Ongoing checks to identify and prevent potential security risks</li></ul><p>While no system can guarantee absolute security, we continuously work to maintain a high standard of protection.</p>"
+  },
+  {
+    "sectionId": "sharing-your-information",
+    "category": "Sharing Your Information",
+    "content": "<p>We do not sell or rent your personal information. Your data is only shared when it is necessary to operate our services or when required by law.</p><p>In some cases, we may work with trusted partners—such as payment providers or scheduling tools—to help deliver our services efficiently. These partners are expected to handle your information with the same level of care and responsibility that we do.</p>"
+  },
+  {
+    "sectionId": "cookies-tracking",
+    "category": "Cookies & Tracking",
+    "content": "<p>Our website uses cookies and similar technologies to create a better browsing experience. These help us understand how visitors interact with our site, improve performance, and ensure everything functions as expected.</p><p>You remain in control of your browser settings and can choose to disable cookies at any time. However, doing so may affect certain features of the website.</p>"
+  },
+  {
+    "sectionId": "your-rights",
+    "category": "Your Rights",
+    "content": "<p>You have control over your personal information. You can request access to your data, ask for corrections, or request deletion at any time. You can also choose to opt out of non-essential communications.</p><ul><li>Access, update, or delete your personal information</li><li>Opt out of marketing or promotional messages</li><li>Request clarification on how your data is used</li></ul><p>We aim to make these requests simple and straightforward.</p>"
+  },
+  {
+    "sectionId": "third-party-links",
+    "category": "Third-Party Links",
+    "content": "<p>Our website may include links to external websites for your convenience. These sites operate independently, and their privacy practices may differ from ours. We encourage you to review their policies before sharing any personal information.</p>"
+  },
+  {
+    "sectionId": "policy-updates",
+    "category": "Policy Updates",
+    "content": "<p>We may update this Privacy Policy occasionally to align with changes in our services or legal requirements. All updates will be clearly displayed on this page. The revised effective date will be shown alongside the changes for your reference.</p>"
+  },
+  {
+    "sectionId": "contact-us",
+    "category": "Contact us",
+    "content": "<p>If you have any questions or concerns about this Privacy Policy or how your information is handled, our team is here to help.</p><p>Email: <strong>support@plantz.com </strong> <br>Phone: <strong>+1 (213) 784-4456 </strong> </p>"
+  }
+]

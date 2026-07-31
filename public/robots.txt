@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://plantz-astro.netlify.app/sitemap-index.xml

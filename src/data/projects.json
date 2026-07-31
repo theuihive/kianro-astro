@@ -1,0 +1,520 @@
+[
+  {
+    "id": 101,
+    "slug": "emerald-lawn-haven",
+    "title": "Emerald Lawn Haven",
+    "services": ["leaf-cleanup", "regular-upkeep-visits"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-01.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "slug": "evergreen-care-grounds",
+    "title": "Evergreen Care Grounds",
+    "services": ["mulching", "fertilization", "irrigation-support-drainage-fixes"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-02.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "slug": "refined-garden-retreat",
+    "title": "Refined Garden Retreat",
+    "services": ["soil-improvement", "new-planting", "landscape-refresh"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-03.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "slug": "timeless-garden-care",
+    "title": "Timeless Garden Care",
+    "services": ["pruning-trimming", "seasonal-planting-care", "weed-control"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-04.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "slug": "clearGreen-sanctuary",
+    "title": "ClearGreen Sanctuary",
+    "services": ["spring-cleanup", "fertilization", "monsoon-storm-prep"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-05.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "slug": "verdant-courtyard",
+    "title": "Verdant Courtyard",
+    "services": ["mulching", "soil-improvement", "pest-and-disease-treatment"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-06.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "slug": "rootRevive-garden",
+    "title": "RootRevive Garden",
+    "services": ["lawn-mowing-edging", "holiday-event-garden-prep"],
+    "subtitle": "A Clean, Structured, and Refreshing Residential Lawn Transformation.",
+    "mainImage": "/images/projects/project-07.jpg",
+    "details": [
+      { "label": "Location", "value": "Austin, Texas, US" },
+      { "label": "Duration", "value": "4 Weeks" },
+      { "label": "Type", "value": "Residential Lawn" },
+      { "label": "Status", "value": "Completed" },
+      { "label": "Size", "value": "4,200 sq ft / 390 m²" }
+    ],
+    "sections": [
+      {
+        "id": "project-overview",
+        "type": "overview",
+        "title": "Project Overview",
+        "paragraphs": [
+          "Emerald Lawn Haven began as an overgrown, uneven outdoor space with inconsistent grass height and poorly defined edges. The lawn lacked structure, making the entire garden feel untidy and difficult to maintain. The homeowners wanted more than just routine mowing—they envisioned a clean, sharp, and refreshing outdoor space where every line feels intentional.",
+          "“Our goal was simple: to restore clarity and rhythm to the lawn—where every edge is crisp, every surface is balanced, and the space feels effortlessly maintained.”",
+          "Plantz partnered with the homeowners in 2025 to deliver a complete lawn mowing and edging transformation, combining precision techniques with consistent care to achieve a polished, long-lasting result."
+        ]
+      },
+      {
+        "id": "before-after-gallery",
+        "type": "gallery",
+        "title": "Before After Gallery",
+        "featured": "/images/projects/project-03.jpg",
+        "images": ["/images/projects/project-01.jpg", "/images/projects/project-02.jpg", "/images/projects/project-03.jpg", "/images/projects/project-04.jpg"]
+      },
+      {
+        "id": "the-challenge",
+        "type": "list",
+        "title": "The Challenge",
+        "description": "The garden faced several interconnected issues:",
+        "items": ["Overgrown shrubs losing their natural shape and structure", "Dead or damaged branches affecting plant health", "Dense foliage blocking sunlight and airflow", "Uneven tree growth creating imbalance in the landscape"]
+      },
+      {
+        "id": "the-solution",
+        "type": "groups",
+        "title": "The Solution",
+        "description": "Plantz implemented a careful and strategic pruning approach, combining horticultural expertise with precision techniques:",
+        "groups": [
+          {
+            "title": "Structural Pruning & Shaping",
+            "items": ["Selective trimming to restore natural plant forms", "Balanced shaping of shrubs and hedges for a clean appearance", "Controlled reduction of overgrowth without stressing plants"]
+          },
+          {
+            "title": "Deadwood Removal & Plant Health",
+            "items": ["Removal of dead, diseased, and damaged branches", "Improved airflow and sunlight penetration", "Encouraged stronger, healthier regrowth"]
+          },
+          {
+            "title": "Tree Care & Canopy Management",
+            "items": ["Weight reduction for safer, more stable tree structures", "Canopy thinning to create light and openness", "Enhanced visual balance across the garden"]
+          }
+        ]
+      },
+      {
+        "id": "the-results",
+        "type": "results",
+        "title": "The Results",
+        "description": "After completion, the lawn looked dramatically cleaner and healthier.",
+        "items": ["Garden feels lighter, more open, and visually balanced", "Plants display healthier, stronger, and more controlled growth", "Natural shapes of shrubs and trees are clearly defined", "Sunlight and airflow have significantly improved"]
+      },
+      {
+        "id": "looking-ahead",
+        "type": "cta",
+        "title": "Looking Ahead",
+        "description": "Plantz will continue supporting Refined Garden Retreat with seasonal pruning and ongoing care. The goal is to preserve its structure, encourage healthy growth, and ensure the garden remains elegant, balanced, and thriving throughout the year."
+      }
+    ]
+  }
+]

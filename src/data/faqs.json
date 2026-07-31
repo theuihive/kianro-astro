@@ -1,0 +1,164 @@
+[
+  {
+    "category": "General Questions",
+    "sectionId": "general-questions",
+    "items": [
+      {
+        "id": "faq-general-1",
+        "title": "Do I need to be home during the service?",
+        "content": "No. As long as we have access, we'll handle everything and update you if needed, keeping you informed throughout the process."
+      },
+      {
+        "id": "faq-general-2",
+        "title": "How do I know which service I need?",
+        "content": "We offer a free initial consultation to assess your garden's condition and discuss your goals, helping you choose the perfect maintenance plan."
+      },
+      {
+        "id": "faq-general-3",
+        "title": "How much will it cost?",
+        "content": "Pricing depends on the size of your garden and the specific services required. Contact us for a detailed and transparent custom quote."
+      },
+      {
+        "id": "faq-general-4",
+        "title": "Do you offer one-time services?",
+        "content": "Yes, we provide one-time cleanups, seasonal pruning, and storm restoration alongside our regular ongoing maintenance packages."
+      },
+      {
+        "id": "faq-general-5",
+        "title": "What if my garden is overgrown?",
+        "content": "No problem at all! We love transformations. Our team will perform an initial restoration service to bring it back to a beautiful, manageable state."
+      },
+      {
+        "id": "faq-general-6",
+        "title": "How soon can you start?",
+        "content": "We can usually schedule an initial visit or consultation within 3-5 business days depending on our current seasonal workload."
+      }
+    ]
+  },
+  {
+    "category": "Garden Maintenance",
+    "sectionId": "garden-maintenance",
+    "items": [
+      {
+        "id": "faq-maint-1",
+        "title": "What is included in garden maintenance services?",
+        "content": "Our regular maintenance covers lawn mowing, weeding, hedge trimming, soil cultivation, deadheading flowers, and seasonal cleanups."
+      },
+      {
+        "id": "faq-maint-2",
+        "title": "How often should garden maintenance be scheduled?",
+        "content": "For the best results, we recommend weekly or bi-weekly visits during the peak growing season, and monthly checks during winter."
+      },
+      {
+        "id": "faq-maint-3",
+        "title": "Do you offer monthly garden maintenance plans?",
+        "content": "Yes, we have subscription-based monthly and seasonal plans tailored to your garden’s specific ecosystem and needs."
+      },
+      {
+        "id": "faq-maint-4",
+        "title": "Can I customize my maintenance plan?",
+        "content": "Absolutely. You can choose specific areas you want us to focus on or add services like organic fertilizing and pest control whenever needed."
+      },
+      {
+        "id": "faq-maint-5",
+        "title": "What happens if I skip regular maintenance?",
+        "content": "Skipping maintenance can allow weeds and pests to multiply quickly, which often increases the cost and effort required for the next cleanup."
+      }
+    ]
+  },
+  {
+    "category": "Pricing & Payments",
+    "sectionId": "pricing-payments",
+    "items": [
+      {
+        "id": "faq-price-1",
+        "title": "How is pricing determined?",
+        "content": "Pricing is based on garden size, the complexity of the plants, access to the site, and the frequency of visits you choose."
+      },
+      {
+        "id": "faq-price-2",
+        "title": "Do you offer fixed packages or custom quotes?",
+        "content": "We offer both! We have standard foundational packages for basic care, as well as fully bespoke quotes for complex landscape management."
+      },
+      {
+        "id": "faq-price-3",
+        "title": "What payment methods do you accept?",
+        "content": "We accept all major credit cards, secure bank transfers, and automated monthly billing for our subscription plan clients."
+      }
+    ]
+  },
+  {
+    "category": "Scheduling & Availability",
+    "sectionId": "scheduling-availability",
+    "items": [
+      {
+        "id": "faq-schedule-1",
+        "title": "How do I schedule a service?",
+        "content": "You can schedule a service by contacting us through our website, phone, or email. We'll help you find a convenient date and time."
+      },
+      {
+        "id": "faq-schedule-2",
+        "title": "Can I reschedule or cancel a booking?",
+        "content": "Yes. Simply let us know at least 24 hours in advance, and we'll gladly reschedule or cancel your appointment."
+      },
+      {
+        "id": "faq-schedule-3",
+        "title": "Do you offer one-time services?",
+        "content": "Yes, we offer one-time gardening services, seasonal cleanups, and special maintenance visits in addition to recurring plans."
+      }
+    ]
+  },
+  {
+    "category": "Seasonal Care",
+    "sectionId": "seasonal-care",
+    "items": [
+      {
+        "id": "faq-seasonal-1",
+        "title": "Do gardens need different care in different seasons?",
+        "content": "Yes. Every season requires different maintenance, from spring planting and summer watering to autumn cleanup and winter protection."
+      },
+      {
+        "id": "faq-seasonal-2",
+        "title": "Will you advise what my garden needs each season?",
+        "content": "Absolutely. Our team provides seasonal recommendations to keep your garden healthy and thriving throughout the year."
+      }
+    ]
+  },
+  {
+    "category": "Plants & Garden Health",
+    "sectionId": "plants-garden-health",
+    "items": [
+      {
+        "id": "faq-health-1",
+        "title": "How do I know if my plants are healthy?",
+        "content": "Healthy plants have strong growth, vibrant leaves, and minimal signs of disease or pest damage. We can inspect your garden and provide expert guidance."
+      },
+      {
+        "id": "faq-health-2",
+        "title": "Do you handle pests and weeds?",
+        "content": "Yes. We provide effective weed management and environmentally responsible pest control solutions to protect your garden."
+      },
+      {
+        "id": "faq-health-3",
+        "title": "Can you help revive a neglected garden?",
+        "content": "Yes. We specialize in restoring neglected gardens through pruning, cleanup, soil improvement, and ongoing maintenance."
+      }
+    ]
+  },
+  {
+    "category": "Trust & Safety",
+    "sectionId": "trust-safety",
+    "items": [
+      {
+        "id": "faq-safety-1",
+        "title": "Are your gardeners experienced?",
+        "content": "Yes. Our gardeners are trained professionals with extensive experience in garden maintenance, landscaping, and plant care."
+      },
+      {
+        "id": "faq-safety-2",
+        "title": "Will my property be safe during service?",
+        "content": "Absolutely. Our team treats every property with care, follows strict safety procedures, and always leaves your garden clean and secure after each visit."
+      }
+    ]
+  }
+]
