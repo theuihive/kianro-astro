@@ -1,0 +1,146 @@
+---
+const processSteps = [
+  {
+    id: "01",
+    title: "PROJECT DISCOVERY",
+    image: "/images/process/step-1.jpg",
+  },
+  {
+    id: "02",
+    title: "CREATIVE DIRECTION",
+    image: "/images/process/step-2.jpg",
+  },
+  {
+    id: "03",
+    title: "DIGITAL DEVELOPMENT",
+    image: "/images/process/step-3.jpg",
+  },
+  {
+    id: "04",
+    title: "FINAL DELIVERY",
+    image: "/images/process/step-4.jpg",
+  },
+];
+---
+
+<section data-process-section data-process-pin class="relative overflow-hidden">
+  <div class="container">
+    <div class="grid grid-cols-12 gap-5 items-center">
+      <!-- Header & Nav Steps -->
+      <div class="col-span-6 h-full">
+        <div class="flex flex-col justify-between space-y-16 h-full">
+          <div>
+            <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+              THE PROCESS <span class="text-dark-shades-60">BEHIND EVERY PROJECT</span>
+            </h2>
+          </div>
+
+          <!-- Navigation Steps -->
+          <ul class="space-y-3">
+            {
+              processSteps.map((step, index) => (
+                <li data-process-nav={index} class="font-jersey text-[40px] leading-none uppercase tracking-[-2%] will-change-transform text-dark-shades-70">
+                  {index + 1}. {step.title}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Stacked Image Deck -->
+      <div class="col-span-6">
+        <div class="relative max-w-162 h-202 w-full ml-auto">
+          {
+            processSteps.map((step, index) => (
+              <div data-process-image={index} class="absolute inset-0 h-full w-full overflow-hidden will-change-transform" style={`z-index: ${index + 1};`}>
+                <img src={step.image} alt={step.title} class="h-full w-full object-cover" loading={index === 0 ? "eager" : "lazy"} />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initProcessScroll() {
+    const section = document.querySelector("[data-process-section]");
+    const pinTarget = document.querySelector("[data-process-pin]");
+    if (!section || !pinTarget) return;
+
+    const navItems = gsap.utils.toArray<HTMLElement>("[data-process-nav]");
+    const imageSlides = gsap.utils.toArray<HTMLElement>("[data-process-image]");
+    const totalSteps = imageSlides.length;
+
+    const scrollDistancePerStep = 0.7;
+
+    if (totalSteps === 0) return;
+
+    // Clear previous ScrollTriggers for Astro view transitions
+    ScrollTrigger.getAll().forEach((st) => {
+      if (st.trigger === section) st.kill();
+    });
+
+    // Initial setup
+    imageSlides.forEach((slide, i) => {
+      if (i > 0) gsap.set(slide, { yPercent: 100 });
+    });
+
+    gsap.set(navItems[0], { color: "#ffffff", opacity: 1, translateX: "20px" });
+    navItems.slice(1).forEach((nav) => {
+      gsap.set(nav, { color: "#484848", translateX: "0px" });
+    });
+
+    const totalTransitions = totalSteps - 1;
+    if (totalTransitions === 0) return;
+
+    const transitions = Array.from({ length: totalTransitions }, (_, index) => {
+      const nextSlide = imageSlides[index + 1];
+      const currentNav = navItems[index];
+      const nextNav = navItems[index + 1];
+
+      return gsap
+        .timeline({
+          paused: true,
+          defaults: { duration: 0.8, ease: "power2.inOut" },
+        })
+        .to(nextSlide, { yPercent: 0 }, 0)
+        .to(currentNav, { color: "#484848", translateX: "0px" }, 0)
+        .to(nextNav, { color: "#ffffff", translateX: "20px" }, 0);
+    });
+
+    let currentIndex = 0;
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 80px",
+      end: () => `+=${totalTransitions * scrollDistancePerStep * window.innerHeight}`,
+      pin: pinTarget,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+
+      onUpdate: (self) => {
+        const idx = Math.min(totalTransitions, Math.round(self.progress * totalTransitions));
+
+        if (idx > currentIndex) {
+          for (let s = currentIndex; s < idx; s++) transitions[s].play();
+          currentIndex = idx;
+        } else if (idx < currentIndex) {
+          for (let s = currentIndex - 1; s >= idx; s--) transitions[s].reverse();
+          currentIndex = idx;
+        }
+      },
+    });
+  }
+
+  initProcessScroll();
+  // Astro page reload event support
+  document.addEventListener("astro:page-load", initProcessScroll);
+</script>

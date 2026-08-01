@@ -1,0 +1,78 @@
+---
+import ButtonArrowicon from "../icons/ButtonArrowicon.astro";
+
+const project = {
+  title: "Bloom Wellness",
+  href: "#",
+  backgroundImage: "/images/projects/project-01.jpg",
+  cardImage: "/images/projects/project-thumbnail-01.jpg",
+  leftMeta: [
+    { label: "Client", value: "Verde Organics" },
+    { label: "Category", value: "Wellness" },
+  ],
+  rightMeta: [
+    { label: "Year", value: "2025" },
+    { label: "Services", value: "Brand Identity" },
+  ],
+};
+---
+
+<section class="pb-41">
+  <div class="container">
+    <div class="mb-18 text-center max-w-2xl mx-auto">
+      <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        Featured Projects That
+        <span class="text-dark-shades-60"> Reflect Strategy, Style & Detail</span>
+      </h2>
+    </div>
+    <div class="h-220 relative overflow-hidden">
+      <img src={project.backgroundImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+      <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/35 to-black/50"></div>
+
+      <!-- content -->
+      <div class="relative z-10 flex h-full items-center px-10">
+        <div class="grid w-full grid-cols-2 items-center gap-6 sm:grid-cols-3">
+          <div class="flex justify-between gap-5 pr-10">
+            {
+              project.leftMeta.map((m) => (
+                <div class="space-y-1">
+                  <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                  <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- spacer columns so the meta sits flush left/right while the card floats centered on top -->
+          <div class="hidden sm:block" aria-hidden="true"></div>
+
+          <div class="flex justify-between gap-5 pl-10">
+            {
+              project.rightMeta.map((m) => (
+                <div class="space-y-1">
+                  <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                  <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- centered polaroid card -->
+      <a href={project.href} class="group absolute left-1/2 top-1/2 z-20 w-106 -translate-x-1/2 -translate-y-1/2 bg-white p-1.5">
+        <div class="w-full overflow-hidden">
+          <img src={project.cardImage} alt={project.title} loading="lazy" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        </div>
+        <div class="flex items-center justify-between pt-5 pb-7 px-4">
+          <h3 class="text-[40px] font-jersey tracking-[-2%] text-dark-primary uppercase leading-none">
+            {project.title}
+          </h3>
+          <div class="text-dark-primary">
+            <ButtonArrowicon class="size-8" />
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
