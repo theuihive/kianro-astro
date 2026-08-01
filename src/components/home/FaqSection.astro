@@ -1,0 +1,19 @@
+---
+import Accordion from "@/components/accordion/Accordion.astro";
+import faqs from "@/data/faqs.json";
+---
+
+<div class="py-40">
+  <div class="container">
+    <!-- Heading -->
+    <div class="mb-19 text-center max-w-2xl mx-auto">
+      <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        Frequently
+        <span class="text-dark-shades-60"> Asked Questions</span>
+      </h2>
+    </div>
+    <div class="w-full lg:max-w-218 mx-auto">
+      <Accordion items={faqs} />
+    </div>
+  </div>
+</div>

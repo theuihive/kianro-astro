@@ -1,0 +1,34 @@
+[
+  {
+    "id": "james-wilson",
+    "rating": 5,
+    "quote": "Working together was effortless from start to finish. Every detail was carefully considered, and the final website perfectly reflected our vision while exceeding expectations.",
+    "name": "James Wilson",
+    "role": "Founder, Arc Studio",
+    "image": "/images/testimonials/client-01.jpg"
+  },
+  {
+    "id": "adrian-brooks",
+    "rating": 5,
+    "quote": "The branding and website redesign transformed our online presence. Clear communication, creative thinking, and exceptional execution throughout the entire project.",
+    "name": "Adrian Brooks",
+    "role": "Founder, Lumora Studio",
+    "image": "/images/testimonials/client-02.jpg"
+  },
+  {
+    "id": "adam-smith",
+    "rating": 5,
+    "quote": "The branding and website redesign transformed our online presence. Clear communication, creative thinking, and exceptional execution throughout the entire project.",
+    "name": "Adam Smith",
+    "role": "CEO, Kainro Studio",
+    "image": "/images/testimonials/client-01.jpg"
+  },
+  {
+    "id": "erik-jhonson",
+    "rating": 5,
+    "quote": "The branding and website redesign transformed our online presence. Clear communication, creative thinking, and exceptional execution throughout the entire project.",
+    "name": "Erik Jhonson",
+    "role": "CEO, Dynamostacks",
+    "image": "/images/testimonials/client-02.jpg"
+  }
+]

@@ -1,0 +1,105 @@
+---
+import PlusIcon from "@/components/icons/PlusIcon.astro";
+
+export interface AccordionItem {
+  id: string;
+  title: string;
+  content: string;
+}
+
+interface Props {
+  items: AccordionItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="accordion-wrapper w-full flex flex-col gap-4" data-accordion>
+  {
+    items.map((item, index) => {
+      const isOpen = index === 0;
+      const contentId = `accordion-content-${item.id}`;
+      const triggerId = `accordion-trigger-${item.id}`;
+
+      return (
+        <div class="accordion-item border border-stroke" data-id={item.id}>
+          <button type="button" id={triggerId} class="accordion-trigger w-full flex items-center justify-between gap-4 p-6 text-left group" aria-expanded={isOpen ? "true" : "false"} aria-controls={contentId}>
+            <span class="text-xl font-semibold text-white tracking-[-1%] leading-normal">{item.title}</span>
+
+            <span class="accordion-icon relative size-4 shrink-0 text-white" aria-hidden="true">
+              <PlusIcon isOpen={isOpen} />
+            </span>
+          </button>
+
+          <div id={contentId} role="region" aria-labelledby={triggerId} class="accordion-content overflow-hidden" style={`height: ${isOpen ? "auto" : "0px"};`}>
+            <div class="accordion-content-inner text-base text-dark-shades-50 tracking-[-1%] leading-normal p-6 pt-0" set:html={item.content} />
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  function initAccordions() {
+    const wrappers = document.querySelectorAll<HTMLElement>("[data-accordion]");
+
+    wrappers.forEach((wrapper) => {
+      if (wrapper.dataset.accordionInit === "true") return;
+      wrapper.dataset.accordionInit = "true";
+
+      const items = wrapper.querySelectorAll<HTMLElement>(".accordion-item");
+
+      function getParts(item: HTMLElement) {
+        const trigger = item.querySelector<HTMLButtonElement>(".accordion-trigger");
+        const content = item.querySelector<HTMLElement>(".accordion-content");
+        const icon = item.querySelector<HTMLElement>(".accordion-icon svg");
+        return { trigger, content, icon };
+      }
+
+      function closeItem(item: HTMLElement) {
+        const { trigger, content, icon } = getParts(item);
+        if (!trigger || !content) return;
+        trigger.setAttribute("aria-expanded", "false");
+        gsap.to(content, { height: 0, duration: 0.4, ease: "power2.inOut" });
+        if (icon) gsap.to(icon, { rotate: 0, duration: 0.3, ease: "power2.inOut", transformOrigin: "50% 50%" });
+      }
+
+      function openItem(item: HTMLElement) {
+        const { trigger, content, icon } = getParts(item);
+        if (!trigger || !content) return;
+        trigger.setAttribute("aria-expanded", "true");
+        gsap.to(content, { height: "auto", duration: 0.4, ease: "power2.inOut" });
+        if (icon) gsap.to(icon, { rotate: 45, duration: 0.3, ease: "power2.inOut", transformOrigin: "50% 50%" });
+      }
+
+      items.forEach((item) => {
+        const trigger = item.querySelector<HTMLButtonElement>(".accordion-trigger");
+        if (!trigger) return;
+
+        trigger.addEventListener("click", () => {
+          const isCurrentlyOpen = trigger.getAttribute("aria-expanded") === "true";
+
+          items.forEach((otherItem) => {
+            if (otherItem === item) return;
+            const otherTrigger = otherItem.querySelector<HTMLButtonElement>(".accordion-trigger");
+            if (otherTrigger?.getAttribute("aria-expanded") === "true") {
+              closeItem(otherItem);
+            }
+          });
+
+          if (isCurrentlyOpen) {
+            closeItem(item);
+          } else {
+            openItem(item);
+          }
+        });
+      });
+    });
+  }
+
+  initAccordions();
+  document.addEventListener("astro:page-load", initAccordions);
+</script>

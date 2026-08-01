@@ -1,0 +1,91 @@
+---
+import StarIcon from "@/components/icons/StarIcon.astro";
+import testimonialsData from "@/data/testimonials.json";
+import TestimonialSectionHeader from "@/components/home/TestimonialSectionHeader.astro";
+---
+
+<section class="overflow-x-hidden">
+  <div class="container">
+    <TestimonialSectionHeader />
+    <div data-embla-viewport class="overflow-hidden lg:w-[calc(100%+((100vw-100%)/2))] lg:mr-[calc((100vw-100%)/-2)]">
+      <div data-embla-container class="flex flex-col gap-6 lg:flex-row">
+        {
+          testimonialsData.map((testimonial) => (
+            <article data-embla-slide class="flex flex-col sm:flex-row lg:w-190 lg:shrink-0 bg-dark-shades-90">
+              <div class="h-84 w-full shrink-0 overflow-hidden sm:h-108 sm:w-84">
+                <img src={testimonial.image} alt={testimonial.name} class="h-full w-full object-cover" loading="lazy" />
+              </div>
+
+              <div class="flex flex-1 flex-col justify-between p-8">
+                <div>
+                  <div class="mb-5 flex gap-0.5 text-primary">
+                    {Array.from({ length: testimonial.rating }).map(() => (
+                      <StarIcon />
+                    ))}
+                  </div>
+                  <p class="text-xl leading-normal font-medium text-white tracking-[-1%]">&ldquo;{testimonial.quote}&rdquo;</p>
+                </div>
+
+                <div class="mt-8">
+                  <p class="text-xl leading-normal font-semibold text-white tracking-[-1%]">{testimonial.name}</p>
+                  <p class="text-base leading-normal text-dark-shades-50 tracking-[-1%]">{testimonial.role}</p>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Dots — click to jump to a slide -->
+    <div data-embla-dots class="mt-12 flex items-center justify-center gap-2">
+      {testimonialsData.map((_, i) => <button type="button" data-embla-dot={i} aria-label={`Go to testimonial ${i + 1}`} class:list={["size-1.5 rounded-full transition-all", i === 0 ? "bg-primary" : "bg-dark-shades-70"]} />)}
+    </div>
+  </div>
+</section>
+
+<script>
+  import EmblaCarousel, { type EmblaCarouselType } from "embla-carousel";
+
+  function initTestimonialsCarousel() {
+    const section = document.currentScript?.closest("section") ?? document.querySelector("[data-embla-viewport]")?.closest("section");
+    if (!section) return;
+
+    const viewport = section.querySelector<HTMLElement>("[data-embla-viewport]");
+    const dotsWrap = section.querySelector<HTMLElement>("[data-embla-dots]");
+    if (!viewport) return;
+
+    const existing = (viewport as any)._emblaApi as EmblaCarouselType | undefined;
+    existing?.destroy();
+
+    const emblaApi = EmblaCarousel(viewport, {
+      align: "start",
+      loop: true,
+      dragFree: false,
+      containScroll: "trimSnaps",
+    });
+
+    (viewport as any)._emblaApi = emblaApi;
+
+    const dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll<HTMLButtonElement>("[data-embla-dot]")) : [];
+
+    function updateDots() {
+      const selected = emblaApi.selectedScrollSnap();
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("bg-primary", i === selected);
+        dot.classList.toggle("bg-dark-shades-70", i !== selected);
+      });
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => emblaApi.scrollTo(i));
+    });
+
+    emblaApi.on("select", updateDots);
+    emblaApi.on("reInit", updateDots);
+    updateDots();
+  }
+
+  initTestimonialsCarousel();
+  document.addEventListener("astro:page-load", initTestimonialsCarousel);
+</script>
