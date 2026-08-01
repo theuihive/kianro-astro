@@ -1,0 +1,44 @@
+{
+  "heading": {
+    "lineBold": "Flexible Plans",
+    "lineMuted": "for Every Creative Project"
+  },
+  "billing": {
+    "options": [
+      { "id": "project", "label": "Per Project" },
+      { "id": "retainer", "label": "Retainer", "badge": "Save 20%" }
+    ],
+    "default": "project",
+    "currency": "$",
+    "period": "/ month"
+  },
+  "plans": [
+    {
+      "id": "foundation",
+      "name": "Foundation",
+      "popular": false,
+      "description": "Perfect for startups and growing personal brands.",
+      "pricing": {
+        "project": 9500,
+        "retainer": 7600
+      },
+      "featuresLabel": "What's Included",
+      "features": ["Premium UI/UX design", "Up to 5 responsive pages", "Framer development", "Contact form setup", "Basic CMS integration", "2 rounds of revisions", "2 weeks post-launch support"],
+      "cta": { "label": "Start Your Project", "href": "#" }
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "popular": true,
+      "popularLabel": "Popular",
+      "description": "Complete creative solutions for growing brands.",
+      "pricing": {
+        "project": 12500,
+        "retainer": 10000
+      },
+      "featuresLabel": "What's Included",
+      "features": ["Custom design strategy", "Up to 12 custom pages", "Advanced Framer development", "CMS & dynamic collections", "Custom animations", "Unlimited revisions during design", "30 days priority support"],
+      "cta": { "label": "Start Your Project", "href": "#" }
+    }
+  ]
+}
