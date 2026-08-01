@@ -1,7 +1,7 @@
 ---
 title: "Why Regular Garden Maintenance Matters More Than You Think"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
-author: "Plantz Gardening Team"
+author: "Kainro Gardening Team"
 category:
   name: "Garden Care"
   slug: "garden-care"

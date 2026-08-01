@@ -1,7 +1,7 @@
 ---
 title: "Keep your garden healthy, balanced, and easy to maintain year-round"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
-author: "Plantz Gardening Team"
+author: "Kainro Gardening Team"
 category:
   name: "Garden Care"
   slug: "garden-care"

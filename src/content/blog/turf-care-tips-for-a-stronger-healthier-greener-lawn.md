@@ -1,7 +1,7 @@
 ---
 title: "Turf Care Tips for a Stronger, Healthier, Greener Lawn"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
-author: "Plantz Gardening Team"
+author: "Kainro Gardening Team"
 category:
   name: "Lawn & Turf"
   slug: "lawn-turf"
