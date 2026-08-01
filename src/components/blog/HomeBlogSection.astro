@@ -1,0 +1,31 @@
+---
+import ArticleCardGridStyle from "@/components/blog/ArticleCardGridStyle.astro";
+import { getCollection } from "astro:content";
+import Button from "../ui/Button.astro";
+
+const allPosts = await getCollection("blog");
+
+const posts = allPosts.slice(0, 3);
+---
+
+<section class="pb-40">
+  <div class="container">
+    <!-- Heading -->
+    <div class="mb-19">
+      <div class="flex justify-between gap-7">
+        <div class="max-w-xl">
+          <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+            Creative
+            <span class="text-dark-shades-60"> Thoughts & Perspectives</span>
+          </h2>
+        </div>
+        <div class="">
+          <Button href="/blog">View All Insights</Button>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post) => <ArticleCardGridStyle post={post} />)}
+    </div>
+  </div>
+</section>

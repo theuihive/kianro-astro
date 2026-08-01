@@ -1,17 +1,17 @@
 ---
-title: "The Right Way to Restart a Damaged Lawn Successfully"
+title: "Creating Websites That Convert Visitors"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
-author: "Kainro Gardening Team"
+author: "Kainro Team"
 category:
-  name: "Lawn & Turf"
-  slug: "lawn-turf"
-  image: "/images/blog/blog-0.jpg"
+  name: "Web Design"
+  slug: "web-design"
+  image: "/images/blog/blog-03.jpg"
 date: 2026-02-08
 tags:
-  - Gardening
-  - Maintenance
+  - Design
+  - Web
 draft: false
-cover: "/images/blog/blog-07.jpg"
+cover: "/images/blog/blog-03.jpg"
 ---
 
 Gardens are living spaces. They grow, shift, and respond to every season, just like the people who enjoy them. Yet, too often, we treat them as tasks to check off a list—a quick mow here, a trim there—without realizing that gardens are more than just aesthetics. They are ecosystems, and like any ecosystem, they thrive only with attention, consistency, and thoughtful care.
@@ -34,8 +34,8 @@ There's a quiet satisfaction in walking into a garden that feels alive, balanced
 > — Marcel A. Taylor
 
 <div class="grid grid-cols-2 gap-4 sm:gap-6">
-  <img src="/images/blog/blog-01.jpg" alt="Trimming plants close up" class="rounded-xl w-full sm:h-74 object-cover" />
-  <img src="/images/blog/blog-04.jpg" alt="Beautiful green lawn" class="rounded-xl w-full sm:h-74 object-cover" />
+  <img src="/images/blog/blog-03.jpg" alt="Trimming plants close up" class="rounded-xl w-full sm:h-74 object-cover" />
+  <img src="/images/blog/blog-01.jpg" alt="Beautiful green lawn" class="rounded-xl w-full sm:h-74 object-cover" />
 </div>
 
 ## Practical Steps to Start:
