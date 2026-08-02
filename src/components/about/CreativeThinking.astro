@@ -1,0 +1,48 @@
+---
+const data = [
+  {
+    id: 101,
+    title: "Creative Thinking",
+    description: "Every project begins with curiosity, innovation, and a commitment to solving problems through thoughtful design.",
+    thumbnail: "/images/creative/creative-01.jpg",
+  },
+  {
+    id: 102,
+    title: "Continuous Growth",
+    description: "Learning, improving, and adapting keeps our work relevant in an ever-changing digital landscape.",
+    thumbnail: "/images/creative/creative-02.jpg",
+  },
+  {
+    id: 103,
+    title: "Pursuing Excellence",
+    description: "We believe every detail matters, from strategy and design to development and final delivery.",
+    thumbnail: "/images/creative/creative-03.jpg",
+  },
+  {
+    id: 104,
+    title: "Honest Collaboration",
+    description: "Strong partnerships are built through transparency, communication, and shared success.",
+    thumbnail: "/images/creative/creative-04.jpg",
+  },
+];
+---
+
+<section class="py-75">
+  <div class="container">
+    {
+      data.map((slide) => (
+        <div class="mx-auto flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-between">
+          <div class="max-w-88 text-left">
+            <h2 class="shrink-0 font-jersey text-[64px] leading-[90%] tracking-[-3%] text-white">{slide.title}</h2>
+          </div>
+
+          <div class="relative shrink-0 overflow-hidden">
+            <img src={slide.thumbnail} alt={slide.title} class="h-full w-full object-cover" />
+          </div>
+
+          <p class="max-w-85 text-lg leading-normal tracking-[-1%] text-dark-shades-50">{slide.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
