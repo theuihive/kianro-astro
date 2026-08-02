@@ -27,22 +27,156 @@ const data = [
 ];
 ---
 
-<section class="py-75">
-  <div class="container">
-    {
-      data.map((slide) => (
-        <div class="mx-auto flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-between">
-          <div class="max-w-88 text-left">
-            <h2 class="shrink-0 font-jersey text-[64px] leading-[90%] tracking-[-3%] text-white">{slide.title}</h2>
-          </div>
+<section class="pinned-values-section relative">
+  <div class="pin-wrap relative h-screen overflow-hidden">
+    <div class="container relative h-full">
+      {
+        data.map((slide, i) => (
+          <div class="slide-item absolute inset-0 mx-auto flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-between" data-index={i} style={i === 0 ? "opacity:1; visibility:visible;" : "opacity:0; visibility:hidden;"}>
+            <div class="max-w-88 text-left overflow-hidden">
+              <h2 class="title-mask shrink-0 font-jersey text-[64px] leading-[90%] tracking-[-3%] text-white">{slide.title}</h2>
+            </div>
 
-          <div class="relative shrink-0 overflow-hidden">
-            <img src={slide.thumbnail} alt={slide.title} class="h-full w-full object-cover" />
-          </div>
+            <div class="relative shrink-0 overflow-hidden">
+              <img class="slide-img h-full w-full object-cover" src={slide.thumbnail} alt={slide.title} />
+            </div>
 
-          <p class="max-w-85 text-lg leading-normal tracking-[-1%] text-dark-shades-50">{slide.description}</p>
-        </div>
-      ))
-    }
+            <div class="max-w-85 overflow-hidden">
+              <p class="desc-mask text-lg leading-normal tracking-[-1%] text-dark-shades-50">{slide.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
   </div>
 </section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let stInstance: ScrollTrigger | null = null;
+
+  function initPinnedSlides() {
+    const section = document.querySelector(".pinned-values-section");
+    if (!section) return;
+
+    if (stInstance) {
+      stInstance.kill();
+      stInstance = null;
+    }
+
+    const slides = gsap.utils.toArray<HTMLElement>(".slide-item");
+    const total = slides.length;
+    const distancePerSlide = window.innerHeight * 0.4;
+
+    let currentIndex = 0;
+
+    slides.forEach((slide, i) => {
+      gsap.set(slide, {
+        opacity: i === 0 ? 1 : 0,
+        visibility: i === 0 ? "visible" : "hidden",
+      });
+    });
+
+    const goToSlide = (nextIndex: number) => {
+      if (nextIndex === currentIndex || nextIndex < 0 || nextIndex >= total) return;
+
+      const current = slides[currentIndex];
+      const next = slides[nextIndex];
+      const direction = nextIndex > currentIndex ? 1 : -1;
+
+      const currentImg = current.querySelector(".slide-img");
+      const nextImg = next.querySelector(".slide-img");
+      const currentTitle = current.querySelector(".title-mask");
+      const nextTitle = next.querySelector(".title-mask");
+      const currentDesc = current.querySelector(".desc-mask");
+      const nextDesc = next.querySelector(".desc-mask");
+
+      gsap.killTweensOf([currentImg, nextImg, currentTitle, nextTitle, currentDesc, nextDesc]);
+
+      gsap.set(next, { visibility: "visible", opacity: 1 });
+
+      gsap.set(nextImg, { opacity: 0 });
+
+      gsap.to(currentImg, {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power1.inOut",
+        overwrite: "auto",
+      });
+      gsap.to(nextImg, {
+        opacity: 1,
+        duration: 0.6,
+        ease: "power1.inOut",
+        overwrite: "auto",
+      });
+
+      // --- TITLE: slide-mask effect ---
+      gsap.set(nextTitle, { y: direction * 100 + "%" });
+      gsap.set(nextDesc, { y: direction * 100 + "%" });
+
+      gsap.to(currentTitle, {
+        y: -direction * 100 + "%",
+        duration: 0.8,
+        ease: "power3.inOut",
+        overwrite: "auto",
+      });
+      gsap.to(nextTitle, {
+        y: "0%",
+        duration: 0.8,
+        ease: "power3.inOut",
+        overwrite: "auto",
+      });
+
+      // --- DESCRIPTION: slide-mask effect ---
+      gsap.to(currentDesc, {
+        y: -direction * 100 + "%",
+        duration: 0.8,
+        ease: "power3.inOut",
+        overwrite: "auto",
+      });
+      gsap.to(nextDesc, {
+        y: "0%",
+        duration: 0.8,
+        ease: "power3.inOut",
+        overwrite: "auto",
+      });
+
+      gsap.delayedCall(0.8, () => {
+        gsap.set(current, { visibility: "hidden" });
+        gsap.set(currentImg, { opacity: 1 });
+      });
+
+      currentIndex = nextIndex;
+    };
+
+    stInstance = ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      end: () => `+=${distancePerSlide * (total - 1)}`,
+      pin: ".pin-wrap",
+      scrub: 0.6,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const targetIndex = Math.min(total - 1, Math.round(progress * (total - 1)));
+        goToSlide(targetIndex);
+      },
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPinnedSlides);
+  } else {
+    initPinnedSlides();
+  }
+  document.addEventListener("astro:page-load", initPinnedSlides);
+  document.addEventListener("astro:after-swap", () => {
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+    initPinnedSlides();
+  });
+</script>
