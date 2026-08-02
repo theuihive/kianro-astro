@@ -1,0 +1,33 @@
+---
+const brands: string[] = ["/images/brands/1.svg", "/images/brands/2.svg", "/images/brands/3.svg", "/images/brands/4.svg", "/images/brands/5.svg"];
+
+const tickerBrands = [...brands, ...brands];
+---
+
+<div class="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+  <div class="flex w-max items-center gap-3 animate-ticker hover:[animation-play-state:paused]">
+    {
+      tickerBrands.map((logo, index) => (
+        <div class="flex h-16 shrink-0 items-center justify-center bg-dark-shades-90 px-10">
+          <img src={logo} alt={`Brand logo ${(index % brands.length) + 1}`} class="max-h-full max-w-full object-contain" loading="lazy" />
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<!-- Ticker Animation CSS Setup -->
+<style>
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-ticker {
+    animation: ticker 25s linear infinite;
+  }
+</style>

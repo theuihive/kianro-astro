@@ -1,0 +1,47 @@
+---
+const members = [
+  {
+    id: "101",
+    thumbnail: "/images/members/member-01.jpg",
+    name: "Adrian Brooks",
+    designation: "Founder & Creative Director",
+  },
+  {
+    id: "102",
+    thumbnail: "/images/members/member-02.jpg",
+    name: "Charlotte Hayes",
+    designation: "Founder & Managing Director",
+  },
+  {
+    id: "103",
+    thumbnail: "/images/members/member-03.jpg",
+    name: "Alexander Cole",
+    designation: "UX Lead & Creative Director",
+  },
+];
+---
+
+<div class="pb-40">
+  <div class="container">
+    <div class="max-w-lg mx-auto text-center mb-20">
+      <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        Meet Our
+        <span class="text-dark-shades-60"> Leaders</span>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-3 gap-15">
+      {
+        members.map((member) => (
+          <div class="">
+            <img src={member.thumbnail} alt={member.name} />
+            <div class="pt-4">
+              <h3 class="text-xl text-white font-semibold">{member.name}</h3>
+              <p class="text-base text-dark-shades-50">{member.designation}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

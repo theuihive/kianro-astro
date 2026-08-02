@@ -1,7 +1,14 @@
 ---
+import AboutHero from "@/components/about/AboutHero.astro";
+import AwardsSection from "@/components/about/AwardsSection.astro";
+import TeamSection from "@/components/about/TeamSection.astro";
+import StatsStyleTwo from "@/components/stats/StatsStyleTwo.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<MainLayout title="About" description="Meet the Kainro team and discover the craftsmanship behind our bespoke garden designs and outdoor experiences.">
-  <h1>About</h1>
+<MainLayout title="About" description="Modern agency portfolio template for creative agencies, freelancers, startups, and digital studios.">
+  <AboutHero />
+  <StatsStyleTwo />
+  <TeamSection />
+  <AwardsSection />
 </MainLayout>

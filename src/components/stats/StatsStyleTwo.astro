@@ -1,0 +1,36 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+const stats: Stat[] = [
+  { value: "230+", label: "Projects Delivered" },
+  { value: "98%", label: "Satisfaction Rate" },
+  { value: "80+", label: "Long-Term Clients" },
+  { value: "12+", label: "Years Creating" },
+];
+---
+
+<section class="py-41">
+  <div class="container">
+    <div class="max-w-3xl mx-auto text-center mb-20">
+      <h2 class="text-[40px] uppercase leading-none tracking-[-2%] font-jersey">
+        <span class="text-white">From first conversations to final delivery, every collaboration focuses on creating</span>
+        <span class="text-dark-shades-60"> purposeful design, measurable results, and experiences that leave a lasting impression.</span>
+      </h2>
+    </div>
+
+    <!-- RIGHT COLUMN: Exact Bento Grid  -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {
+        stats.map((s) => (
+          <div class="flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-61">
+            <span class="text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">{s.value}</span>
+            <span class="text-lg text-dark-shades-50">{s.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

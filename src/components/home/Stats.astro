@@ -1,14 +1,12 @@
 ---
+import BrandsTicker from "@/components/about/BrandsTicker.astro";
+
 interface Stat {
   value: string;
   label: string;
   colStart: string;
   rowStart: string;
 }
-
-const brands: string[] = ["/images/brands/1.svg", "/images/brands/2.svg", "/images/brands/3.svg", "/images/brands/4.svg", "/images/brands/5.svg"];
-
-const tickerBrands = [...brands, ...brands];
 
 const stats: Stat[] = [
   { value: "230+", label: "Projects Delivered", colStart: "lg:col-start-3", rowStart: "lg:row-start-1" },
@@ -32,17 +30,7 @@ const stats: Stat[] = [
         <div class="max-w-162 overflow-hidden">
           <p class="mb-8 text-lg leading-normal text-dark-shades-20">Trusted By 200+ Brands</p>
           <!-- Ticker Track -->
-          <div class="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <ul role="list" class="flex w-max items-center gap-3 animate-ticker hover:[animation-play-state:paused]">
-              {
-                tickerBrands.map((logo, index) => (
-                  <li class="flex h-16 shrink-0 items-center justify-center bg-dark-shades-90 px-10">
-                    <img src={logo} alt={`Brand logo ${(index % brands.length) + 1}`} class="max-h-full max-w-full object-contain" loading="lazy" />
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+          <BrandsTicker />
         </div>
       </div>
 
@@ -60,19 +48,3 @@ const stats: Stat[] = [
     </div>
   </div>
 </section>
-
-<!-- Ticker Animation CSS Setup -->
-<style>
-  @keyframes ticker {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .animate-ticker {
-    animation: ticker 15s linear infinite;
-  }
-</style>

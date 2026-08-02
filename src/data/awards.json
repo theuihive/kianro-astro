@@ -1,0 +1,19 @@
+{
+  "heading": {
+    "line1Bold": "Award-Winning",
+    "line2Muted": "Creative Excellence"
+  },
+  "cta": {
+    "label": "View Case Studies",
+    "href": "/projects"
+  },
+  "awards": [
+    { "year": "2022", "client": "Lumora", "award": "Honorable Mention", "platform": "Awwwards" },
+    { "year": "2022", "client": "Nova Studio", "award": "Site of the Day", "platform": "CSS Winner" },
+    { "year": "2023", "client": "Vertex", "award": "Best UI Design", "platform": "CSS Design Awards" },
+    { "year": "2023", "client": "Haven", "award": "Featured Project", "platform": "Behance" },
+    { "year": "2024", "client": "Arc Studio", "award": "Developer Award", "platform": "Awwwards" },
+    { "year": "2025", "client": "Solace", "award": "Featured Template", "platform": "Framer Showcase" },
+    { "year": "2026", "client": "Lumina", "award": "Special Kudos", "platform": "CSS Winner" }
+  ]
+}
