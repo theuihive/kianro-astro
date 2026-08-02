@@ -3,18 +3,18 @@ import Button from "@/components/ui/Button.astro";
 ---
 
 <div class="max-w-218 mx-auto">
-  <form class="space-y-8 relative z-10" onsubmit="event.preventDefault();">
+  <form class="space-y-5.5 relative z-10" onsubmit="event.preventDefault();">
     <div>
       <label for="name" class="text-base font-medium text-white tracking-[-1%] mb-2.5 block">Name*</label>
-      <input type="text" id="name" placeholder="Jhon" class="w-full bg-dark-shades-90 focus:border-primary h-16 px-5 text-base text-dark-shades-50 focus:outline-none transition-all" required />
+      <input type="text" id="name" placeholder="Ethan Walker" class="w-full bg-dark-shades-90 h-16 px-5 text-base text-dark-shades-50 border border-transparent focus:border-primary focus:outline-none transition-all" required />
     </div>
     <div>
       <label for="email" class="text-base font-medium text-white tracking-[-1%] mb-2.5 block">Email*</label>
-      <input type="email" id="email" placeholder="jhonesmith@gmail.com" class="w-full bg-dark-shades-90 focus:border-primary h-16 px-5 text-base text-dark-shades-50 focus:outline-none transition-all" required />
+      <input type="email" id="email" placeholder="ethanwalker@gmail.com" class="w-full bg-dark-shades-90 h-16 px-5 text-base text-dark-shades-50 border border-transparent focus:border-primary focus:outline-none transition-all" required />
     </div>
     <div>
       <label for="message" class="text-base font-medium text-white tracking-[-1%] mb-2.5 block">Message</label>
-      <textarea id="message" placeholder="Enter your massage here" class="w-full bg-dark-shades-90 focus:border-primary h-16 px-5 text-base text-dark-shades-50 focus:outline-none transition-all"></textarea>
+      <textarea id="message" placeholder="Enter your massage here" class="w-full bg-dark-shades-90 min-h-45 p-5 text-base text-dark-shades-50 resize-none border border-transparent focus:border-primary focus:outline-none transition-all"></textarea>
     </div>
     <div class="mt-8 text-center">
       <Button>Send Message</Button>
