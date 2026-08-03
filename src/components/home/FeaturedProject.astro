@@ -74,16 +74,16 @@ const projects = [
     <div data-projects-pin class="relative h-[80vh] min-h-150 overflow-hidden">
       {
         projects.map((project, i) => (
-          <div data-project-slide class="absolute inset-0 h-full w-full overflow-hidden bg-black will-change-transform" style={`z-index:${i + 1};`}>
-            {/* Background Image */}
-            <div class="absolute inset-0 overflow-hidden">
+          <div data-project-slide class="absolute inset-0 h-full w-full" style={`z-index:${i + 1};`}>
+            {/* Background Image — clip-path reveal target */}
+            <div data-slide-image class="absolute inset-0 overflow-hidden will-change-[clip-path]">
               <img src={project.backgroundImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
               <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/35 to-black/50" />
             </div>
 
-            {/* Meta Content */}
-            <div class="relative z-10 flex h-full items-center px-10">
-              <div class="grid w-full grid-cols-2 items-center gap-6 sm:grid-cols-3">
+            {/* Meta Content — clip-path reveal target, position stays fixed */}
+            <div class="absolute inset-0 z-10 flex h-full items-center px-10 will-change-[clip-path]">
+              <div data-slide-meta class="grid w-full grid-cols-2 items-center gap-6 sm:grid-cols-3">
                 <div class="flex justify-between gap-5 pr-10">
                   {project.leftMeta.map((m) => (
                     <div class="space-y-1">
@@ -106,15 +106,15 @@ const projects = [
               </div>
             </div>
 
-            {/* Centered Polaroid Card */}
-            <a href={project.href} class="group absolute left-1/2 top-1/2 z-20 w-106 -translate-x-1/2 -translate-y-1/2 bg-white p-1.5">
+            {/* Centered Polaroid Card — position stays fixed, clip-path reveal target */}
+            <a href={project.href} data-slide-card class="group absolute left-1/2 top-1/2 z-999 w-106 -translate-x-1/2 -translate-y-1/2 bg-white p-1.5 will-change-[clip-path]">
               <div class="w-full overflow-hidden">
                 <img src={project.cardImage} alt={project.title} loading={i === 0 ? "eager" : "lazy"} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>
               <div class="flex items-center justify-between pt-5 pb-7 px-4">
                 <h3 class="text-[40px] font-jersey tracking-[-2%] text-dark-primary uppercase leading-none">{project.title}</h3>
                 <div class="text-dark-primary">
-                  <ButtonArrowicon class="size-8" />
+                  <ButtonArrowicon class="size-8 -rotate-45" />
                 </div>
               </div>
             </a>
@@ -132,52 +132,112 @@ const projects = [
   gsap.registerPlugin(ScrollTrigger);
 
   function initProjectsScroll() {
-    const pinWrap = document.querySelector("[data-projects-pin]");
-    if (!pinWrap) return;
+    const pinWrapEl = document.querySelector<HTMLElement>("[data-projects-pin]");
+    if (!pinWrapEl) return;
+    const pinWrap = pinWrapEl;
 
     const slides = gsap.utils.toArray<HTMLElement>("[data-project-slide]", pinWrap);
     const total = slides.length;
     if (total < 2) return;
 
-    // Clean up previous triggers
     ScrollTrigger.getAll().forEach((st) => {
       if (st.trigger === pinWrap) st.kill();
     });
 
-    // Initial State
-    slides.forEach((slide, i) => {
-      gsap.set(slide, { yPercent: i === 0 ? 0 : 100 });
-    });
+    const imageTargets = slides.map((slide) => slide.querySelector<HTMLElement>("[data-slide-image]"));
+    const metaTargets = slides.map((slide) => slide.querySelector<HTMLElement>("[data-slide-meta]"));
+    const cardTargets = slides.map((slide) => slide.querySelector<HTMLElement>("[data-slide-card]"));
 
-    // Linear Timeline linked with Scroll
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: pinWrap,
-        start: "top 80px",
-        end: () => `+=${(total - 1) * 100}%`,
-        scrub: true,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
+    const HIDDEN_CLIP = "inset(100% 0% 0% 0%)";
+    const VISIBLE_CLIP = "inset(0% 0% 0% 0%)";
+
+    let rects: { image: DOMRect; meta: DOMRect; card: DOMRect } | null = null;
+
+    function measure() {
+      const pinRect = pinWrap.getBoundingClientRect();
+      const rel = (r: DOMRect) => ({
+        top: r.top - pinRect.top,
+        height: r.height,
+      });
+      const imageEl = imageTargets[0]!;
+      const metaEl = metaTargets[0]!;
+      const cardEl = cardTargets[0]!;
+      rects = {
+        image: rel(imageEl.getBoundingClientRect()) as unknown as DOMRect,
+        meta: rel(metaEl.getBoundingClientRect()) as unknown as DOMRect,
+        card: rel(cardEl.getBoundingClientRect()) as unknown as DOMRect,
+      };
+    }
+
+    function localClipTop(boundaryY: number, elTop: number, elHeight: number) {
+      const pct = ((boundaryY - elTop) / elHeight) * 100;
+      return Math.min(100, Math.max(0, pct));
+    }
+
+    function applyClip(i: number, boundaryYPercent: number) {
+      if (!rects) return;
+      const containerHeight = pinWrap.clientHeight;
+      const boundaryY = (boundaryYPercent / 100) * containerHeight;
+
+      const imgTop = localClipTop(boundaryY, (rects.image as any).top, (rects.image as any).height);
+      const metaTop = localClipTop(boundaryY, (rects.meta as any).top, (rects.meta as any).height);
+      const cardTop = localClipTop(boundaryY, (rects.card as any).top, (rects.card as any).height);
+
+      gsap.set(imageTargets[i], { clipPath: `inset(${imgTop}% 0% 0% 0%)` });
+      gsap.set(metaTargets[i], { clipPath: `inset(${metaTop}% 0% 0% 0%)` });
+      gsap.set(cardTargets[i], { clipPath: `inset(${cardTop}% 0% 0% 0%)` });
+    }
+
+    function hideSlide(i: number) {
+      gsap.set(slides[i], { autoAlpha: 0 });
+      gsap.set(imageTargets[i], { clipPath: HIDDEN_CLIP });
+      gsap.set(metaTargets[i], { clipPath: HIDDEN_CLIP });
+      gsap.set(cardTargets[i], { clipPath: HIDDEN_CLIP });
+    }
+
+    function showSlideBase(i: number) {
+      gsap.set(slides[i], { autoAlpha: 1 });
+      gsap.set(imageTargets[i], { clipPath: VISIBLE_CLIP });
+      gsap.set(metaTargets[i], { clipPath: VISIBLE_CLIP });
+      gsap.set(cardTargets[i], { clipPath: VISIBLE_CLIP });
+    }
+
+    measure();
+    slides.forEach((_, i) => (i === 0 ? showSlideBase(0) : hideSlide(i)));
+
+    const segments = total - 1;
+
+    ScrollTrigger.create({
+      trigger: pinWrap,
+      start: "top 80px",
+      end: () => `+=${segments * 100}%`,
+      scrub: true,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onRefresh: measure,
+      onUpdate: (self) => {
+        const raw = self.progress * segments;
+        const active = Math.min(Math.floor(raw), segments - 1);
+        const segProgress = raw - active;
+        const boundaryYPercent = 100 - segProgress * 100;
+
+        slides.forEach((_, i) => {
+          if (i === active) {
+            gsap.set(slides[i], { autoAlpha: 1 });
+            gsap.set(imageTargets[i], { clipPath: VISIBLE_CLIP });
+            gsap.set(metaTargets[i], { clipPath: VISIBLE_CLIP });
+            gsap.set(cardTargets[i], { clipPath: VISIBLE_CLIP });
+          } else if (i === active + 1) {
+            gsap.set(slides[i], { autoAlpha: 1 });
+            applyClip(i, boundaryYPercent);
+          } else {
+            hideSlide(i);
+          }
+        });
       },
     });
 
-    slides.forEach((_, i) => {
-      if (i === total - 1) return;
-      const nextSlide = slides[i + 1];
-
-      tl.to(
-        nextSlide,
-        {
-          yPercent: 0,
-          ease: "none",
-          duration: 1,
-        },
-        i,
-      );
-    });
-
-    // Refresh layout after image load
     const images = pinWrap.querySelectorAll("img");
     let loaded = 0;
     images.forEach((img) => {
