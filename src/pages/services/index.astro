@@ -1,7 +1,12 @@
 ---
+import HomeContactSection from "@/components/contact/HomeContactSection.astro";
+import ProcessSteps from "@/components/home/ProcessSteps.astro";
+import ServicesSectionTwo from "@/components/services/ServicesSectionTwo.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Services" description="Discover Kainro’s recent garden transformations, installations, and outdoor spaces shaped with care and creativity.">
-  <h1>Services</h1>
+<MainLayout title="Services" description="Modern agency portfolio template for creative agencies, freelancers, startups, and digital studios.">
+  <ServicesSectionTwo />
+  <ProcessSteps className="pb-15 md:pb-24 lg:pb-40" />
+  <HomeContactSection />
 </MainLayout>

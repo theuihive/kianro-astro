@@ -2,12 +2,12 @@
 import BrandsTicker from "@/components/about/BrandsTicker.astro";
 ---
 
-<div class="pt-35">
+<div class="pt-15 md:pt-24 lg:pt-35">
   <div class="container">
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-col-1 md:grid-cols-2 gap-6">
       <div class="h-full">
-        <div class="flex flex-col justify-between h-full xl:max-w-135">
-          <h2 class="title font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        <div class="flex flex-col justify-between h-full xl:max-w-135 gap-y-6">
+          <h2 class="title font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
             Building Brands,
             <span class="text-dark-shades-60"> Websites & Digital Experiences</span>
           </h2>
@@ -20,7 +20,7 @@ import BrandsTicker from "@/components/about/BrandsTicker.astro";
         <img src="/images/about/about-hero.jpg" alt="about hero" class="reveal-img w-full h-full object-cover" />
       </div>
     </div>
-    <div class="ticker max-w-162 mx-auto pt-24">
+    <div class="ticker max-w-162 mx-auto pt-10 lg:pt-24">
       <BrandsTicker />
     </div>
   </div>

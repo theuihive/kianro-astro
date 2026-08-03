@@ -1,7 +1,7 @@
 ---
 import ArticleCardGridStyle from "@/components/blog/ArticleCardGridStyle.astro";
+import Button from "@/components/ui/Button.astro";
 import { getCollection } from "astro:content";
-import Button from "../ui/Button.astro";
 
 const allPosts = await getCollection("blog");
 

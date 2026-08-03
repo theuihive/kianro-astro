@@ -1,0 +1,131 @@
+---
+import ServiceSectionHeader from "@/components/home/ServiceSectionHeader.astro";
+import services from "@/data/services.json";
+---
+
+<section class="py-15 md:py-24 lg:py-40">
+  <div class="container">
+    <ServiceSectionHeader />
+    <ul role="list" class="service-list flex flex-col space-y-4 sm:space-y-6 md:space-y-10">
+      {
+        services.map((s) => (
+          <li class="service-row group cursor-pointer overflow-hidden border border-stroke px-4 py-6 transition-colors duration-500 sm:px-6 sm:py-9.5" data-service>
+            {/* ---------- Mobile layout ---------- */}
+            <div class="flex flex-col gap-5 md:hidden">
+              {/* Image on top */}
+              <div class="service-img-wrapper">
+                <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
+              </div>
+
+              {/* Number + Title side by side */}
+              <div class="flex items-center gap-3 font-jersey text-4xl leading-none tracking-[-2%]">
+                <span class="service-num text-dark-shades-60 sm:text-[40px]">{s.number}.</span>
+                <h3 class="service-title  text-white sm:text-3xl">{s.title}</h3>
+              </div>
+
+              {/* Description */}
+              <div class="service-details pt-3 opacity-0">
+                <p class="text-base leading-normal text-dark-shades-50">{s.description}</p>
+              </div>
+
+              {/* Tags */}
+              <div class="service-tags flex flex-wrap gap-2">
+                {s.tags.map((tag) => (
+                  <span class="border border-stroke px-3 py-1.5 text-sm text-white">{tag}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* ---------- Desktop layout---------- */}
+            <div class="hidden grid-cols-[48px_280px_1fr_auto] lg:grid-cols-[48px_384px_1fr_auto] items-start gap-7 lg:gap-10 xl:gap-16 md:grid">
+              {/* Number */}
+              <span class="service-num font-jersey text-[40px] leading-none tracking-[-2%] text-dark-shades-60 opacity-0">{s.number}.</span>
+
+              {/* Image */}
+              <div class="service-img-wrapper h-64 lg:h-72 opacity-0">
+                <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
+              </div>
+
+              {/* Title and description */}
+              <div class="service-content flex flex-col justify-between self-stretch">
+                <div>
+                  <h3 class="service-title font-jersey text-[40px] leading-none tracking-[-2%] text-white opacity-0">{s.title}</h3>
+                  <div class="service-details pt-3 opacity-0">
+                    <p class="text-lg leading-normal text-dark-shades-50">{s.description}</p>
+                  </div>
+                </div>
+
+                {/* Tags */}
+                <div class="service-tags-wrapper">
+                  <div class="service-tags flex flex-wrap gap-2">
+                    {s.tags.map((tag) => (
+                      <span class="border border-stroke px-3 py-1.5 text-base text-white opacity-0">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initServiceAnimation() {
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+
+    const rows = gsap.utils.toArray<HTMLElement>("[data-service]");
+    if (!rows.length) return;
+
+    rows.forEach((row) => {
+      const num = row.querySelectorAll(".service-num");
+      const img = row.querySelectorAll(".service-img-wrapper");
+      const title = row.querySelectorAll(".service-title");
+      const desc = row.querySelectorAll(".service-details");
+      const tags = row.querySelectorAll(".service-tags span");
+
+      // Text/Number
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: row,
+          start: "top 75%",
+          end: "top top",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      tl.fromTo(num, { y: 40, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.8, ease: "power3.out" }, 0);
+      tl.fromTo(title, { y: 50, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 0.15);
+      tl.fromTo(desc, { y: 50, opacity: 0, filter: "blur(8px)" }, { y: 0, opacity: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 0.2);
+      tl.fromTo(tags, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: "power2.out" }, 0.3);
+
+      // Image
+      gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 });
+
+      gsap.to(img, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        ease: "none",
+        scrollTrigger: {
+          trigger: row,
+          start: "top 85%",
+          end: "top 30%",
+          scrub: true,
+        },
+      });
+    });
+
+    ScrollTrigger.refresh();
+  }
+
+  document.addEventListener("astro:page-load", initServiceAnimation);
+  if (!document.querySelector("html")?.hasAttribute("data-astro-transition")) {
+    initServiceAnimation();
+  }
+</script>

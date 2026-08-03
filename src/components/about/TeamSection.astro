@@ -21,20 +21,20 @@ const members = [
 ];
 ---
 
-<div class="pb-40">
+<div class="pb-15 md:pb-24 lg:pb-40">
   <div class="container">
-    <div class="max-w-lg mx-auto text-center mb-20">
-      <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+    <div class="max-w-lg mx-auto text-center mb-10 md:mb-20">
+      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
         Meet Our
         <span class="text-dark-shades-60"> Leaders</span>
       </h2>
     </div>
 
-    <div class="grid grid-cols-3 gap-15">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 md:gap-15">
       {
         members.map((member) => (
           <div class="">
-            <img src={member.thumbnail} alt={member.name} />
+            <img src={member.thumbnail} alt={member.name} class="w-full" />
             <div class="pt-4">
               <h3 class="text-xl text-white font-semibold">{member.name}</h3>
               <p class="text-base text-dark-shades-50">{member.designation}</p>

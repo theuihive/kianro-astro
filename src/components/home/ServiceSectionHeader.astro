@@ -24,32 +24,34 @@ const icons: Record<BrandIcon, typeof FigmaIcon> = {
 const COPIES = 4;
 ---
 
-<div class="grid grid-cols-2 gap-10 mb-20 items-center">
-  <div>
-    <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+<div class="grid grid-cols-12 gap-5 md:gap-10 mb-10 md:mb-20 items-center">
+  <div class="col-span-12 sm:col-span-8 lg:col-span-6">
+    <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
       Creative solutions built
       <span class="text-dark-shades-60"> around clarity and growth</span>
     </h2>
   </div>
 
-  <div class="relative ml-auto size-35 overflow-hidden ticker-mask">
-    <div class="ticker-wrapper flex flex-col gap-3">
-      {
-        Array.from({ length: COPIES }).map(() => (
-          <ul role="list" class="ticker-list flex flex-col gap-3">
-            {brands.map((brand) => {
-              const Icon = icons[brand.icon];
+  <div class="col-span-12 sm:col-span-4 lg:col-span-6">
+    <div class="relative w-full h-10 sm:ml-auto sm:size-35 overflow-hidden ticker-mask">
+      <div class="ticker-wrapper flex flex-row sm:flex-col gap-3">
+        {
+          Array.from({ length: COPIES }).map(() => (
+            <ul role="list" class="ticker-list flex flex-row sm:flex-col gap-3">
+              {brands.map((brand) => {
+                const Icon = icons[brand.icon];
 
-              return (
-                <li class="inline-flex h-10 items-center justify-center gap-3 bg-dark-shades-90 px-5 text-base text-white whitespace-nowrap">
-                  <Icon />
-                  <span>{brand.label}</span>
-                </li>
-              );
-            })}
-          </ul>
-        ))
-      }
+                return (
+                  <li class="inline-flex h-10 items-center justify-center gap-3 bg-dark-shades-90 px-5 text-base text-white whitespace-nowrap">
+                    <Icon />
+                    <span>{brand.label}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          ))
+        }
+      </div>
     </div>
   </div>
 </div>
@@ -65,25 +67,46 @@ const COPIES = 4;
 
     gsap.killTweensOf(wrapper);
 
-    const gap = parseFloat(getComputedStyle(wrapper).rowGap || "0");
-    const distance = firstList.getBoundingClientRect().height + gap;
-    const speedPxPerSec = 30;
-    const duration = distance / speedPxPerSec;
+    const mm = gsap.matchMedia();
 
-    gsap.set(wrapper, { y: 0 });
-
-    gsap.to(wrapper, {
-      y: `-=${distance}`,
-      duration,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        y: gsap.utils.unitize((value) => {
-          const y = parseFloat(value);
-          return y % distance;
-        }),
+    mm.add(
+      {
+        isMobile: "(max-width: 639px)",
+        isDesktop: "(min-width: 640px)",
       },
-    });
+      (context) => {
+        const { isMobile } = context.conditions as { isMobile: boolean };
+        const axis: "x" | "y" = isMobile ? "x" : "y";
+
+        const gapProp = isMobile ? "columnGap" : "rowGap";
+        const gap = parseFloat(getComputedStyle(wrapper)[gapProp] || "0");
+
+        const distance = (isMobile ? firstList.getBoundingClientRect().width : firstList.getBoundingClientRect().height) + gap;
+
+        const speedPxPerSec = 30;
+        const duration = distance / speedPxPerSec;
+
+        gsap.set(wrapper, { x: 0, y: 0 });
+
+        gsap.to(wrapper, {
+          [axis]: `-=${distance}`,
+          duration,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            [axis]: gsap.utils.unitize((value) => {
+              const v = parseFloat(value);
+              return v % distance;
+            }),
+          },
+        });
+
+        // cleanup when this matchMedia context is no longer active
+        return () => {
+          gsap.killTweensOf(wrapper);
+        };
+      },
+    );
   };
 
   initTicker();
@@ -92,7 +115,16 @@ const COPIES = 4;
 
 <style>
   .ticker-mask {
-    mask-image: linear-gradient(to bottom, transparent 0, black 75px, black calc(100% - 56px), transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 75px, black calc(100% - 56px), transparent 100%);
+    /* Mobile: horizontal fade (left-right) */
+    mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
+  }
+
+  @media (min-width: 640px) {
+    .ticker-mask {
+      /* sm and up: vertical fade (top-bottom), same as before */
+      mask-image: linear-gradient(to bottom, transparent 0, black 75px, black calc(100% - 56px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 75px, black calc(100% - 56px), transparent 100%);
+    }
   }
 </style>
