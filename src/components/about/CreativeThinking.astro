@@ -27,14 +27,14 @@ const data = [
 ];
 ---
 
-<section class="pinned-values-section relative">
+<section class="pinned-values-section relative py-15">
   <div class="pin-wrap relative h-screen overflow-hidden">
     <div class="container relative h-full">
       {
         data.map((slide, i) => (
-          <div class="slide-item absolute inset-0 mx-auto flex flex-col items-center gap-12 md:flex-row md:items-center md:justify-between" data-index={i} style={i === 0 ? "opacity:1; visibility:visible;" : "opacity:0; visibility:hidden;"}>
+          <div class="slide-item absolute inset-0 mx-auto flex flex-col items-center gap-7 md:gap-12 md:flex-row md:items-center md:justify-between" data-index={i} style={i === 0 ? "opacity:1; visibility:visible;" : "opacity:0; visibility:hidden;"}>
             <div class="max-w-88 text-left overflow-hidden">
-              <h2 class="title-mask shrink-0 font-jersey text-[64px] leading-[90%] tracking-[-3%] text-white">{slide.title}</h2>
+              <h2 class="title-mask shrink-0 font-jersey text-5xl md:text-[64px] leading-[90%] tracking-[-3%] text-white">{slide.title}</h2>
             </div>
 
             <div class="relative shrink-0 overflow-hidden">

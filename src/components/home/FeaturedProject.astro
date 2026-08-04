@@ -1,70 +1,12 @@
 ---
 import ButtonArrowicon from "@/components/icons/ButtonArrowicon.astro";
-
-const projects = [
-  {
-    title: "Bloom Wellness",
-    href: "#",
-    backgroundImage: "/images/projects/project-01.jpg",
-    cardImage: "/images/projects/project-thumbnail-01.jpg",
-    leftMeta: [
-      { label: "Client", value: "Verde Organics" },
-      { label: "Category", value: "Wellness" },
-    ],
-    rightMeta: [
-      { label: "Year", value: "2025" },
-      { label: "Services", value: "Brand Identity" },
-    ],
-  },
-  {
-    title: "Nova Studio",
-    href: "#",
-    backgroundImage: "/images/projects/project-02.jpg",
-    cardImage: "/images/projects/project-thumbnail-02.jpg",
-    leftMeta: [
-      { label: "Client", value: "Nova Labs" },
-      { label: "Category", value: "Technology" },
-    ],
-    rightMeta: [
-      { label: "Year", value: "2024" },
-      { label: "Services", value: "Web Design" },
-    ],
-  },
-  {
-    title: "Arc Interiors",
-    href: "#",
-    backgroundImage: "/images/projects/project-03.jpg",
-    cardImage: "/images/projects/project-thumbnail-03.jpg",
-    leftMeta: [
-      { label: "Client", value: "Arc Studio" },
-      { label: "Category", value: "Interior" },
-    ],
-    rightMeta: [
-      { label: "Year", value: "2024" },
-      { label: "Services", value: "Art Direction" },
-    ],
-  },
-  {
-    title: "Solace Retreat",
-    href: "#",
-    backgroundImage: "/images/projects/project-04.jpg",
-    cardImage: "/images/projects/project-thumbnail-04.jpg",
-    leftMeta: [
-      { label: "Client", value: "Solace Group" },
-      { label: "Category", value: "Hospitality" },
-    ],
-    rightMeta: [
-      { label: "Year", value: "2023" },
-      { label: "Services", value: "Full Rebrand" },
-    ],
-  },
-];
+import projects from "@/data/projects.json";
 ---
 
 <section class="pb-41">
   <div class="container">
     <div class="mb-18 text-center max-w-2xl mx-auto">
-      <h2 class="font-jersey text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
         Featured Projects That
         <span class="text-dark-shades-60"> Reflect Strategy, Style & Detail</span>
       </h2>
@@ -97,7 +39,7 @@ const projects = [
 
                 <div class="flex justify-between gap-5 pl-10">
                   {project.rightMeta.map((m) => (
-                    <div class="space-y-1">
+                    <div class="space-y-1 max-w-52">
                       <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
                       <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
                     </div>
@@ -107,7 +49,7 @@ const projects = [
             </div>
 
             {/* Centered Polaroid Card — position stays fixed, clip-path reveal target */}
-            <a href={project.href} data-slide-card class="group absolute left-1/2 top-1/2 z-999 w-106 -translate-x-1/2 -translate-y-1/2 bg-white p-1.5 will-change-[clip-path]">
+            <a href={`/projects/${project.slug}`} data-slide-card class="group absolute left-1/2 top-1/2 z-999 w-106 -translate-x-1/2 -translate-y-1/2 bg-white p-1.5 will-change-[clip-path]">
               <div class="w-full overflow-hidden">
                 <img src={project.cardImage} alt={project.title} loading={i === 0 ? "eager" : "lazy"} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
               </div>

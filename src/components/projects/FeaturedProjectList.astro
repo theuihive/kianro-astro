@@ -1,0 +1,126 @@
+---
+import ButtonArrowicon from "@/components/icons/ButtonArrowicon.astro";
+import projects from "@/data/projects.json";
+---
+
+<section class="pt-15 md:pt-24 lg:pt-35 pb-15 md:pb-24 lg:pb-40">
+  <div class="container">
+    <div class="mb-10 md:mb-18 text-center max-w-2xl mx-auto">
+      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        Featured Projects That
+        <span class="text-dark-shades-60"> Reflect Strategy, Style & Detail</span>
+      </h2>
+    </div>
+
+    <div class="space-y-10">
+      {
+        projects.map((project, i) => (
+          <a href={`/projects/${project.slug}`} class="project-item lg:h-220 relative overflow-hidden block">
+            <div class="project-bg-wrap absolute inset-0 overflow-hidden hidden lg:block">
+              <img src={project.backgroundImage} alt="" aria-hidden="true" class="project-bg-img absolute inset-0 h-full w-full object-cover" loading="lazy" />
+            </div>
+
+            {/* Overlay color */}
+            <div class="absolute inset-0 bg-black/70 hidden lg:block" />
+
+            {/* Content */}
+            <div class="relative z-10 flex h-full items-center lg:px-10">
+              <div class="grid w-full grid-cols-1 items-center gap-6 lg:grid-cols-3">
+                <div class="lg:flex justify-between gap-5 pr-10 hidden">
+                  {project.leftMeta.map((m) => (
+                    <div class="space-y-1">
+                      <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                      <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Centered polaroid card */}
+                <div class="project-card bg-white p-1.5">
+                  <div class="card-img-wrap relative w-full overflow-hidden">
+                    <img src={project.cardImage} alt={project.title} loading="lazy" class="card-img h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div class="flex items-center justify-between pt-5 pb-7 px-4">
+                    <h3 class="text-3xl sm:text-[40px] font-jersey tracking-[-2%] text-dark-primary uppercase leading-none">{project.title}</h3>
+                    <div class="text-dark-primary">
+                      <ButtonArrowicon class="size-8 -rotate-45" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="lg:flex justify-between gap-5 pl-10 relative z-10 hidden">
+                  {project.rightMeta.map((m) => (
+                    <div class="space-y-1 max-w-52">
+                      <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                      <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initProjectReveals = () => {
+    const items = document.querySelectorAll<HTMLElement>(".project-item");
+
+    items.forEach((item) => {
+      const bgImg = item.querySelector<HTMLElement>(".project-bg-img");
+
+      const cardCurtain = item.querySelector<HTMLElement>(".card-img-curtain");
+      const cardImg = item.querySelector<HTMLElement>(".card-img");
+      const card = item.querySelector<HTMLElement>(".project-card");
+
+      // Background image
+      if (bgImg) {
+        gsap.set(bgImg, { clipPath: "inset(0% 100% 0% 0%)" });
+
+        const bgTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // Image wipes left
+        bgTl.to(bgImg, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1,
+          ease: "power3.inOut",
+        });
+      }
+
+      // Polaroid card
+      if (card && cardImg) {
+        gsap.set(card, { autoAlpha: 0, y: 60 });
+        gsap.set(cardImg, { clipPath: "inset(0% 100% 0% 0%)" });
+
+        const cardTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: item,
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        cardTl.to(card, { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }).to(cardImg, { clipPath: "inset(0% 0% 0% 0%)", duration: 1, ease: "power3.inOut" }, 0);
+      }
+    });
+  };
+
+  initProjectReveals();
+  document.addEventListener("astro:page-load", () => {
+    initProjectReveals();
+  });
+</script>
