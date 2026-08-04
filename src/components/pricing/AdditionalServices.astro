@@ -1,0 +1,69 @@
+---
+import CheckIcon from "@/components/icons/CheckIcon.astro";
+import Button from "@/components/ui/Button.astro";
+
+const services = [
+  "Brand Strategy & Consulting",
+  "Research & Insights",
+  "Customer Journey Mapping",
+  "Information Architecture",
+  "UI/UX Design",
+  "Mobile App Design",
+  "SaaS & Dashboard Design",
+  "UX Audits & Consulting",
+  "Design Systems",
+  "Prototyping",
+  "Webflow Development",
+  "Custom Development",
+  "MVP Development",
+  "Framer Development",
+  "WordPress Development",
+  "Front-end Development",
+  "API & Third-Party Integration",
+  "E-commerce Solutions",
+  "SEO Optimization",
+  "QA & Bug Testing",
+  "Brand Identity & Systems",
+  "Brand Story & Narrative",
+  "Motion Graphics",
+  "UI Animation",
+  "Product Launching Videos",
+  "Pitch Deck & Presentations",
+  "Digital Ads & Social Media",
+  "Email Template Design",
+  "Illustration & Icon Sets",
+  "Print & Packaging",
+];
+
+const columnCount = 3;
+const perColumn = Math.ceil(services.length / columnCount);
+const columns = Array.from({ length: columnCount }, (_, i) => services.slice(i * perColumn, i * perColumn + perColumn));
+---
+
+<section>
+  <div class="container">
+    <div class="mb-10 md:mb-20 text-center max-w-3xl mx-auto xl:px-10">
+      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        Beyond Our Core Services, <span class="text-dark-shades-60">We Also Offer</span>
+      </h2>
+    </div>
+
+    <div class="border border-stroke p-5 md:p-10">
+      <div class="grid grid-cols-1 gap-x-12 sm:grid-cols-2 lg:grid-cols-3 gap-y-2 md:gap-y-4 lg:gap-y-6">
+        {
+          columns.map((column) =>
+            column.map((service) => (
+              <div class="flex items-start gap-2.5">
+                <CheckIcon class="text-primary mt-1" />
+                <span class="text-base md:text-xl text-white">{service}</span>
+              </div>
+            )),
+          )
+        }
+      </div>
+    </div>
+    <div class="mt-10 md:mt-15 text-center">
+      <Button>Book a call</Button>
+    </div>
+  </div>
+</section>

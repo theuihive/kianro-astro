@@ -1,0 +1,14 @@
+---
+import HomeContactSection from "@/components/contact/HomeContactSection.astro";
+import FaqSection from "@/components/home/FaqSection.astro";
+import PricingSection from "@/components/home/PricingSection.astro";
+import AdditionalServices from "@/components/pricing/AdditionalServices.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+---
+
+<MainLayout title="Pricing" description="Modern agency portfolio template for creative agencies, freelancers, startups, and digital studios.">
+  <PricingSection showBrandsTicker />
+  <AdditionalServices />
+  <FaqSection />
+  <HomeContactSection />
+</MainLayout>

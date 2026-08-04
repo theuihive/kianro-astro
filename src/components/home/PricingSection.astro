@@ -4,89 +4,102 @@ import CheckIcon from "@/components/icons/CheckIcon.astro";
 import Button from "@/components/ui/Button.astro";
 
 import type { PricingData } from "@/types/Pricing";
+import BrandsTicker from "../about/BrandsTicker.astro";
 
 const { heading, billing, plans } = pricingData as PricingData;
+
+const { showBrandsTicker } = Astro.props;
 ---
 
-<section class="py-41">
+<section class="py-15 md:py-24 lg:py-40">
   <div class="container">
-    <!-- Heading -->
-    <div class="mb-11 text-center max-w-3xl mx-auto">
-      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
-        {heading.lineBold}
-        <span class="text-dark-shades-60"> {heading.lineMuted}</span>
-      </h2>
-    </div>
+    <div class="max-w-274 mx-auto">
+      <!-- Heading -->
+      <div class="mb-11 text-center max-w-3xl mx-auto">
+        <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+          {heading.lineBold}
+          <span class="text-dark-shades-60"> {heading.lineMuted}</span>
+        </h2>
+      </div>
 
-    <!-- Billing switcher -->
-    <div data-billing-switcher data-active={billing.default} class="mb-12 flex items-center justify-center gap-4">
-      {
-        billing.options.map((option, i) => (
-          <>
-            {i === 1 && (
-              <button
-                type="button"
-                data-billing-toggle
-                role="switch"
-                aria-checked={billing.default === "retainer"}
-                aria-label="Toggle billing period"
-                class="relative h-7.75 w-17 shrink-0 bg-transparent border border-stroke transition-colors duration-300"
-                data-checked={billing.default === "retainer"}
-              >
-                <span data-billing-knob class="absolute top-1.5 left-1.5 w-7 h-4.5 bg-primary transition-transform duration-300 data-[checked=true]:translate-x-6" data-checked={billing.default === "retainer"} />
+      <!-- Billing switcher -->
+      <div data-billing-switcher data-active={billing.default} class="mb-12 flex items-center justify-center gap-4">
+        {
+          billing.options.map((option, i) => (
+            <>
+              {i === 1 && (
+                <button
+                  type="button"
+                  data-billing-toggle
+                  role="switch"
+                  aria-checked={billing.default === "retainer"}
+                  aria-label="Toggle billing period"
+                  class="relative h-7.75 w-17 shrink-0 bg-transparent border border-stroke transition-colors duration-300"
+                  data-checked={billing.default === "retainer"}
+                >
+                  <span data-billing-knob class="absolute top-1.5 left-1.5 w-7 h-4.5 bg-primary transition-transform duration-300 data-[checked=true]:translate-x-6" data-checked={billing.default === "retainer"} />
+                </button>
+              )}
+              <button type="button" data-billing-option={option.id} class="flex items-center gap-2 text-base sm:text-xl font-semibold text-white transition-opacity duration-300" data-active={billing.default === option.id}>
+                {option.label}
+                {option.badge && <span class="text-sm sm:text-lg font-normal">({option.badge})</span>}
               </button>
-            )}
-            <button type="button" data-billing-option={option.id} class="flex items-center gap-2 text-xl font-semibold text-white transition-opacity duration-300" data-active={billing.default === option.id}>
-              {option.label}
-              {option.badge && <span class="text-lg font-normal">({option.badge})</span>}
-            </button>
-          </>
-        ))
-      }
-    </div>
+            </>
+          ))
+        }
+      </div>
 
-    <!-- Plans -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Plans -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          plans.map((plan) => (
+            <div class="relative p-5 sm:p-10 bg-dark-shades-90">
+              {plan.popular && <span class="absolute right-5 md:right-10 top-5 md:top-15 bg-primary text-dark-primary px-4 md:px-8 py-1 md:py-3 text-sm md:text-xl font-semibold leading-normal tracking-[-1%]">{plan.popularLabel ?? "Popular"}</span>}
+
+              <div class="mb-5 md:mb-9 flex items-center gap-2.5">
+                <span class="size-2 shrink-0 bg-primary" aria-hidden="true" />
+                <span class="text-xl font-semibold leading-normal tracking-[-1%] text-white">{plan.name}</span>
+              </div>
+
+              <div class="mb-3 flex items-end gap-1.5">
+                <span class="font-jersey text-5xl md:text-[64px] leading-[90%] tracking-[-3%] text-white" data-price data-plan={plan.id} data-currency={billing.currency} data-project-price={plan.pricing.project} data-retainer-price={plan.pricing.retainer}>
+                  {billing.currency}
+                  {plan.pricing[billing.default].toLocaleString()}
+                </span>
+                <span class="pb-1 text-lg font-normal leading-normal tracking-[-1%] text-dark-shades-50">{billing.period}</span>
+              </div>
+
+              <p class="mb-8.5 pb-8.5 text-lg font-normal leading-normal tracking-[-1%] text-dark-shades-50 border-b border-stroke">{plan.description}</p>
+
+              <p class="mb-5 text-base font-medium leading-normal tracking-[-1%] text-white">{plan.featuresLabel}</p>
+
+              <ul class="mb-10 flex-1 space-y-3">
+                {plan.features.map((feature) => (
+                  <li class="flex items-start gap-2.5">
+                    <CheckIcon class="text-primary" />
+                    <span class="text-base md:text-xl font-semibold leading-normal tracking-[-1%] text-white">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {plan.popular ? (
+                <Button grow>{plan.cta.label}</Button>
+              ) : (
+                <Button variant="outline" grow>
+                  {plan.cta.label}
+                </Button>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
       {
-        plans.map((plan) => (
-          <div class="relative p-10 bg-dark-shades-90">
-            {plan.popular && <span class="absolute right-10 top-15 bg-primary text-dark-primary px-8 py-3 text-xl font-semibold leading-normal tracking-[-1%]">{plan.popularLabel ?? "Popular"}</span>}
-
-            <div class="mb-9 flex items-center gap-2.5">
-              <span class="size-2 shrink-0 bg-primary" aria-hidden="true" />
-              <span class="text-xl font-semibold leading-normal tracking-[-1%] text-white">{plan.name}</span>
-            </div>
-
-            <div class="mb-3 flex items-end gap-1.5">
-              <span class="font-jersey text-[64px] leading-[90%] tracking-[-3%] text-white" data-price data-plan={plan.id} data-currency={billing.currency} data-project-price={plan.pricing.project} data-retainer-price={plan.pricing.retainer}>
-                {billing.currency}
-                {plan.pricing[billing.default].toLocaleString()}
-              </span>
-              <span class="pb-1 text-lg font-normal leading-normal tracking-[-1%] text-dark-shades-50">{billing.period}</span>
-            </div>
-
-            <p class="mb-8.5 pb-8.5 text-lg font-normal leading-normal tracking-[-1%] text-dark-shades-50 border-b border-stroke">{plan.description}</p>
-
-            <p class="mb-5 text-base font-medium leading-normal tracking-[-1%] text-white">{plan.featuresLabel}</p>
-
-            <ul class="mb-10 flex-1 space-y-3">
-              {plan.features.map((feature) => (
-                <li class="flex items-start gap-2.5">
-                  <CheckIcon class="text-primary" />
-                  <span class="text-xl font-semibold leading-normal tracking-[-1%] text-white">{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            {plan.popular ? (
-              <Button grow>{plan.cta.label}</Button>
-            ) : (
-              <Button variant="outline" grow>
-                {plan.cta.label}
-              </Button>
-            )}
+        showBrandsTicker && (
+          <div class="max-w-162 mx-auto pt-10 sm:pt-25">
+            <BrandsTicker />
           </div>
-        ))
+        )
       }
     </div>
   </div>
