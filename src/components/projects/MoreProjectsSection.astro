@@ -10,11 +10,13 @@ interface Props {
 const { projects } = Astro.props as Props;
 ---
 
-<div class="py-40">
+<div class="py-15 md:py-24 lg:py-40">
   <div class="container">
-    <div class="flex justify-between gap-6 mb-20">
+    <div class="flex flex-col sm:flex-row justify-between gap-5 mb-10 sm:mb-20">
       <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">More <span class="text-dark-shades-60">projects</span></h2>
-      <Button href="/projects" variant="outline" className="self-end">View All Projects</Button>
+      <div class="sm:self-end">
+        <Button href="/projects" variant="outline">View All Projects</Button>
+      </div>
     </div>
 
     <div class="space-y-10">

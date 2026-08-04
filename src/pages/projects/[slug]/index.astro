@@ -37,28 +37,30 @@ const otherProjects = getOtherProjects(project.slug, 2);
   <div class="pt-15 md:pt-24 lg:pt-35">
     <div class="container">
       <div class="">
-        <div class="space-y-20">
-          <div class="flex justify-between gap-6">
+        <div class="space-y-10 md:space-y-20">
+          <div class="flex flex-col sm:flex-row justify-between gap-5">
             <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">{project?.title}</h2>
-            <Button variant="outline" className="self-end">View Live Link</Button>
+            <div class="sm:self-end">
+              <Button variant="outline">View Live Link</Button>
+            </div>
           </div>
-          <div class="flex justify-between gap-6">
+          <div class="grid grid-cols-2 md:flex justify-between gap-6">
             {
               project.meta.map((m) => (
-                <div class="space-y-1 max-w-52">
-                  <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
-                  <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                <div class="space-y-1 md:max-w-52">
+                  <p class="text-sm sm:text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                  <p class="text-base sm:text-xl font-semibold leading-normal text-white">{m.value}</p>
                 </div>
               ))
             }
           </div>
         </div>
-        <div class="h-185 overflow-hidden mt-10">
+        <div class="h-full md:h-120 lg:h-185 overflow-hidden mt-10">
           <img src={project.backgroundImage} alt={project.title} class="h-full w-full object-cover" />
         </div>
-        <div class="max-w-218 mx-auto space-y-18 prose prose-img:my-0">
+        <div class="max-w-218 mx-auto space-y-10 md:space-y-18 prose prose-img:my-0">
           <div class="">
-            <h3 class="text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mb-3">Project Overview</h3>
+            <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mb-3">Project Overview</h3>
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal">
               Canvas Collective combines modern design, thoughtful user experiences, responsive performance, and immersive storytelling to showcase creative projects with clarity, consistency, intuitive navigation, seamless interactions, delivering memorable
               digital experiences across every device beautifully.
@@ -66,7 +68,7 @@ const otherProjects = getOtherProjects(project.slug, 2);
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal mb-0">Every interaction was carefully designed to guide visitors through featured projects, strengthen brand perception, and encourage meaningful engagement.</p>
           </div>
 
-          <div class="grid grid-cols-2 gap-6">
+          <div class="grid grid-cols-2 gap-4 sm:gap-6">
             <div class="">
               <img src="/images/projects/project-details-01.jpg" alt="thumbnail one" />
             </div>
@@ -75,14 +77,14 @@ const otherProjects = getOtherProjects(project.slug, 2);
             </div>
           </div>
           <div class="">
-            <h3 class="text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">The Challenge</h3>
+            <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">The Challenge</h3>
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal">
               The client needed a modern portfolio capable of showcasing diverse creative work while maintaining a consistent visual language. The website also required responsive performance, intuitive navigation, and flexible content management for future
               updates.
             </p>
           </div>
           <div class="">
-            <h3 class="text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">Our Solution</h3>
+            <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">Our Solution</h3>
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal">
               We developed a refined portfolio experience using modern layouts, interactive animations, and a scalable CMS. Every page was optimized to deliver exceptional usability while highlighting the client's work through immersive storytelling and clean
               visual hierarchy.
@@ -93,12 +95,12 @@ const otherProjects = getOtherProjects(project.slug, 2);
           </div>
           <div class="">
             <div class="mb-10">
-              <h3 class="text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">Project Impact</h3>
+              <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">Project Impact</h3>
               <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal mb-0">
                 See how thoughtful strategy, refined design, and measurable results came together to strengthen the brand, improve user engagement, enhance performance, and create a lasting digital impact across every customer touchpoint with confidence.
               </p>
             </div>
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               <div class="flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
                 <span class="text-5xl md:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">+68%</span>
                 <span class="text-lg text-dark-shades-50">Visitor Engagement</span>
