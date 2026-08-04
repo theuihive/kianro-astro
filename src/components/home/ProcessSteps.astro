@@ -131,7 +131,7 @@ const processSteps = [
       start: "top 80px",
       end: () => `+=${totalTransitions * scrollDistancePerStep * window.innerHeight}`,
       pin: pinTarget,
-      anticipatePin: 1,
+      // anticipatePin: 1,
       invalidateOnRefresh: true,
 
       onUpdate: (self) => {

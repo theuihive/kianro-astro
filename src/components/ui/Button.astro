@@ -43,13 +43,13 @@ const arrowVariantClasses = {
 };
 ---
 
-<Tag href={href} class={cn("inline-flex items-center font-semibold uppercase transition-colors duration-300 group", variantClasses[variant], sizeClasses[size].wrapper, buttonClass, className, grow && "w-full justify-between")} id={id}>
-  <span class="flex flex-col h-6 overflow-hidden">
-    <span class="flex flex-col items-center transition-transform duration-300 group-hover:-translate-y-1/2">
-      <span class="leading-6 whitespace-nowrap flex items-center gap-1.5">
+<Tag href={href} data-btn class={cn("inline-flex items-center font-semibold uppercase transition-colors duration-300 group", variantClasses[variant], sizeClasses[size].wrapper, buttonClass, className, grow && "w-full justify-between")} id={id}>
+  <span class="relative h-6 overflow-hidden block">
+    <span class="flex flex-col" data-text-track>
+      <span class="h-6 leading-6 whitespace-nowrap flex items-center gap-1.5" data-line="in">
         <slot />
       </span>
-      <span class="leading-6 whitespace-nowrap flex items-center gap-1.5">
+      <span class="h-6 leading-6 whitespace-nowrap flex items-center gap-1.5" data-line="out">
         <slot />
       </span>
     </span>
@@ -58,14 +58,124 @@ const arrowVariantClasses = {
   {
     showArrow && (
       <span class={cn("shrink-0 relative overflow-hidden transition-colors duration-300", arrowVariantClasses[variant], sizeClasses[size].arrow)}>
-        <span class="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover:translate-x-4 group-hover:opacity-0">
+        <span class="absolute inset-0 flex items-center justify-center" data-icon="in">
           <ButtonArrowicon class="size-5" />
         </span>
-
-        <span class="absolute inset-0 flex items-center justify-center -translate-x-4 opacity-0 invisible transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-hover:visible">
+        <span class="absolute inset-0 flex items-center justify-center" data-icon="out">
           <ButtonArrowicon class="size-5" />
         </span>
       </span>
     )
   }
 </Tag>
+
+<script>
+  import { gsap } from "gsap";
+
+  const LINE_HEIGHT = 24;
+
+  function initButtonTextReveal() {
+    const buttons = document.querySelectorAll<HTMLElement>("[data-btn]");
+
+    buttons.forEach((btn) => {
+      if (btn.dataset.btnInit === "true") return;
+      btn.dataset.btnInit = "true";
+
+      const lineIn = btn.querySelector<HTMLElement>('[data-line="in"]');
+      const lineOut = btn.querySelector<HTMLElement>('[data-line="out"]');
+      const iconIn = btn.querySelector<HTMLElement>('[data-icon="in"]');
+      const iconOut = btn.querySelector<HTMLElement>('[data-icon="out"]');
+
+      if (!lineIn || !lineOut) return;
+
+      const splitLineContent = (el: HTMLElement) => {
+        const chars: HTMLElement[] = [];
+        const originalNodes = Array.from(el.childNodes);
+        el.innerHTML = "";
+
+        originalNodes.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent ?? "";
+            if (!text.trim()) {
+              el.appendChild(node);
+              return;
+            }
+            const wrap = document.createElement("span");
+            wrap.style.display = "inline-flex";
+            wrap.style.whiteSpace = "nowrap";
+            text.split("").forEach((ch) => {
+              const span = document.createElement("span");
+              span.className = "inline-block will-change-transform";
+              span.textContent = ch === " " ? "\u00A0" : ch;
+              wrap.appendChild(span);
+              chars.push(span);
+            });
+            el.appendChild(wrap);
+          } else {
+            el.appendChild(node);
+          }
+        });
+
+        return chars;
+      };
+
+      const inChars = splitLineContent(lineIn);
+      const outChars = splitLineContent(lineOut);
+
+      const curveRotation = (chars: HTMLElement[], dir: number) =>
+        chars.map((_, i) => {
+          const n = chars.length - 1 || 1;
+          const t = i / n;
+          return dir * Math.sin(t * Math.PI) * 16;
+        });
+
+      const outCurve = curveRotation(outChars, -1);
+      const inCurve = curveRotation(inChars, 1);
+
+      gsap.set(inChars, { y: 0, rotate: 0, transformOrigin: "50% 100%" });
+      outChars.forEach((c, i) => {
+        gsap.set(c, { y: 0, rotate: outCurve[i], transformOrigin: "50% 0%" });
+      });
+
+      if (iconIn && iconOut) {
+        gsap.set(iconOut, { xPercent: -100, opacity: 0 });
+        gsap.set(iconIn, { xPercent: 0, opacity: 1 });
+      }
+
+      let tl: gsap.core.Timeline;
+
+      const playIn = () => {
+        tl?.kill();
+        tl = gsap.timeline();
+
+        tl.to(inChars, { y: -LINE_HEIGHT, rotate: (i: number) => inCurve[i], duration: 0.5, ease: "power3.inOut", stagger: 0.018 }, 0);
+
+        tl.to(outChars, { y: -LINE_HEIGHT, rotate: 0, duration: 0.5, ease: "power3.inOut", stagger: 0.018 }, 0);
+
+        if (iconIn && iconOut) {
+          tl.to(iconIn, { xPercent: 100, opacity: 0, duration: 0.6, ease: "power3.inOut" }, 0).to(iconOut, { xPercent: 0, opacity: 1, duration: 0.6, ease: "power3.inOut" }, 0);
+        }
+      };
+
+      const playOut = () => {
+        tl?.kill();
+        tl = gsap.timeline();
+
+        tl.to(inChars, { y: 0, rotate: 0, duration: 0.5, ease: "power3.inOut", stagger: 0.018 }, 0);
+        tl.to(outChars, { y: 0, rotate: (i: number) => outCurve[i], duration: 0.5, ease: "power3.inOut", stagger: 0.018 }, 0);
+
+        if (iconIn && iconOut) {
+          tl.to(iconOut, { xPercent: -100, opacity: 0, duration: 0.6, ease: "power3.inOut" }, 0).to(iconIn, { xPercent: 0, opacity: 1, duration: 0.6, ease: "power3.inOut" }, 0);
+        }
+      };
+
+      btn.addEventListener("mouseenter", playIn);
+      btn.addEventListener("mouseleave", playOut);
+      btn.addEventListener("focus", playIn);
+      btn.addEventListener("blur", playOut);
+    });
+  }
+
+  initButtonTextReveal();
+  document.addEventListener("astro:page-load", initButtonTextReveal);
+</script>
