@@ -5,11 +5,9 @@
     "slug": "canvas-collective",
     "backgroundImage": "/images/projects/project-01.jpg",
     "cardImage": "/images/projects/project-01.jpg",
-    "leftMeta": [
+    "meta": [
       { "label": "Client", "value": "Lumora Studio" },
-      { "label": "Category", "value": "Portfolio" }
-    ],
-    "rightMeta": [
+      { "label": "Category", "value": "Portfolio" },
       { "label": "Year", "value": "2024" },
       { "label": "Services", "value": "Website UI/UX Design & Development" }
     ]
@@ -20,11 +18,9 @@
     "slug": "bloom-wellness",
     "backgroundImage": "/images/projects/project-02.jpg",
     "cardImage": "/images/projects/project-02.jpg",
-    "leftMeta": [
+    "meta": [
       { "label": "Client", "value": "Verde Organics" },
-      { "label": "Category", "value": "Wellness" }
-    ],
-    "rightMeta": [
+      { "label": "Category", "value": "Wellness" },
       { "label": "Year", "value": "2025" },
       { "label": "Services", "value": "Brand Identity & Website UI/UX Design" }
     ]
@@ -35,11 +31,9 @@
     "slug": "orbit-systems",
     "backgroundImage": "/images/projects/project-03.jpg",
     "cardImage": "/images/projects/project-03.jpg",
-    "leftMeta": [
+    "meta": [
       { "label": "Client", "value": "Nova Technologies" },
-      { "label": "Category", "value": "SaaS" }
-    ],
-    "rightMeta": [
+      { "label": "Category", "value": "SaaS" },
       { "label": "Year", "value": "2024" },
       { "label": "Services", "value": "Website UI/UX Design Framer Development" }
     ]
@@ -50,11 +44,9 @@
     "slug": "axis-architects",
     "backgroundImage": "/images/projects/project-04.jpg",
     "cardImage": "/images/projects/project-04.jpg",
-    "leftMeta": [
+    "meta": [
       { "label": "Client", "value": "Arc Studio" },
-      { "label": "Category", "value": "Architecture" }
-    ],
-    "rightMeta": [
+      { "label": "Category", "value": "Architecture" },
       { "label": "Year", "value": "2025" },
       { "label": "Services", "value": "Creative Direction & Web Design" }
     ]
@@ -65,11 +57,9 @@
     "slug": "synex-digital",
     "backgroundImage": "/images/projects/project-05.jpg",
     "cardImage": "/images/projects/project-05.jpg",
-    "leftMeta": [
+    "meta": [
       { "label": "Client", "value": "Aether Labsroup" },
-      { "label": "Category", "value": "Technology" }
-    ],
-    "rightMeta": [
+      { "label": "Category", "value": "Technology" },
       { "label": "Year", "value": "2024" },
       { "label": "Services", "value": "Product Design & Website Development" }
     ]
