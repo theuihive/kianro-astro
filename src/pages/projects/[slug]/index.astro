@@ -1,10 +1,15 @@
 ---
+import HomeContactSection from "@/components/contact/HomeContactSection.astro";
+import MoreProjectsSection from "@/components/projects/MoreProjectsSection.astro";
 import Button from "@/components/ui/Button.astro";
-import projects from "@/data/projects.json";
+import projectsData from "@/data/projects.json";
 import MainLayout from "@/layouts/MainLayout.astro";
+import type { Project } from "@/types/project";
+
+const projects: Project[] = projectsData;
 
 export async function getStaticPaths() {
-  return projects.map((project) => ({
+  return (projectsData as Project[]).map((project) => ({
     params: {
       slug: project.slug,
     },
@@ -14,11 +19,22 @@ export async function getStaticPaths() {
   }));
 }
 
-const { project } = Astro.props;
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props as Props;
+
+function getOtherProjects(currentSlug: string, limit?: number) {
+  const others = projects.filter((p) => p.slug !== currentSlug);
+  return typeof limit === "number" ? others.slice(0, limit) : others;
+}
+
+const otherProjects = getOtherProjects(project.slug, 2);
 ---
 
 <MainLayout title={project?.title}>
-  <div class="pt-15 md:pt-24 lg:py-35">
+  <div class="pt-15 md:pt-24 lg:pt-35">
     <div class="container">
       <div class="">
         <div class="space-y-20">
@@ -101,4 +117,6 @@ const { project } = Astro.props;
       </div>
     </div>
   </div>
+  <MoreProjectsSection projects={otherProjects} />
+  <HomeContactSection />
 </MainLayout>
