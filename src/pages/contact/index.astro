@@ -1,7 +1,12 @@
 ---
+import ContactInfo from "@/components/contact/ContactInfo.astro";
+import HomeContactSection from "@/components/contact/HomeContactSection.astro";
+import FaqSection from "@/components/home/FaqSection.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Contact" description="Get in touch with Kainro to start planning your custom garden design, maintenance, or outdoor transformation.">
-  <h1>Contact</h1>
+<MainLayout title="Contact" description="Modern agency portfolio template for creative agencies, freelancers, startups, and digital studios.">
+  <ContactInfo />
+  <HomeContactSection />
+  <FaqSection className="pt-0 md:pt-0 lg:pt-0" />
 </MainLayout>
