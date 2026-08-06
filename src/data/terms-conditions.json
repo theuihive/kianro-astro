@@ -1,62 +1,47 @@
 [
   {
-    "sectionId": "introduction",
-    "category": "Introduction",
-    "content": "<p>Welcome to Kainro. By accessing our website or using our gardening services, you agree to the following terms. These terms are designed to keep everything clear, fair, and transparent for both you and our team.</p>"
+    "title": "",
+    "subtitle": "Last Updated: July 2026",
+    "description": "Please read these Terms & Conditions carefully before using our website or engaging with our services. By accessing this website, you agree to comply with the terms outlined below."
   },
   {
-    "sectionId": "use-of-our-services",
-    "category": "Use of Our Services",
-    "content": "<p>Kainro provides gardening and outdoor maintenance services designed to care for and improve your space. By booking or using our services, you agree to provide accurate information and ensure safe access to your property when required.</p><ul><li>You must provide correct contact and service details.</li><li>You are responsible for ensuring access to your garden at the scheduled time.</li><li>Any special conditions or risks should be communicated in advance.</li></ul><p>We reserve the right to refuse or reschedule services if conditions are unsafe or unclear.</p>"
+    "title": "INTRODUCTION",
+    "subtitle": "Acceptance of these terms",
+    "description": "These Terms & Conditions outline the rules for using our website, services, and digital content. By accessing our website or engaging with our agency, you agree to comply with these terms. If you do not accept them, please discontinue using our website and services."
   },
   {
-    "sectionId": "bookings-scheduling",
-    "category": "Bookings & Scheduling",
-    "content": "<p>All services must be scheduled in advance through our website or by contacting our team. Once a booking is confirmed, we will allocate time and resources accordingly. You may request to reschedule or cancel a booking with prior notice. Last-minute cancellations may affect future availability or result in service adjustment depending on the situation.</p><p>We aim to be flexible, but also value the time and planning of both our team and our clients.</p>"
+    "title": "SERVICES",
+    "subtitle": "Our creative services",
+    "description": "We provide branding, web design, UI/UX design, Framer development, Webflow development, creative direction, and related digital services. Project scope, timelines, pricing, and deliverables will be agreed upon before work begins and documented where applicable."
   },
   {
-    "sectionId": "pricing-payments",
-    "category": "Pricing & Payments",
-    "content": "<p>Our pricing is based on the size of your garden, the type of service required, and the frequency of maintenance. Quotes are provided clearly before any work begins.</p><ul><li>Payments must be made through approved methods.</li><li>Emergency services may follow a separate payment structure.</li><li>Additional work outside the agreed scope may be charged separately.</li></ul><p>We ensure full transparency—no hidden fees or unexpected charges.</p>"
+    "title": "CLIENT RESPONSIBILITIES",
+    "subtitle": "Working together effectively",
+    "description": "Clients are responsible for providing accurate information, timely feedback, project content, and required approvals throughout the project. Delays in communication or missing materials may affect agreed timelines and project delivery schedules."
   },
   {
-    "sectionId": "service-scope-limitations",
-    "category": "Service Scope & Limitations",
-    "content": "<p>Kainro provides professional care based on experience and best practices. However, gardening is influenced by natural factors beyond our control.</p><p>We do not guarantee specific outcomes related to plant growth, weather conditions, or environmental changes. While we aim for the best results, nature plays a role in long-term garden success and the final appearance may vary according to seasonal conditions.</p>"
+    "title": "PAYMENTS",
+    "subtitle": "Pricing and payment terms",
+    "description": "Project pricing is based on the agreed scope of work. Payments may require an initial deposit followed by milestone or final payments, depending on the project. Any additional work outside the original scope may require a separate quotation and approval."
   },
   {
-    "sectionId": "property-access-responsibility",
-    "category": "Property Access & Responsibility",
-    "content": "<p>To deliver our services efficiently, we may require access to your outdoor spaces in your absence. We treat every property with care and respect.</p><ul><li>You are responsible for securing pets and notifying us of hazards.</li><li>We are not liable for pre-existing damage or hidden risks.</li><li>Any fragile or valuable items should be safely stored beforehand.</li></ul><p>We aim to leave every garden cleaner, safer, and better than we found it.</p>"
+    "title": "REVISIONS & CHANGES",
+    "subtitle": "Project revisions",
+    "description": "Each project includes a specified number of revision rounds as outlined in the selected package or proposal. Additional revisions or requests beyond the agreed scope may require additional time and associated fees."
   },
   {
-    "sectionId": "cancellations-refunds",
-    "category": "Cancellations & Refunds",
-    "content": "<p>We understand that plans change. You may cancel or reschedule services with reasonable notice. Refunds are considered based on the nature of the service and the timing of the cancellation. Completed services are generally non-refundable, but we always strive to resolve concerns fairly.</p><p>Our goal is to maintain trust, not rigid policies.</p>"
+    "title": "THIRD-PARTY SERVICES",
+    "subtitle": "External platforms and tools",
+    "description": "We may use trusted third-party tools, hosting providers, or software platforms when delivering our services. Any service changes, pricing updates, or interruptions are governed by their respective providers."
   },
   {
-    "sectionId": "website-use",
-    "category": "Website Use",
-    "content": "<p>By using our website, you agree not to misuse its content or functionality. All materials, including text, designs, and branding, belong to Kainro unless stated otherwise. You may not copy, reproduce, or distribute any part of the website without permission.</p>"
+    "title": "TERMINATION",
+    "subtitle": "Ending a project or agreement",
+    "description": "Project termination may occur by mutual agreement or under the outlined terms. Any completed work, pending invoices, and agreed deliverables will be resolved before final project completion."
   },
   {
-    "sectionId": "limitation-of-liability",
-    "category": "Limitation of Liability",
-    "content": "<p>While we take every precaution to deliver high-quality service, Kainro is not liable for indirect, incidental, or unforeseen damages resulting from services.</p><p>Our responsibility is limited to the value of the service provided, and we always aim to resolve issues in a fair and reasonable way.</p>"
-  },
-  {
-    "sectionId": "changes-to-these-terms",
-    "category": "Changes to These Terms",
-    "content": "<p>We may update these Terms & Conditions as our services evolve. Any changes will be posted on this page with an updated effective date. Continued use of our services means you accept the latest version of these terms.</p>"
-  },
-  {
-    "sectionId": "policy-updates",
-    "category": "Policy Updates",
-    "content": "<p>We may update this Privacy Policy occasionally to align with changes in our services or legal requirements. All updates will be clearly displayed on this page. The revised effective date will also be shown alongside the changes for your reference.</p>"
-  },
-  {
-    "sectionId": "contact-us",
-    "category": "Contact us",
-    "content": "<p>If you have any questions or concerns about this Terms & Conditions or how our services operate, our team is here to help.</p><p>Email: <strong>support@Kainro.com </strong> <br>Phone: <strong>+1 (213) 784-4456 </strong> </p>"
+    "title": "UPDATES TO THESE TERMS",
+    "subtitle": "Changes to our terms",
+    "description": "We may revise these Terms & Conditions periodically to reflect updates to our services, legal requirements, or business operations. Continued use of our website after changes are published constitutes acceptance of the updated terms."
   }
 ]

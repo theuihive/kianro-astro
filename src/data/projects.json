@@ -10,7 +10,10 @@
       { "label": "Category", "value": "Portfolio" },
       { "label": "Year", "value": "2024" },
       { "label": "Services", "value": "Website UI/UX Design & Development" }
-    ]
+    ],
+    "detailsImage1": "/images/projects/project-01-details-1.jpg",
+    "detailsImage2": "/images/projects/project-01-details-2.jpg",
+    "detailsImage3": "/images/projects/project-01-details-3.jpg"
   },
   {
     "id": 102,
@@ -23,7 +26,10 @@
       { "label": "Category", "value": "Wellness" },
       { "label": "Year", "value": "2025" },
       { "label": "Services", "value": "Brand Identity & Website UI/UX Design" }
-    ]
+    ],
+    "detailsImage1": "/images/projects/project-02-details-1.jpg",
+    "detailsImage2": "/images/projects/project-02-details-2.jpg",
+    "detailsImage3": "/images/projects/project-02-details-3.jpg"
   },
   {
     "id": 103,
@@ -36,7 +42,10 @@
       { "label": "Category", "value": "SaaS" },
       { "label": "Year", "value": "2024" },
       { "label": "Services", "value": "Website UI/UX Design Framer Development" }
-    ]
+    ],
+    "detailsImage1": "/images/projects/project-03-details-1.jpg",
+    "detailsImage2": "/images/projects/project-03-details-2.jpg",
+    "detailsImage3": "/images/projects/project-02-details-3.jpg"
   },
   {
     "id": 104,
@@ -49,7 +58,10 @@
       { "label": "Category", "value": "Architecture" },
       { "label": "Year", "value": "2025" },
       { "label": "Services", "value": "Creative Direction & Web Design" }
-    ]
+    ],
+    "detailsImage1": "/images/projects/project-01-details-1.jpg",
+    "detailsImage2": "/images/projects/project-01-details-2.jpg",
+    "detailsImage3": "/images/projects/project-01-details-3.jpg"
   },
   {
     "id": 105,
@@ -62,6 +74,9 @@
       { "label": "Category", "value": "Technology" },
       { "label": "Year", "value": "2024" },
       { "label": "Services", "value": "Product Design & Website Development" }
-    ]
+    ],
+    "detailsImage1": "/images/projects/project-01-details-1.jpg",
+    "detailsImage2": "/images/projects/project-01-details-2.jpg",
+    "detailsImage3": "/images/projects/project-01-details-3.jpg"
   }
 ]

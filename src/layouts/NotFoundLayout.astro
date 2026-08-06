@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import Header from "@/components/header/Header.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
 interface Props {
   title?: string;
@@ -12,7 +12,7 @@ const props = Astro.props;
 
 <BaseLayout {...props}>
   <Header />
-  <main>
+  <main class="bg-dark-primary">
     <slot />
   </main>
 </BaseLayout>

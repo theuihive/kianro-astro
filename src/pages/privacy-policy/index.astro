@@ -1,7 +1,9 @@
 ---
+import ContentWrapper from "@/components/privacy-policy/ContentWrapper.astro";
+import data from "@/data/privacy-policy.json";
 import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Privacy Policy" description="Review Kainro’s privacy practices and how your information is handled when you contact us.">
-  <h1>Privacy Policy</h1>
+<MainLayout title="Privacy Policy" description="Modern agency portfolio template for creative agencies, freelancers, startups, and digital studios.">
+  <ContentWrapper data={data} title="Privacy Policy" />
 </MainLayout>

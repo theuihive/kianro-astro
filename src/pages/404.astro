@@ -1,7 +1,17 @@
 ---
-import NotFoundLayout from "@/layouts/NotFoundLayout.astro";
+import Button from "@/components/ui/Button.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<NotFoundLayout title="404 - Page Not Found" description="The page you're looking for doesn't exist.">
-  <h1>404</h1>
-</NotFoundLayout>
+<MainLayout title="404 - Page Not Found" description="The page you're looking for doesn't exist.">
+  <div class="pt-10 md:pt-20 lg:pt-40 pb-15 md:pb-30 lg:pb-50 flex justify-center items-center">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="text-white text-[150px] md:text-[200px] lg:text-[300px] leading-[85%] tracking-[-4%]">4<span class="font-jersey pl-3">0</span>4</h1>
+        <h2 class="font-jersey text-4xl sm:text-5xl md:text-[64px] leading-[90%] tracking-[-3%] text-white uppercase mb-2">Oops! Page Not Found</h2>
+        <p class="text-lg text-dark-shades-50 tracking-tight mb-10">The page you’re looking for doesn’t exist or has been moved.</p>
+        <Button href="/">Go to Home Page</Button>
+      </div>
+    </div>
+  </div>
+</MainLayout>

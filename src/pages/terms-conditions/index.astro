@@ -1,7 +1,9 @@
 ---
+import ContentWrapper from "@/components/privacy-policy/ContentWrapper.astro";
+import data from "@/data/terms-conditions.json";
 import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
-<MainLayout title="Terms & Conditions" description="Read the terms and conditions for working with Kainro and booking our services.">
-  <h1>Terms and conditions</h1>
+<MainLayout title="Terms & Conditions" description="Modern agency portfolio template for creative agencies, freelancers, startups, and digital studios.">
+  <ContentWrapper data={data} title="Terms & Conditions" />
 </MainLayout>

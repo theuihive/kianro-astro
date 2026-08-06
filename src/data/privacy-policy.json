@@ -1,52 +1,47 @@
 [
   {
-    "sectionId": "introduction",
-    "category": "Introduction",
-    "content": "<p>At Kainro, we believe privacy should feel clear, not complicated. This policy explains how we collect, use, and protect your information when you interact with our website or use our gardening services. Our goal is simple: to be transparent, respectful, and responsible with your data every step of the way.</p>"
+    "title": "",
+    "subtitle": "Last Updated: July 2026",
+    "description": "We are committed to protecting your personal information and ensuring transparency in how we collect, use, and safeguard your data when you use our website and services."
   },
   {
-    "sectionId": "information-we-collect",
-    "category": "Information We Collect",
-    "content": "<p>When you interact with Kainro, we may collect information that helps us provide our services effectively and improve your experience. This includes details you provide directly such as when requesting a quote, booking a service, or contacting our team—as well as basic technical data collected automatically when you browse our website.</p><ul><li>Your name, email, phone, and service address</li><li>Website usage data like pages visited, time spent, and device or browser information</li><li>Communication data including messages, inquiries, and feedback you share with us</li></ul>"
+    "title": "INTRODUCTION",
+    "subtitle": "Our commitment to your privacy",
+    "description": "This Privacy Policy explains how we collect, use, store, and protect your personal information when you visit our website, contact our team, or use our creative services. By accessing our website, you agree to the practices described in this policy."
   },
   {
-    "sectionId": "how-we-use-your-information",
-    "category": "How We Use Your Information",
-    "content": "<p>We use your information to deliver a smooth, reliable, and personalized experience. This allows us to understand your needs, maintain consistent service quality, and communicate clearly with you throughout your journey with Kainro.</p><p>Your data helps us manage bookings, offer accurate recommendations, answer questions, and enhance our website and services. We use your information only to improve your experience and deliver our services effectively.</p>"
+    "title": "INFORMATION WE COLLECT",
+    "subtitle": "Information you provide",
+    "description": "We may collect information you voluntarily provide, including your name, email address, phone number, company details, project information, and any other information submitted through our contact forms or communications."
   },
   {
-    "sectionId": "how-we-protect-your-information",
-    "category": "How We Protect Your Information",
-    "content": "<p>We prioritize protecting your information by using secure systems and safeguards to prevent unauthorized access, misuse, or loss of your data.</p><ul><li>Secure storage systems and monitored infrastructure</li><li>Controlled access limited to trained and authorized team members</li><li>Ongoing checks to identify and prevent potential security risks</li></ul><p>While no system can guarantee absolute security, we continuously work to maintain a high standard of protection.</p>"
+    "title": "HOW WE USE YOUR INFORMATION",
+    "subtitle": "Using your information responsibly",
+    "description": "Your information is used to respond to inquiries, manage projects, improve our services, communicate important updates, and deliver a better overall experience. We never use your information for purposes unrelated to our services without your consent."
   },
   {
-    "sectionId": "sharing-your-information",
-    "category": "Sharing Your Information",
-    "content": "<p>We do not sell or rent your personal information. Your data is only shared when it is necessary to operate our services or when required by law.</p><p>In some cases, we may work with trusted partners—such as payment providers or scheduling tools—to help deliver our services efficiently. These partners are expected to handle your information with the same level of care and responsibility that we do.</p>"
+    "title": "COOKIES & ANALYTICS",
+    "subtitle": "Website analytics and cookies",
+    "description": "Our website may use cookies and analytics tools to understand visitor behavior, improve website performance, and enhance user experience. You can manage cookie preferences through your browser settings."
   },
   {
-    "sectionId": "cookies-tracking",
-    "category": "Cookies & Tracking",
-    "content": "<p>Our website uses cookies and similar technologies to create a better browsing experience. These help us understand how visitors interact with our site, improve performance, and ensure everything functions as expected.</p><p>You remain in control of your browser settings and can choose to disable cookies at any time. However, doing so may affect certain features of the website.</p>"
+    "title": "DATA PROTECTION",
+    "subtitle": "Keeping your information secure",
+    "description": "We implement appropriate security measures to protect your personal information from unauthorized access, misuse, or disclosure. While we strive to maintain strong security practices, no online system can guarantee absolute protection."
   },
   {
-    "sectionId": "your-rights",
-    "category": "Your Rights",
-    "content": "<p>You have control over your personal information. You can request access to your data, ask for corrections, or request deletion at any time. You can also choose to opt out of non-essential communications.</p><ul><li>Access, update, or delete your personal information</li><li>Opt out of marketing or promotional messages</li><li>Request clarification on how your data is used</li></ul><p>We aim to make these requests simple and straightforward.</p>"
+    "title": "THIRD-PARTY SERVICES",
+    "subtitle": "Trusted third-party providers",
+    "description": "We may use trusted third-party tools for website hosting, analytics, payment processing, scheduling, or communication. These providers maintain their own privacy policies and data handling practices."
   },
   {
-    "sectionId": "third-party-links",
-    "category": "Third-Party Links",
-    "content": "<p>Our website may include links to external websites for your convenience. These sites operate independently, and their privacy practices may differ from ours. We encourage you to review their policies before sharing any personal information.</p>"
+    "title": "YOUR RIGHTS",
+    "subtitle": "Your privacy choices",
+    "description": "Depending on your location, you may have the right to access, update, correct, or request deletion of your personal information. You may also request information about how your data is processed."
   },
   {
-    "sectionId": "policy-updates",
-    "category": "Policy Updates",
-    "content": "<p>We may update this Privacy Policy occasionally to align with changes in our services or legal requirements. All updates will be clearly displayed on this page. The revised effective date will be shown alongside the changes for your reference.</p>"
-  },
-  {
-    "sectionId": "contact-us",
-    "category": "Contact us",
-    "content": "<p>If you have any questions or concerns about this Privacy Policy or how your information is handled, our team is here to help.</p><p>Email: <strong>support@Kainro.com </strong> <br>Phone: <strong>+1 (213) 784-4456 </strong> </p>"
+    "title": "POLICY UPDATES",
+    "subtitle": "Changes to this policy",
+    "description": "We may update this Privacy Policy periodically to reflect changes in our services, legal requirements, or business practices. The latest version will always be available on this page."
   }
 ]
