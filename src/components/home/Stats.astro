@@ -16,31 +16,33 @@ const stats: Stat[] = [
 ];
 ---
 
-<section class="py-15 md:py-24 lg:py-40">
+<section class="py-15 md:py-24 lg:py-40 overflow-hidden">
   <div class="container">
-    <div class="grid lg:grid-cols-[1fr_auto] gap-4 items-stretch relative">
-      <!-- LEFT COLUMN: Flexible Width for wider Heading -->
-      <div class=""></div>
-      <div class="space-y-18 absolute left-0 max-w-196">
-        <h2 class="text-[40px] uppercase leading-none tracking-[-2%] font-jersey">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-4 items-stretch relative">
+      <!-- LEFT COLUMN -->
+      <div class="space-y-10 md:space-y-12 lg:space-y-18 lg:absolute lg:left-0 lg:top-0 lg:max-w-196 z-10">
+        <h2 class="text-3xl sm:text-[36px] lg:text-[40px] uppercase leading-tight lg:leading-none tracking-[-2%] font-jersey">
           <span class="text-white">From first conversations to final delivery, every collaboration focuses on creating</span>
           <span class="text-dark-shades-60"> purposeful design, measurable results, and experiences that leave a lasting impression.</span>
         </h2>
 
-        <div class="max-w-162 overflow-hidden">
-          <p class="mb-8 text-lg leading-normal text-dark-shades-20">Trusted By 200+ Brands</p>
+        <div class="w-full lg:max-w-162 overflow-hidden">
+          <p class="mb-4 sm:mb-8 text-base sm:text-lg leading-normal text-dark-shades-20">Trusted By 200+ Brands</p>
           <!-- Ticker Track -->
           <BrandsTicker />
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: Exact Bento Grid  -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[308px_228px_308px] lg:grid-rows-[246px_285px_246px]">
+      <!-- Spacer for LG screen absolute layout positioning -->
+      <div class="hidden lg:block"></div>
+
+      <!-- RIGHT COLUMN: Bento Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[308px_228px_308px] lg:grid-rows-[246px_285px_246px] gap-4 sm:gap-6 lg:gap-0">
         {
           stats.map((s) => (
-            <div class={`flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-full ${s.colStart} ${s.rowStart}`}>
-              <span class="text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">{s.value}</span>
-              <span class="text-lg text-dark-shades-50">{s.label}</span>
+            <div class={`flex flex-col justify-between bg-dark-shades-90 p-6 sm:p-8 lg:p-6 w-full min-h-40 sm:min-h-50 lg:min-h-0 lg:h-full ${s.colStart} ${s.rowStart}`}>
+              <span class="text-5xl sm:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">{s.value}</span>
+              <span class="text-base sm:text-lg text-dark-shades-50">{s.label}</span>
             </div>
           ))
         }

@@ -4,21 +4,47 @@ import ServiceSectionHeader from "@/components/home/ServiceSectionHeader.astro";
 import Button from "@/components/ui/Button.astro";
 ---
 
-<section class="pb-41">
+<section class="pb-15 md:pb-24 lg:pb-40">
   <div class="container">
     <ServiceSectionHeader />
-    <ul role="list" class="service-list flex flex-col space-y-10">
+    <ul role="list" class="service-list flex flex-col space-y-5 md:space-y-10">
       {
         services.map((s) => (
           <li class="service-row group cursor-pointer overflow-hidden border border-stroke px-6 py-9.5 transition-colors duration-500" data-service>
-            {/* Grid Layout: Fixed slots for Image & Title */}
-            <div class="grid grid-cols-[36px_1fr_auto] items-start gap-4 md:grid-cols-[48px_384px_1fr_auto] md:gap-16">
+            {/* ---------- Mobile layout ---------- */}
+            <div class="flex flex-col gap-5 md:hidden">
+              {/* Image on top */}
+              <div class="service-img-wrapper-mobile">
+                <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
+              </div>
+
+              {/* Number + Title side by side */}
+              <div class="flex items-center gap-3 font-jersey text-4xl leading-none tracking-[-2%]">
+                <span class="service-num-mobile text-dark-shades-60 sm:text-[40px]">{s.number}.</span>
+                <h3 class="service-title-mobile text-white sm:text-3xl">{s.title}</h3>
+              </div>
+
+              {/* Description */}
+              <div class="pt-3">
+                <p class="text-base leading-normal text-dark-shades-50">{s.description}</p>
+              </div>
+
+              {/* Tags */}
+              <div class="flex flex-wrap gap-2">
+                {s.tags.map((tag) => (
+                  <span class="border border-stroke px-3 py-1.5 text-sm text-white">{tag}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Grid Layout */}
+            <div class="hidden md:grid grid-cols-[36px_1fr_auto] items-start gap-4 md:grid-cols-[48px_288px_1fr_auto] lg:grid-cols-[48px_384px_1fr_auto] md:gap-10 lg:gap-16">
               {/* Number */}
               <span class="service-num text-[40px] tracking-[-2%] text-dark-shades-60 leading-none font-jersey">{s.number}.</span>
 
               {/* Desktop Image Container Slot */}
               <div class="service-img-wrapper hidden h-0 overflow-hidden will-change-[height] md:block">
-                <div class="service-img-inner h-72 w-96 scale-0 origin-top">
+                <div class="service-img-inner h-72 w-72 lg:w-96 scale-0 origin-top">
                   <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
                 </div>
               </div>
@@ -55,7 +81,7 @@ import Button from "@/components/ui/Button.astro";
         ))
       }
     </ul>
-    <div class="text-center mt-20">
+    <div class="text-center mt-10 md:mt-20">
       <Button href="/services">View All Services</Button>
     </div>
   </div>
@@ -68,6 +94,7 @@ import Button from "@/components/ui/Button.astro";
     const rows = document.querySelectorAll<HTMLLIElement>(".service-row");
 
     rows.forEach((row) => {
+      // Desktop specific elements targeted cleanly
       const imgWrapper = row.querySelector<HTMLDivElement>(".service-img-wrapper");
       const imgInner = row.querySelector<HTMLDivElement>(".service-img-inner");
       const details = row.querySelector<HTMLDivElement>(".service-details");
@@ -82,6 +109,9 @@ import Button from "@/components/ui/Button.astro";
       let tl: gsap.core.Timeline | null = null;
 
       const play = () => {
+        // Run desktop animations only on md devices and above
+        if (window.innerWidth < 768) return;
+
         if (tl) tl.kill();
 
         tl = gsap.timeline({
@@ -101,18 +131,19 @@ import Button from "@/components/ui/Button.astro";
         const targetTagsHeight = tags.scrollHeight;
         tl.to(tagsWrapper, { height: targetTagsHeight, duration: 0.5 }, 0).to(tags, { opacity: 1, y: 0, duration: 0.5 }, 0.1);
 
-        // Icon
+        // Icon & Number
         tl.to(iconV, { rotate: 90, scaleY: 0, duration: 0.5, ease: "none" }, 0).to(num, { color: "#FFFFFF", duration: 0.5 }, 0);
       };
 
       const reverse = () => {
+        if (window.innerWidth < 768) return;
+
         if (tl) tl.kill();
 
         tl = gsap.timeline({
           defaults: { ease: "none" },
         });
 
-        // Reverse order: content leaves first, then the image collapses
         tl.to(tags, { opacity: 0, y: 12, duration: 0.35 }, 0).to(tagsWrapper, { height: 0, duration: 0.5 }, 0.05);
 
         tl.to(detailsInner, { y: 0, opacity: 0, duration: 0.5 }, 0).to(details, { height: 0, opacity: 0, duration: 0.5 }, 0);

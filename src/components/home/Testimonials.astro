@@ -8,25 +8,25 @@ import TestimonialSectionHeader from "@/components/home/TestimonialSectionHeader
   <div class="container">
     <TestimonialSectionHeader />
     <div data-embla-viewport class="overflow-hidden lg:w-[calc(100%+((100vw-100%)/2))] lg:mr-[calc((100vw-100%)/-2)]">
-      <div data-embla-container class="flex flex-col gap-6 lg:flex-row">
+      <div data-embla-container class="flex gap-6">
         {
           testimonialsData.map((testimonial) => (
-            <article data-embla-slide class="flex flex-col sm:flex-row lg:w-190 lg:shrink-0 bg-dark-shades-90 cursor-e-resize">
-              <div class="h-84 w-full shrink-0 overflow-hidden sm:h-108 sm:w-84">
+            <article data-embla-slide class="w-full shrink-0 flex flex-col sm:flex-row lg:w-190 bg-dark-shades-90 cursor-e-resize">
+              <div class="w-full shrink-0 overflow-hidden h-100 sm:h-108 sm:w-84">
                 <img src={testimonial.image} alt={testimonial.name} class="h-full w-full object-cover" loading="lazy" />
               </div>
 
-              <div class="flex flex-1 flex-col justify-between p-8">
+              <div class="flex flex-1 flex-col justify-between p-5 sm:p-8">
                 <div>
                   <div class="mb-5 flex gap-0.5 text-primary">
                     {Array.from({ length: testimonial.rating }).map(() => (
                       <StarIcon />
                     ))}
                   </div>
-                  <p class="text-xl leading-normal font-medium text-white tracking-[-1%]">&ldquo;{testimonial.quote}&rdquo;</p>
+                  <p class="text-base sm:text-xl leading-normal font-medium text-white tracking-[-1%]">&ldquo;{testimonial.quote}&rdquo;</p>
                 </div>
 
-                <div class="mt-8">
+                <div class="mt-5 sm:mt-8">
                   <p class="text-xl leading-normal font-semibold text-white tracking-[-1%]">{testimonial.name}</p>
                   <p class="text-base leading-normal text-dark-shades-50 tracking-[-1%]">{testimonial.role}</p>
                 </div>
@@ -38,7 +38,7 @@ import TestimonialSectionHeader from "@/components/home/TestimonialSectionHeader
     </div>
 
     <!-- Dots — click to jump to a slide -->
-    <div data-embla-dots class="mt-12 flex items-center justify-center gap-2">
+    <div data-embla-dots class="mt-5 sm:mt-12 flex items-center justify-center gap-2">
       {testimonialsData.map((_, i) => <button type="button" data-embla-dot={i} aria-label={`Go to testimonial ${i + 1}`} class:list={["size-1.5 rounded-full transition-all", i === 0 ? "bg-primary" : "bg-dark-shades-70"]} />)}
     </div>
   </div>

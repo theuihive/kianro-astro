@@ -3,9 +3,9 @@ import ButtonArrowicon from "@/components/icons/ButtonArrowicon.astro";
 import projects from "@/data/projects.json";
 ---
 
-<section class="pb-41">
+<section class="pb-15 md:pb-24 lg:pb-40">
   <div class="container">
-    <div class="mb-18 text-center max-w-2xl mx-auto">
+    <div class="mb-10 md:mb-18 text-center max-w-2xl mx-auto">
       <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
         Featured Projects That
         <span class="text-dark-shades-60"> Reflect Strategy, Style & Detail</span>
@@ -13,7 +13,7 @@ import projects from "@/data/projects.json";
     </div>
 
     <!-- Pinned scroll section -->
-    <div data-projects-pin class="relative h-[80vh] min-h-150 overflow-hidden">
+    <div data-projects-pin class="relative h-[80vh] min-h-150 overflow-hidden hidden lg:block">
       {
         projects.map((project, i) => (
           <div data-project-slide class="absolute inset-0 h-full w-full" style={`z-index:${i + 1};`}>
@@ -61,6 +61,57 @@ import projects from "@/data/projects.json";
               </div>
             </a>
           </div>
+        ))
+      }
+    </div>
+
+    <div class="space-y-5 md:space-y-10 lg:hidden">
+      {
+        projects.map((project, i) => (
+          <a href={`/projects/${project.slug}`} class="project-item lg:h-220 relative overflow-hidden block">
+            <div class="project-bg-wrap absolute inset-0 overflow-hidden hidden lg:block">
+              <img src={project.backgroundImage} alt="" aria-hidden="true" class="project-bg-img absolute inset-0 h-full w-full object-cover" loading="lazy" />
+            </div>
+
+            {/* Overlay color */}
+            <div class="absolute inset-0 bg-black/70 hidden lg:block" />
+
+            {/* Content */}
+            <div class="relative z-10 flex h-full items-center lg:px-10">
+              <div class="grid w-full grid-cols-1 items-center gap-6 lg:grid-cols-3">
+                <div class="lg:flex justify-between gap-5 pr-10 hidden">
+                  {project.meta.slice(0, 2).map((m) => (
+                    <div class="space-y-1">
+                      <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                      <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Centered polaroid card */}
+                <div class="project-card bg-white p-1.5">
+                  <div class="card-img-wrap relative w-full overflow-hidden">
+                    <img src={project.cardImage} alt={project.title} loading="lazy" class="card-img h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div class="flex items-center justify-between pt-5 pb-7 px-4">
+                    <h3 class="text-3xl sm:text-[40px] font-jersey tracking-[-2%] text-dark-primary uppercase leading-none">{project.title}</h3>
+                    <div class="text-dark-primary">
+                      <ButtonArrowicon class="size-8 -rotate-45" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="lg:flex justify-between gap-5 pl-10 relative z-10 hidden">
+                  {project.meta.slice(2, 4).map((m) => (
+                    <div class="space-y-1 max-w-52">
+                      <p class="text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
+                      <p class="text-xl font-semibold leading-normal text-white">{m.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </a>
         ))
       }
     </div>
