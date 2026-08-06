@@ -28,7 +28,7 @@ const uid = `wm-${Math.random().toString(36).slice(2, 9)}`;
 
 <div class="text-center" data-wordmark-root={uid} data-badges={JSON.stringify(BADGES)} data-hold={hold}>
   <div class="flex justify-center items-start gap-4">
-    <h1 class="wordmark text-[240px] font-jersey leading-none tracking-[-4%] text-white uppercase relative inline-flex">
+    <h1 class="wordmark text-8xl sm:text-9xl md:text-[180px] lg:text-[240px] font-jersey leading-none tracking-[-4%] text-white uppercase relative inline-flex">
       {
         WORDS[0].split("").map((_, i) => (
           <span class="char-mask relative inline-block overflow-hidden align-top leading-none" style="height:1em;">
@@ -45,7 +45,7 @@ const uid = `wm-${Math.random().toString(36).slice(2, 9)}`;
     </h1>
 
     <!-- badge wrapper -->
-    <div class="badge mt-12 size-22 rounded-full border-10 border-white flex items-center justify-center text-6xl font-switzer font-medium overflow-hidden origin-center">
+    <div class="badge mt-5 md:mt-8 lg:mt-12 size-12 md:size-16 lg:size-22 rounded-full border-5 lg:border-10 border-white flex items-center justify-center text-3xl md:text-4xl lg:text-6xl font-switzer font-medium overflow-hidden origin-center">
       <span class="char-mask relative inline-block overflow-hidden leading-none" style="height:1em;">
         <span class="badge-track block leading-none">
           {
@@ -59,7 +59,7 @@ const uid = `wm-${Math.random().toString(36).slice(2, 9)}`;
       </span>
     </div>
   </div>
-  <p class="text-2xl font-medium leading-normal text-white tracking-[-1%]">Designing brands that people remember.</p>
+  <p class="text-lg sm:text-2xl font-medium leading-normal text-white tracking-[-1%]">Designing brands that people remember.</p>
 </div>
 
 <script>
