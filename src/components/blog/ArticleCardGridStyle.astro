@@ -9,7 +9,7 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<a href={`/blog/${post.id}`} data-category={post.data.category.slug} class="bg-dark-shades-90 p-2 group">
+<a href={`/blog/${post.id}`} data-category={post.data.category.slug} class="bg-dark-shades-90 p-2 group blog-card-item">
   <div class="overflow-hidden">
     <img src={post.data.cover} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
   </div>

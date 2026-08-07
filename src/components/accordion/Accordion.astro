@@ -22,7 +22,7 @@ const { items } = Astro.props;
       const triggerId = `accordion-trigger-${item.id}`;
 
       return (
-        <div class="accordion-item border border-stroke" data-id={item.id}>
+        <div class="accordion-item border border-stroke opacity-0" data-id={item.id}>
           <button type="button" id={triggerId} class="accordion-trigger w-full flex items-start justify-between gap-4 p-4 sm:p-6 text-left group" aria-expanded={isOpen ? "true" : "false"} aria-controls={contentId}>
             <span class="text-xl font-semibold text-white tracking-[-1%] leading-normal">{item.title}</span>
 
@@ -42,6 +42,9 @@ const { items } = Astro.props;
 
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
 
   function initAccordions() {
     const wrappers = document.querySelectorAll<HTMLElement>("[data-accordion]");
@@ -51,6 +54,26 @@ const { items } = Astro.props;
       wrapper.dataset.accordionInit = "true";
 
       const items = wrapper.querySelectorAll<HTMLElement>(".accordion-item");
+
+      // ScrollTrigger Stagger Reveal Animation for Accordion Items
+      if (items.length) {
+        gsap.fromTo(
+          items,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: wrapper,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          },
+        );
+      }
 
       function getParts(item: HTMLElement) {
         const trigger = item.querySelector<HTMLButtonElement>(".accordion-trigger");
