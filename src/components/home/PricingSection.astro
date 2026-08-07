@@ -11,11 +11,11 @@ const { heading, billing, plans } = pricingData as PricingData;
 const { showBrandsTicker } = Astro.props;
 ---
 
-<section class="py-15 md:py-24 lg:py-40">
+<section class="py-15 md:py-24 lg:py-40" id="pricing-section">
   <div class="container">
     <div class="max-w-274 mx-auto">
       <!-- Heading -->
-      <div class="mb-11 text-center max-w-3xl mx-auto">
+      <div class="mb-11 text-center max-w-3xl mx-auto" id="pricing-header">
         <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
           {heading.lineBold}
           <span class="text-dark-shades-60"> {heading.lineMuted}</span>
@@ -23,7 +23,7 @@ const { showBrandsTicker } = Astro.props;
       </div>
 
       <!-- Billing switcher -->
-      <div data-billing-switcher data-active={billing.default} class="mb-12 flex items-center justify-center gap-4">
+      <div data-billing-switcher data-active={billing.default} class="mb-12 flex items-center justify-center gap-4" id="pricing-switcher">
         {
           billing.options.map((option, i) => (
             <>
@@ -53,7 +53,7 @@ const { showBrandsTicker } = Astro.props;
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
           plans.map((plan) => (
-            <div class="relative p-5 sm:p-10 bg-dark-shades-90">
+            <div class="relative p-5 sm:p-10 bg-dark-shades-90" id="pricing-card">
               {plan.popular && <span class="absolute right-5 md:right-10 top-5 md:top-15 bg-primary text-dark-primary px-4 md:px-8 py-1 md:py-3 text-sm md:text-xl font-semibold leading-normal tracking-[-1%]">{plan.popularLabel ?? "Popular"}</span>}
 
               <div class="mb-5 md:mb-9 flex items-center gap-2.5">
@@ -96,7 +96,7 @@ const { showBrandsTicker } = Astro.props;
 
       {
         showBrandsTicker && (
-          <div class="max-w-162 mx-auto pt-10 sm:pt-25">
+          <div class="max-w-162 mx-auto pt-10 sm:pt-25" id="pricing-ticker">
             <BrandsTicker />
           </div>
         )
@@ -106,17 +106,24 @@ const { showBrandsTicker } = Astro.props;
 </section>
 
 <script>
-  function initBillingSwitcher() {
-    const wrapper = document.querySelector<HTMLElement>("[data-billing-switcher]");
-    if (!wrapper) return;
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-    const toggle = wrapper.querySelector<HTMLElement>("[data-billing-toggle]");
-    const knob = wrapper.querySelector<HTMLElement>("[data-billing-knob]");
-    const optionButtons = Array.from(wrapper.querySelectorAll<HTMLElement>("[data-billing-option]"));
-    const prices = Array.from(document.querySelectorAll<HTMLElement>("[data-price]"));
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initBillingSwitcher() {
+    const section = document.querySelector<HTMLElement>("#pricing-section");
+    if (!section) return;
+
+    const wrapper = section.querySelector<HTMLElement>("[data-billing-switcher]");
+    const toggle = wrapper?.querySelector<HTMLElement>("[data-billing-toggle]");
+    const knob = wrapper?.querySelector<HTMLElement>("[data-billing-knob]");
+    const optionButtons = Array.from(wrapper?.querySelectorAll<HTMLElement>("[data-billing-option]") ?? []);
+    const prices = Array.from(section.querySelectorAll<HTMLElement>("[data-price]"));
 
     function setBilling(id: "project" | "retainer") {
-      wrapper!.dataset.active = id;
+      if (!wrapper) return;
+      wrapper.dataset.active = id;
 
       const isRetainer = id === "retainer";
       toggle?.setAttribute("aria-checked", String(isRetainer));
@@ -146,6 +153,79 @@ const { showBrandsTicker } = Astro.props;
         setBilling(id);
       });
     });
+
+    // ScrollTrigger Animations
+    gsap.set(section, { autoAlpha: 1 });
+
+    const header = section.querySelector("#pricing-header");
+    const switcher = section.querySelector("#pricing-switcher");
+    const cards = section.querySelectorAll("#pricing-card");
+    const ticker = section.querySelector("#ricing-ticker");
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // Header Reveal
+    if (header) {
+      tl.from(header, {
+        y: 80,
+        opacity: 0,
+        filter: "blur(10px)",
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    }
+
+    // Billing Switcher Reveal
+    if (switcher) {
+      tl.from(
+        switcher,
+        {
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power3.out",
+        },
+        "-=0.4",
+      );
+    }
+
+    // Pricing Cards Stagger Reveal
+    if (cards.length) {
+      tl.from(
+        cards,
+        {
+          y: 60,
+          scale: 0.95,
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 0.8,
+          ease: "power4.out",
+          stagger: 0.15,
+        },
+        "-=0.3",
+      );
+    }
+
+    // Brands Ticker Reveal
+    if (ticker) {
+      tl.from(
+        ticker,
+        {
+          y: 40,
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 0.7,
+          ease: "power3.out",
+        },
+        "-=0.3",
+      );
+    }
   }
 
   initBillingSwitcher();
