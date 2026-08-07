@@ -17,95 +17,213 @@ const {
   hold = 2,
 } = Astro.props;
 
-const WORDS = items.map((i) => i.word);
 const BADGES = items.map((i) => i.badge);
-
-const wordLoop = [...WORDS, WORDS[0]];
-const badgeLoop = [...BADGES, BADGES[0]];
-
 const uid = `wm-${Math.random().toString(36).slice(2, 9)}`;
+const taglineText = "Designing brands that people remember.";
 ---
 
-<div class="text-center" data-wordmark-root={uid} data-badges={JSON.stringify(BADGES)} data-hold={hold}>
-  <div class="flex justify-center items-start gap-4">
-    <h1 class="wordmark text-8xl sm:text-9xl md:text-[180px] lg:text-[240px] font-jersey leading-none tracking-[-4%] text-white uppercase relative inline-flex">
+<div class="text-center" data-wordmark-root={uid} data-hold={hold} style="visibility: hidden;">
+  <div class="inline-flex justify-center items-start">
+    <!-- Wordmark Container -->
+    <h1 class="wordmark-container relative text-8xl sm:text-9xl md:text-[180px] lg:text-[240px] font-jersey leading-none tracking-[-4%] text-white uppercase overflow-hidden h-[1em] transition-none min-w-60 sm:min-w-80 md:min-w-107 lg:min-w-xl">
       {
-        WORDS[0].split("").map((_, i) => (
-          <span class="char-mask relative inline-block overflow-hidden align-top leading-none" style="height:1em;">
-            <span class="char-track block leading-none">
-              {wordLoop.map((w) => (
-                <span class="block leading-none" style="height:1em;">
-                  {w[i]}
-                </span>
-              ))}
-            </span>
+        items.map((item, wordIdx) => (
+          <span class={`word-item absolute top-0 left-0 flex leading-none whitespace-nowrap ${wordIdx !== 0 ? "opacity-0" : ""}`} data-word-index={wordIdx}>
+            {item.word.split("").map((char) => (
+              <span class="char-mask relative overflow-hidden inline-block leading-none h-[1em]">
+                <span class="char-inner block leading-none">{char === " " ? "\u00A0" : char}</span>
+              </span>
+            ))}
           </span>
         ))
       }
     </h1>
 
-    <!-- badge wrapper -->
-    <div class="badge mt-5 md:mt-8 lg:mt-12 size-12 md:size-16 lg:size-22 rounded-full border-5 lg:border-10 border-white flex items-center justify-center text-3xl md:text-4xl lg:text-6xl font-switzer font-medium overflow-hidden origin-center">
-      <span class="char-mask relative inline-block overflow-hidden leading-none" style="height:1em;">
+    <!-- Badge Wrapper -->
+    <div
+      class="badge mt-5 md:mt-8 lg:mt-12 size-8 sm:size-12 md:size-16 lg:size-22 rounded-full border-2 sm:border-5 lg:border-10 border-white flex items-center justify-center text-lg sm:text-3xl md:text-4xl lg:text-6xl font-switzer font-medium overflow-hidden origin-center"
+    >
+      <span class="badge-mask relative inline-block overflow-hidden leading-none h-[1em]">
         <span class="badge-track block leading-none">
-          {
-            badgeLoop.map((l) => (
-              <span class="block leading-none" style="height:1em;">
-                {l ?? ""}
-              </span>
-            ))
-          }
+          {[...BADGES, BADGES[0]].map((b) => <span class="block leading-none h-[1em]">{b ?? ""}</span>)}
         </span>
       </span>
     </div>
   </div>
-  <p class="text-lg sm:text-2xl font-medium leading-normal text-white tracking-[-1%]">Designing brands that people remember.</p>
+
+  <!-- Subtitle -->
+  <p class="tagline text-lg sm:text-2xl font-medium leading-normal text-white tracking-[-1%] mt-2 overflow-hidden">
+    {
+      taglineText.split("").map((char) => (
+        <span class="tagline-mask relative overflow-hidden inline-block leading-tight">
+          <span class="tagline-char inline-block leading-none">{char === " " ? "\u00A0" : char}</span>
+        </span>
+      ))
+    }
+  </p>
 </div>
 
 <script>
   import { gsap } from "gsap";
 
-  document.querySelectorAll<HTMLElement>("[data-wordmark-root]").forEach((root) => {
-    const badges: (string | null)[] = JSON.parse(root.dataset.badges ?? "[]");
-    const hold = Number(root.dataset.hold ?? 2);
-    const STEPS = badges.length;
-    const ROLL_DURATION = 0.9;
-    const STAGGER = 0.04;
+  function initWordmarkAnimation() {
+    document.querySelectorAll<HTMLElement>("[data-wordmark-root]").forEach((root) => {
+      const hold = Number(root.dataset.hold ?? 2);
+      const wordContainer = root.querySelector<HTMLElement>(".wordmark-container");
+      const words = Array.from(root.querySelectorAll<HTMLElement>(".word-item"));
+      const badgeTrack = root.querySelector<HTMLElement>(".badge-track");
+      const badgeWrapper = root.querySelector<HTMLElement>(".badge");
+      const taglineChars = root.querySelectorAll<HTMLElement>(".tagline-char");
 
-    const tracks = gsap.utils.toArray<HTMLElement>(root.querySelectorAll(".char-track"));
-    const badgeTrack = root.querySelector<HTMLElement>(".badge-track");
-    const badgeWrapper = root.querySelector<HTMLElement>(".badge");
+      if (!wordContainer || !words.length || !badgeTrack || !badgeWrapper) return;
 
-    if (!tracks.length || !badgeTrack || !badgeWrapper || STEPS === 0) return;
+      const TOTAL_WORDS = words.length;
+      const ROLL_DURATION = 0.8;
+      const STAGGER = 0.04;
 
-    gsap.set(badgeWrapper, {
-      opacity: badges[0] ? 1 : 0,
-      scale: badges[0] ? 1 : 0.5,
-    });
+      const getExactWidths = () => {
+        return words.map((word) => {
+          const clone = word.cloneNode(true) as HTMLElement;
+          clone.style.position = "static";
+          clone.style.visibility = "hidden";
+          clone.style.display = "inline-flex";
+          clone.classList.remove("opacity-0");
+          document.body.appendChild(clone);
+          const w = clone.getBoundingClientRect().width;
+          document.body.removeChild(clone);
+          return w;
+        });
+      };
 
-    const tl = gsap.timeline({ repeat: -1 });
+      const wordWidths = getExactWidths();
 
-    for (let step = 1; step <= STEPS; step++) {
-      const targetBadge = badges[step % STEPS];
-      const pos = step === 1 ? 0 : `+=${hold}`;
+      // Set Initial GSAP Transforms cleanly
+      gsap.set(wordContainer, { width: wordWidths[0] });
 
-      tl.to(tracks, { y: "-=1em", duration: ROLL_DURATION, ease: "power3.inOut", stagger: STAGGER }, pos);
-      tl.to(badgeTrack, { y: "-=1em", duration: ROLL_DURATION, ease: "power3.inOut" }, "<");
+      const firstWord = words[0];
+      const firstWordChars = firstWord.querySelectorAll(".char-inner");
 
-      tl.to(
+      // Set initial positions BEFORE un-hiding root element
+      gsap.set(firstWord, { zIndex: 2, opacity: 1 });
+      gsap.set(firstWordChars, { yPercent: 100 });
+
+      words.slice(1).forEach((word) => {
+        gsap.set(word, { zIndex: 1, opacity: 1 });
+        gsap.set(word.querySelectorAll(".char-inner"), { yPercent: 100 });
+      });
+
+      if (badgeWrapper) gsap.set(badgeWrapper, { scale: 0, opacity: 0 });
+      if (taglineChars.length) gsap.set(taglineChars, { yPercent: 100 });
+
+      gsap.set(root, { autoAlpha: 1 });
+
+      // Immediate Page Load Reveal Animation
+      const introTl = gsap.timeline({
+        onComplete: startLoopTimeline,
+      });
+
+      // Main Title Slide Up
+      introTl.to(
+        firstWordChars,
+        {
+          yPercent: 0,
+          duration: 0.85,
+          ease: "power4.out",
+          stagger: STAGGER,
+        },
+        0,
+      );
+
+      // Badge Pop-in
+      introTl.to(
         badgeWrapper,
         {
-          opacity: targetBadge ? 1 : 0,
-          scale: targetBadge ? 1 : 0.5,
-          duration: ROLL_DURATION,
-          ease: "power3.inOut",
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          ease: "back.out(1.7)",
         },
-        "<",
+        0.2,
       );
-    }
 
-    tl.to({}, { duration: hold });
-    tl.set(tracks, { y: 0 });
-    tl.set(badgeTrack, { y: 0 });
-  });
+      // Subtitle Reveal
+      if (taglineChars.length) {
+        introTl.to(
+          taglineChars,
+          {
+            yPercent: 0,
+            duration: 0.65,
+            ease: "power3.out",
+            stagger: 0.015,
+          },
+          0.25,
+        );
+      }
+
+      // Infinite Title Rolling Loop
+      function startLoopTimeline() {
+        const tl = gsap.timeline({ repeat: -1 });
+
+        for (let i = 0; i < TOTAL_WORDS; i++) {
+          const currentWord = words[i];
+          const nextWordIdx = (i + 1) % TOTAL_WORDS;
+          const nextWord = words[nextWordIdx];
+
+          const currentChars = currentWord.querySelectorAll(".char-inner");
+          const nextChars = nextWord.querySelectorAll(".char-inner");
+
+          tl.to(
+            currentChars,
+            {
+              yPercent: -100,
+              duration: ROLL_DURATION,
+              ease: "power3.inOut",
+              stagger: STAGGER,
+            },
+            `+=${hold}`,
+          );
+
+          tl.set(nextWord, { zIndex: 3 }, "<");
+          tl.set(nextChars, { yPercent: 100 }, "<");
+          tl.to(
+            nextChars,
+            {
+              yPercent: 0,
+              duration: ROLL_DURATION,
+              ease: "power3.inOut",
+              stagger: STAGGER,
+            },
+            "<",
+          );
+
+          tl.to(
+            wordContainer,
+            {
+              width: wordWidths[nextWordIdx],
+              duration: ROLL_DURATION,
+              ease: "power3.inOut",
+            },
+            "<",
+          );
+
+          tl.to(
+            badgeTrack,
+            {
+              y: `-=${100 / (TOTAL_WORDS + 1)}%`,
+              duration: ROLL_DURATION,
+              ease: "power3.inOut",
+            },
+            "<",
+          );
+
+          tl.set(currentWord, { zIndex: 1 });
+        }
+
+        tl.set(badgeTrack, { y: "0%" });
+      }
+    });
+  }
+
+  initWordmarkAnimation();
+  document.addEventListener("astro:page-load", initWordmarkAnimation);
 </script>

@@ -1,0 +1,111 @@
+---
+interface Item {
+  word: string;
+  badge: string | null;
+}
+
+interface Props {
+  items?: Item[];
+  hold?: number;
+}
+
+const {
+  items = [
+    { word: "Kainro", badge: "R" },
+    { word: "Studio", badge: "S" },
+  ],
+  hold = 2,
+} = Astro.props;
+
+const WORDS = items.map((i) => i.word);
+const BADGES = items.map((i) => i.badge);
+
+const wordLoop = [...WORDS, WORDS[0]];
+const badgeLoop = [...BADGES, BADGES[0]];
+
+const uid = `wm-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="text-center" data-wordmark-root={uid} data-badges={JSON.stringify(BADGES)} data-hold={hold}>
+  <div class="flex justify-center items-start gap-4">
+    <h1 class="wordmark text-8xl sm:text-9xl md:text-[180px] lg:text-[240px] font-jersey leading-none tracking-[-4%] text-white uppercase relative inline-flex">
+      {
+        WORDS[0].split("").map((_, i) => (
+          <span class="char-mask relative inline-block overflow-hidden align-top leading-none" style="height:1em;">
+            <span class="char-track block leading-none">
+              {wordLoop.map((w) => (
+                <span class="block leading-none" style="height:1em;">
+                  {w[i]}
+                </span>
+              ))}
+            </span>
+          </span>
+        ))
+      }
+    </h1>
+
+    <!-- badge wrapper -->
+    <div class="badge mt-5 md:mt-8 lg:mt-12 size-12 md:size-16 lg:size-22 rounded-full border-5 lg:border-10 border-white flex items-center justify-center text-3xl md:text-4xl lg:text-6xl font-switzer font-medium overflow-hidden origin-center">
+      <span class="char-mask relative inline-block overflow-hidden leading-none" style="height:1em;">
+        <span class="badge-track block leading-none">
+          {
+            badgeLoop.map((l) => (
+              <span class="block leading-none" style="height:1em;">
+                {l ?? ""}
+              </span>
+            ))
+          }
+        </span>
+      </span>
+    </div>
+  </div>
+  <p class="text-lg sm:text-2xl font-medium leading-normal text-white tracking-[-1%]">Designing brands that people remember.</p>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+
+  document.querySelectorAll<HTMLElement>("[data-wordmark-root]").forEach((root) => {
+    const badges: (string | null)[] = JSON.parse(root.dataset.badges ?? "[]");
+    const hold = Number(root.dataset.hold ?? 2);
+    const STEPS = badges.length;
+    const ROLL_DURATION = 0.9;
+    const STAGGER = 0.04;
+
+    const tracks = gsap.utils.toArray<HTMLElement>(root.querySelectorAll(".char-track"));
+    const badgeTrack = root.querySelector<HTMLElement>(".badge-track");
+    const badgeWrapper = root.querySelector<HTMLElement>(".badge");
+
+    if (!tracks.length || !badgeTrack || !badgeWrapper || STEPS === 0) return;
+
+    gsap.set(badgeWrapper, {
+      opacity: badges[0] ? 1 : 0,
+      scale: badges[0] ? 1 : 0.5,
+    });
+
+    const tl = gsap.timeline({ repeat: -1 });
+
+    for (let step = 1; step <= STEPS; step++) {
+      const targetBadge = badges[step % STEPS];
+      const pos = step === 1 ? 0 : `+=${hold}`;
+
+      tl.to(tracks, { y: "-=1em", duration: ROLL_DURATION, ease: "power3.inOut", stagger: STAGGER }, pos);
+      tl.to(badgeTrack, { y: "-=1em", duration: ROLL_DURATION, ease: "power3.inOut" }, "<");
+
+      tl.to(
+        badgeWrapper,
+        {
+          opacity: targetBadge ? 1 : 0,
+          scale: targetBadge ? 1 : 0.5,
+          duration: ROLL_DURATION,
+          ease: "power3.inOut",
+        },
+        "<",
+      );
+    }
+
+    tl.to({}, { duration: hold });
+    tl.set(tracks, { y: 0 });
+    tl.set(badgeTrack, { y: 0 });
+  });
+</script>

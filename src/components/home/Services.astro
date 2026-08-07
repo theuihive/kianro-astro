@@ -7,10 +7,10 @@ import Button from "@/components/ui/Button.astro";
 <section class="pb-15 md:pb-24 lg:pb-40">
   <div class="container">
     <ServiceSectionHeader />
-    <ul role="list" class="service-list flex flex-col space-y-5 md:space-y-10">
+    <ul role="list" class="service-list flex flex-col space-y-5 lg:space-y-10">
       {
         services.map((s) => (
-          <li class="service-row group cursor-pointer overflow-hidden border border-stroke px-6 py-9.5 transition-colors duration-500" data-service>
+          <li class="service-row group cursor-pointer overflow-hidden border border-stroke px-4 md:px-6 py-4 md:py-9.5 transition-colors duration-500" data-service>
             {/* ---------- Mobile layout ---------- */}
             <div class="flex flex-col gap-5 md:hidden">
               {/* Image on top */}
@@ -38,21 +38,21 @@ import Button from "@/components/ui/Button.astro";
             </div>
 
             {/* Desktop Grid Layout */}
-            <div class="hidden md:grid grid-cols-[36px_1fr_auto] items-start gap-4 md:grid-cols-[48px_288px_1fr_auto] lg:grid-cols-[48px_384px_1fr_auto] md:gap-10 lg:gap-16">
+            <div class="hidden md:grid grid-cols-[36px_1fr_auto] items-start gap-4 md:grid-cols-[48px_200px_1fr_auto] lg:grid-cols-[48px_384px_1fr_auto] md:gap-7 lg:gap-16">
               {/* Number */}
-              <span class="service-num text-[40px] tracking-[-2%] text-dark-shades-60 leading-none font-jersey">{s.number}.</span>
+              <span class="service-num text-3xl lg:text-[40px] tracking-[-2%] text-dark-shades-60 leading-none font-jersey">{s.number}.</span>
 
               {/* Desktop Image Container Slot */}
               <div class="service-img-wrapper hidden h-0 overflow-hidden will-change-[height] md:block">
-                <div class="service-img-inner h-72 w-72 lg:w-96 scale-0 origin-top">
+                <div class="service-img-inner size-50 lg:w-96 scale-0 origin-top">
                   <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
                 </div>
               </div>
 
               {/* Title and description */}
-              <div class="service-content flex flex-col justify-between self-stretch">
+              <div class="service-content flex flex-col gap-y-5 justify-between self-stretch">
                 <div>
-                  <h3 class="service-title text-[40px] tracking-[-2%] text-white leading-none font-jersey">{s.title.toUpperCase()}</h3>
+                  <h3 class="service-title text-3xl lg:text-[40px] tracking-[-2%] text-white leading-none font-jersey">{s.title.toUpperCase()}</h3>
 
                   <div class="service-details h-0 overflow-hidden opacity-0 will-change-[height,opacity]">
                     <div class="service-details-inner origin-top translate-y-3 pt-3 opacity-0">
@@ -72,7 +72,7 @@ import Button from "@/components/ui/Button.astro";
               </div>
 
               {/* Plus/Minus Icon */}
-              <div class="service-icon relative mt-1 h-3.5 w-3.5 shrink-0 self-start">
+              <div class="service-icon relative mt-1 size-3.5 shrink-0 self-start">
                 <span class="absolute left-0 top-1/2 h-[1.5px] w-3.5 -translate-y-1/2 bg-white" />
                 <span class="service-icon-v absolute left-1/2 top-0 h-3.5 w-[1.5px] -translate-x-1/2 bg-white transition-transform duration-300" />
               </div>
@@ -109,7 +109,6 @@ import Button from "@/components/ui/Button.astro";
       let tl: gsap.core.Timeline | null = null;
 
       const play = () => {
-        // Run desktop animations only on md devices and above
         if (window.innerWidth < 768) return;
 
         if (tl) tl.kill();
@@ -120,7 +119,7 @@ import Button from "@/components/ui/Button.astro";
 
         // Image expands
         if (imgWrapper && imgInner) {
-          tl.to(imgWrapper, { height: 288, duration: 0.7 }, 0).to(imgInner, { scale: 1, duration: 0.7 }, 0);
+          tl.to(imgWrapper, { height: 200, duration: 0.7 }, 0).to(imgInner, { scale: 1, duration: 0.7 }, 0);
         }
 
         // Description

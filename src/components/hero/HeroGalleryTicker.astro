@@ -1,0 +1,97 @@
+---
+interface Gallery {
+  image: string;
+  alt: string;
+}
+
+const galleries: Gallery[] = [
+  { image: "/images/hero/gal-01.jpg", alt: "Product photography" },
+  { image: "/images/hero/gal-02.jpg", alt: "Character design" },
+  { image: "/images/hero/gal-03.jpg", alt: "Motion study" },
+  { image: "/images/hero/gal-04.jpg", alt: "Campaign" },
+  { image: "/images/hero/gal-05.jpg", alt: "Automotive" },
+  { image: "/images/hero/gal-06.jpg", alt: "Concept render" },
+];
+
+const tickerItems = [...galleries, ...galleries];
+---
+
+<div class="w-full overflow-hidden mt-10 md:mt-24 lg:mt-35 mb-10 md:mb-16">
+  <ul id="galleryTicker" role="list" class="flex gap-2 md:gap-4 w-max">
+    {
+      tickerItems.map((item) => (
+        <li class="gallery-item group relative aspect-square w-28 sm:w-36 md:w-41 overflow-hidden bg-dark-primary shrink-0">
+          <div class="skeleton absolute inset-0 animate-pulse bg-neutral-800" />
+          <img src={item.image} alt={item.alt} loading="lazy" class="gallery-image h-full w-full object-cover opacity-0 blur-xl translate-y-8" />
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  import gsap from "gsap";
+
+  function setupGalleryTicker() {
+    const ticker = document.querySelector("#galleryTicker") as HTMLElement | null;
+    if (!ticker) return;
+
+    const images = ticker.querySelectorAll(".gallery-image");
+    let tween: gsap.core.Tween | null = null;
+
+    function initTween() {
+      if (!ticker) return null;
+
+      const setWidth = ticker.scrollWidth / 2;
+
+      if (!setWidth) return null;
+
+      gsap.set(ticker, { x: 0 });
+
+      return gsap.to(ticker, {
+        x: `-=${setWidth}`,
+        ease: "none",
+        duration: 50,
+        repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize((x) => parseFloat(x) % setWidth),
+        },
+      });
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        tween = initTween();
+      });
+    });
+
+    // Handle Window Resize
+    const handleResize = () => {
+      tween?.kill();
+      tween = initTween();
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Image reveal animation
+    images.forEach((img) => {
+      const reveal = () => {
+        img.parentElement?.querySelector(".skeleton")?.remove();
+        gsap.to(img, {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.9,
+          ease: "power3.out",
+        });
+      };
+
+      if ((img as HTMLImageElement).complete) reveal();
+      else img.addEventListener("load", reveal, { once: true });
+    });
+  }
+
+  // Astro Lifecycle handling
+  setupGalleryTicker();
+  document.addEventListener("astro:page-load", setupGalleryTicker);
+</script>

@@ -1,6 +1,6 @@
 ---
-import HeroGallery from "@/components/hero/HeroGallery.astro";
 import HeroWordmark from "@/components/hero/HeroWordmark.astro";
+import HeroGalleryTicker from "./HeroGalleryTicker.astro";
 
 const socials = ["BE", "IG", "X", "FB"];
 ---
@@ -8,17 +8,17 @@ const socials = ["BE", "IG", "X", "FB"];
 <section class="relative overflow-hidden">
   <!-- vertical corner label -->
   <div class="container relative">
-    <p class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 rotate-180 [writing-mode:vertical-rl] text-sm font-medium text-dark-shades-50" aria-hidden="true">( AVAILABLE GLOBALLY )</p>
+    <p id="hero-available-tag" class="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 rotate-180 [writing-mode:vertical-rl] text-sm font-medium text-dark-shades-50" style="visibility: hidden;" aria-hidden="true">( AVAILABLE GLOBALLY )</p>
 
     <div class="max-w-266 mx-auto pt-18 md:pt-24 lg:pt-35">
-      <!-- top bar -->
-      <div class="absolute right-4 top-1/2 -translate-y-1/2 -mt-4 hidden md:block">
+      <!-- top bar / socials -->
+      <div id="hero-socials-nav" class="absolute right-4 top-1/2 -translate-y-1/2 -mt-4 hidden md:block" style="visibility: hidden;">
         <nav aria-label="Social links" class="flex items-center gap-1.5 text-sm font-medium text-dark-shades-50">
           <span>(</span>
           {
             socials.map((s, i) => (
               <>
-                <a href="#" class="hover:text-primary transition-colors duration-300">
+                <a href="#" class="social-link inline-block hover:text-primary transition-colors duration-300">
                   {s}
                 </a>
                 {i < socials.length - 1 && <span>/</span>}
@@ -33,10 +33,10 @@ const socials = ["BE", "IG", "X", "FB"];
       <HeroWordmark />
 
       <!-- portfolio grid -->
-      <HeroGallery />
+      <HeroGalleryTicker />
 
       <!-- marquee -->
-      <div class="overflow-hidden max-w-62 mx-auto border border-stroke py-2.25">
+      <div id="hero-marquee-box" class="overflow-hidden max-w-62 mx-auto border border-stroke py-2.25" style="visibility: hidden;">
         <div class="flex w-max animate-[marquee_18s_linear_infinite] motion-reduce:animate-none">
           {
             Array.from({ length: 2 }).map(() => (
@@ -66,3 +66,69 @@ const socials = ["BE", "IG", "X", "FB"];
     }
   }
 </style>
+
+<script>
+  import { gsap } from "gsap";
+
+  function initHeroElementsAnimation() {
+    const availableTag = document.querySelector("#hero-available-tag");
+    const socialsNav = document.querySelector("#hero-socials-nav");
+    const socialLinks = document.querySelectorAll("#hero-socials-nav .social-link");
+    const marqueeBox = document.querySelector("#hero-marquee-box");
+
+    // Timeline configuration
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    // 1. Available Globally Label (Fade & Slide-in from left)
+    if (availableTag) {
+      gsap.set(availableTag, { x: -30, opacity: 0, autoAlpha: 1 });
+      tl.to(
+        availableTag,
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        0,
+      );
+    }
+
+    // 2. Social Links (Slide-in from right with stagger)
+    if (socialsNav && socialLinks.length) {
+      gsap.set(socialsNav, { autoAlpha: 1 });
+      gsap.set(socialLinks, { y: -10, opacity: 0 });
+
+      tl.to(
+        socialLinks,
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: "back.out(1.7)",
+          stagger: 0.08,
+        },
+        0.1,
+      );
+    }
+
+    // 3. Marquee Box (Scale-up + Fade-in)
+    if (marqueeBox) {
+      gsap.set(marqueeBox, { y: 20, scale: 0.95, opacity: 0, autoAlpha: 1 });
+      tl.to(
+        marqueeBox,
+        {
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        0.2,
+      );
+    }
+  }
+
+  initHeroElementsAnimation();
+  document.addEventListener("astro:page-load", initHeroElementsAnimation);
+</script>
