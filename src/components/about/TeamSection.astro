@@ -1,4 +1,6 @@
 ---
+import TextReveal from "../ui/TextReveal.astro";
+
 const members = [
   {
     id: "101",
@@ -21,19 +23,19 @@ const members = [
 ];
 ---
 
-<div class="pb-15 md:pb-24 lg:pb-40">
+<div class="pb-15 md:pb-24 lg:pb-40" id="team-section">
   <div class="container">
     <div class="max-w-lg mx-auto text-center mb-10 md:mb-20">
-      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+      <TextReveal>
         Meet Our
         <span class="text-dark-shades-60"> Leaders</span>
-      </h2>
+      </TextReveal>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 md:gap-15">
       {
         members.map((member) => (
-          <div class="">
+          <div class="team-member">
             <img src={member.thumbnail} alt={member.name} class="w-full" />
             <div class="pt-4">
               <h3 class="text-xl text-white font-semibold">{member.name}</h3>
@@ -45,3 +47,34 @@ const members = [
     </div>
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initScrollAnimation() {
+    const section = document.querySelector<HTMLElement>("#team-section");
+    if (!section) return;
+
+    const members = section.querySelectorAll<HTMLElement>(".team-member");
+    if (members.length === 0) return;
+
+    gsap.from(members, {
+      y: 80,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.15,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }
+
+  initScrollAnimation();
+  document.addEventListener("astro:page-load", initScrollAnimation);
+</script>

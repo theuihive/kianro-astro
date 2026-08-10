@@ -1,6 +1,7 @@
 ---
 import ContactForm from "@/components/contact/ContactForm.astro";
 import { cn } from "@/lib/utils";
+import TextReveal from "@/components/ui/TextReveal.astro";
 
 const { className } = Astro.props;
 ---
@@ -8,10 +9,10 @@ const { className } = Astro.props;
 <div class={cn("pb-15 md:pb-24 lg:pb-40", className)} id="contact-section">
   <div class="container">
     <div class="max-w-xl mx-auto text-center mb-10 sm:mb-16" id="contact-header">
-      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+      <TextReveal>
         Ready to bring
         <span class="text-dark-shades-60"> your next idea to life?</span>
-      </h2>
+      </TextReveal>
     </div>
     <div id="contact-form">
       <ContactForm />
@@ -29,39 +30,21 @@ const { className } = Astro.props;
     const section = document.querySelector("#contact-section");
     if (!section) return;
 
-    const header = section.querySelector("#contact-header");
     const contactForm = section.querySelector("#contact-form");
-    if (!header || !contactForm) return;
+    if (!contactForm) return;
 
-    gsap.set(section, { autoAlpha: 1 });
-
-    const tl = gsap.timeline({
+    gsap.from(contactForm, {
+      y: 100,
+      scale: 0.9,
+      opacity: 0,
+      duration: 0.9,
+      ease: "power3.out",
       scrollTrigger: {
         trigger: section,
         start: "top 75%",
         toggleActions: "play none none none",
       },
     });
-
-    tl.from(header, {
-      y: 80,
-      scale: 0.9,
-      opacity: 0,
-      filter: "blur(15px)",
-      duration: 0.9,
-      ease: "power3.out",
-    }).from(
-      contactForm,
-      {
-        y: 80,
-        scale: 0.9,
-        opacity: 0,
-        filter: "blur(15px)",
-        duration: 0.9,
-        ease: "power3.out",
-      },
-      "-=0.6",
-    );
   }
 
   initScrollAnimation();

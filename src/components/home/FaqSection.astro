@@ -1,5 +1,6 @@
 ---
 import Accordion from "@/components/accordion/Accordion.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 import faqs from "@/data/faqs.json";
 import { cn } from "@/lib/utils";
 
@@ -10,46 +11,13 @@ const { className } = Astro.props;
   <div class="container">
     <!-- Heading -->
     <div class="mb-10 md:mb-19 text-center max-w-2xl mx-auto faq-header">
-      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+      <TextReveal>
         Frequently
         <span class="text-dark-shades-60"> Asked Questions</span>
-      </h2>
+      </TextReveal>
     </div>
     <div class="w-full lg:max-w-218 mx-auto">
       <Accordion items={faqs} />
     </div>
   </div>
 </div>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  function initScrollAnimation() {
-    const section = document.querySelector("#faq-section");
-    if (!section) return;
-
-    const header = section.querySelector(".faq-header");
-    if (!header) return;
-
-    gsap.set(section, { autoAlpha: 1 });
-
-    gsap.from(header, {
-      y: 80,
-      opacity: 0,
-      filter: "blur(15px)",
-      duration: 0.9,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 75%",
-        toggleActions: "play none none none",
-      },
-    });
-  }
-
-  initScrollAnimation();
-  document.addEventListener("astro:page-load", initScrollAnimation);
-</script>

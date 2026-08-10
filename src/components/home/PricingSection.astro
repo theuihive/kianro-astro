@@ -4,7 +4,8 @@ import CheckIcon from "@/components/icons/CheckIcon.astro";
 import Button from "@/components/ui/Button.astro";
 
 import type { PricingData } from "@/types/Pricing";
-import BrandsTicker from "../about/BrandsTicker.astro";
+import BrandsTicker from "@/components/about/BrandsTicker.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 
 const { heading, billing, plans } = pricingData as PricingData;
 
@@ -16,10 +17,10 @@ const { showBrandsTicker } = Astro.props;
     <div class="max-w-274 mx-auto">
       <!-- Heading -->
       <div class="mb-11 text-center max-w-3xl mx-auto" id="pricing-header">
-        <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+        <TextReveal>
           {heading.lineBold}
           <span class="text-dark-shades-60"> {heading.lineMuted}</span>
-        </h2>
+        </TextReveal>
       </div>
 
       <!-- Billing switcher -->

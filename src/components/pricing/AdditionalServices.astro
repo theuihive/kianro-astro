@@ -1,6 +1,7 @@
 ---
 import CheckIcon from "@/components/icons/CheckIcon.astro";
 import Button from "@/components/ui/Button.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 
 const services = [
   "Brand Strategy & Consulting",
@@ -40,12 +41,12 @@ const perColumn = Math.ceil(services.length / columnCount);
 const columns = Array.from({ length: columnCount }, (_, i) => services.slice(i * perColumn, i * perColumn + perColumn));
 ---
 
-<section>
+<section id="additional-services-section">
   <div class="container">
     <div class="mb-10 md:mb-20 text-center max-w-3xl mx-auto xl:px-10">
-      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+      <TextReveal>
         Beyond Our Core Services, <span class="text-dark-shades-60">We Also Offer</span>
-      </h2>
+      </TextReveal>
     </div>
 
     <div class="border border-stroke p-5 md:p-10">
@@ -53,7 +54,7 @@ const columns = Array.from({ length: columnCount }, (_, i) => services.slice(i *
         {
           columns.map((column) =>
             column.map((service) => (
-              <div class="flex items-start gap-2.5">
+              <div class="flex items-start gap-2.5 service-item">
                 <CheckIcon class="text-primary mt-1" />
                 <span class="text-base md:text-xl text-white">{service}</span>
               </div>
@@ -67,3 +68,34 @@ const columns = Array.from({ length: columnCount }, (_, i) => services.slice(i *
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initScrollAnimation() {
+    const section = document.querySelector<HTMLElement>("#additional-services-section");
+    if (!section) return;
+
+    const item = section.querySelectorAll<HTMLElement>(".service-item");
+    if (item.length === 0) return;
+
+    gsap.from(item, {
+      y: 10,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.03,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }
+
+  initScrollAnimation();
+  document.addEventListener("astro:page-load", initScrollAnimation);
+</script>

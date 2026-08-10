@@ -1,42 +1,46 @@
 ---
 import Button from "@/components/ui/Button.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 ---
 
 <section class="overflow-hidden pt-15 md:pt-24 lg:pt-35 pb-15 md:pb-24 lg:pb-38">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Image Container with Reveal Overlay -->
-      <div class="relative overflow-hidden">
-        <div class="absolute inset-0 bg-surface z-10 pointer-events-none"></div>
+      <div class="relative overflow-hidden" id="reveal-image">
         <img src="/images/contact/contact.jpg" alt="kainro" class="w-full h-full" />
       </div>
       <div class="flex flex-col justify-between gap-y-10 md:gap-y-0 xl:pl-9">
         <div class="">
-          <h2 class="font-jersey text-5xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white mb-10 md:mb-5 lg:mb-19">
+          <!-- <h2 class="font-jersey text-5xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white mb-10 md:mb-5 lg:mb-19">
             Let's Build Your
             <span class="text-dark-shades-60"> Next Digital Experience</span>
-          </h2>
-          <div class="grid grid-cols-2 gap-5 lg:gap-y-20 lg:gap-x-14">
+          </h2> -->
+          <TextReveal>
+            Let's Build Your
+            <span class="text-dark-shades-60"> Next Digital Experience</span>
+          </TextReveal>
+          <div class="grid grid-cols-2 gap-5 lg:gap-y-20 lg:gap-x-14 mt-10 md:mt-5 lg:mt-19">
             <!-- Email -->
-            <div>
+            <div class="contact-item">
               <span class="text-sm text-dark-shades-50 font-medium leading-normal uppercase block mb-2">Email</span>
               <p class="text-base lg:text-xl font-semibold text-white tracking-tight leading-normal">hello.kainro@gmail.com</p>
             </div>
 
             <!-- Phone -->
-            <div>
+            <div class="contact-item">
               <span class="text-sm text-dark-shades-50 font-medium leading-normal uppercase block mb-2">Phone</span>
               <p class="text-base lg:text-xl font-semibold text-white tracking-tight leading-normal">+1 (415) 555-2847</p>
             </div>
 
             <!-- Location -->
-            <div>
+            <div class="contact-item">
               <span class="text-sm text-dark-shades-50 font-medium leading-normal uppercase block mb-2">Location</span>
               <p class="text-base lg:text-xl font-semibold text-white tracking-tight leading-snug">250 Market San Francisco, CA 94105 United States</p>
             </div>
 
             <!-- Business Hours -->
-            <div>
+            <div class="contact-item">
               <span class="text-sm text-dark-shades-50 font-medium leading-normal uppercase block mb-2">Business Hours</span>
               <div class="text-base lg:text-xl font-semibold text-white">
                 <p class="tracking-tight leading-snug">Monday – Friday</p>
@@ -45,10 +49,32 @@ import Button from "@/components/ui/Button.astro";
             </div>
           </div>
         </div>
-        <div class="">
+        <div class="contact-btn">
           <Button>Start a Conversation</Button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+
+  const imageWrap = document.querySelector<HTMLElement>("#reveal-image");
+  const items = document.querySelectorAll<HTMLElement>(".contact-item");
+  const button = document.querySelector<HTMLElement>(".contact-btn");
+
+  const tl = gsap.timeline();
+
+  if (items) {
+    tl.from(items, { y: 60, opacity: 0, filter: "blur(10px)" }, 0).to(items, { y: 0, opacity: 1, filter: "blur(0px)", duration: 1, ease: "power3.out", stagger: 0.12 }, 0);
+  }
+
+  if (button) {
+    tl.set(button, { y: 60, opacity: 0, filter: "blur(10px)" }, 0).to(button, { y: 0, opacity: 1, filter: "blur(0px)", duration: 1, ease: "power3.out" }, 0);
+  }
+
+  if (imageWrap) {
+    tl.set(imageWrap, { clipPath: "inset(0% 100% 0% 0%)" }, 0).to(imageWrap, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "power4.inOut" }, 0);
+  }
+</script>
