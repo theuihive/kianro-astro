@@ -8,13 +8,13 @@ interface Props {
   description?: string;
 }
 
-const siteName = "Kainro";
-const siteUrl = "https://kainro-astro.netlify.app";
+const siteName = "kianro";
+const siteUrl = "https://kianro-astro.netlify.app";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const ogImageUrl = new URL("/images/og-image.jpg", siteUrl).toString();
-const { title = "Home", description = "Kainro agency portfolio theme" } = Astro.props;
+const { title = "Home", description = "kianro agency portfolio theme" } = Astro.props;
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
-const metaDescription = description || "Kainro agency portfolio theme";
+const metaDescription = description || "kianro agency portfolio theme";
 ---
 
 <!doctype html>

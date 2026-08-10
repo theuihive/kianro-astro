@@ -1,7 +1,7 @@
 ---
 title: "How Great Design Builds Stronger Brands"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
-author: "Kainro Team"
+author: "kianro Team"
 category:
   name: "Branding"
   slug: "branding"

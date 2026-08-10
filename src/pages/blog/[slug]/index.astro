@@ -29,7 +29,7 @@ const { Content } = await render(post);
           <div class="text-dark-shades-50 text-lg tracking-[-1%]">
             {post.data.category.name}
           </div>
-          <div class="hidden md:block bg-dark-shades-50 size-1 rounded-full"></div>
+          <div class="bg-dark-shades-50 size-1 rounded-full"></div>
           <div class="text-dark-shades-50 text-lg tracking-[-1%]">6 Min Read</div>
         </div>
         <TextReveal as="h1">{post.data.title}</TextReveal>
@@ -38,7 +38,7 @@ const { Content } = await render(post);
         <img src={post.data.cover} alt={post.data.title} class="w-full h-full object-cover" />
       </div>
       <div
-        class="pt-20 prose max-w-218 mx-auto text-white prose-h2:text-white prose-h2:sm:text-[40px] prose-h2:uppercase prose-h2:tracking-[-2%] prose-h2:leading-none prose-h2:font-normal prose-h2:font-jersey prose-h2:mb-3 prose-h2:mt-10 prose-p:text-dark-shades-50 prose-p:text-lg prose-p:tracking-[-1%] prose-h3:text-white prose-h3:text-xl prose-h3:mt-0 prose-h3:tracking-[-1%] prose-h3:font-semibold prose-h3:mb-2"
+        class="pt-5 md:pt-20 prose max-w-218 mx-auto text-white prose-h2:text-white prose-h2:sm:text-[40px] prose-h2:uppercase prose-h2:tracking-[-2%] prose-h2:leading-none prose-h2:font-normal prose-h2:font-jersey prose-h2:mb-3 prose-h2:mt-10 prose-p:text-dark-shades-50 prose-p:text-lg prose-p:tracking-[-1%] prose-h3:text-white prose-h3:text-xl prose-h3:mt-0 prose-h3:tracking-[-1%] prose-h3:font-semibold prose-h3:mb-2"
       >
         <Content />
       </div>

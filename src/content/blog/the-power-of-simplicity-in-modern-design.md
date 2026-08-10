@@ -1,7 +1,7 @@
 ---
 title: "The Power of Simplicity in Modern Design"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
-author: "Kainro Team"
+author: "kianro Team"
 category:
   name: "Design"
   slug: "design"

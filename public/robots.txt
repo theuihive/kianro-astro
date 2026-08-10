@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://Kainro-astro.netlify.app/sitemap-index.xml
+Sitemap: https://kianro-astro.netlify.app/sitemap-index.xml

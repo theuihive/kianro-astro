@@ -21,7 +21,7 @@ import TextReveal from "../ui/TextReveal.astro";
             {/* Background Image — clip-path reveal target */}
             <div data-slide-image class="absolute inset-0 overflow-hidden will-change-[clip-path]">
               <img src={project.backgroundImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" loading={i === 0 ? "eager" : "lazy"} />
-              <div class="absolute inset-0 bg-linear-to-t from-black/70 via-black/35 to-black/50" />
+              <div class="absolute inset-0 bg-black/70" />
             </div>
 
             {/* Meta Content — clip-path reveal target */}

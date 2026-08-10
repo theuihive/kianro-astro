@@ -25,7 +25,7 @@ const headingText = "From first conversations to final delivery, every collabora
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {
         stats.map((s) => (
-          <div class="flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
+          <div class="flex flex-col justify-between even:items-end sm:even:items-start bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
             <span class="stat-wrapper inline-flex text-5xl md:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">
               {[...s.value].map((ch) =>
                 /\d/.test(ch) ? (
