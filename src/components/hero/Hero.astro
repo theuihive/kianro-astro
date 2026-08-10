@@ -2,7 +2,12 @@
 import HeroWordmark from "@/components/hero/HeroWordmark.astro";
 import HeroGalleryTicker from "./HeroGalleryTicker.astro";
 
-const socials = ["BE", "IG", "X", "FB"];
+const socials = [
+  { label: "BE", uri: "https://behance.net" },
+  { label: "IG", uri: "https://instagram.com" },
+  { label: "X", uri: "https://x.com" },
+  { label: "FB", uri: "https://facebook.com" },
+];
 ---
 
 <section class="relative overflow-hidden">
@@ -18,8 +23,8 @@ const socials = ["BE", "IG", "X", "FB"];
           {
             socials.map((s, i) => (
               <>
-                <a href="#" class="social-link inline-block hover:text-primary transition-colors duration-300">
-                  {s}
+                <a href={s.uri} target="_blank" class="social-link inline-block hover:text-primary transition-colors duration-300">
+                  {s.label}
                 </a>
                 {i < socials.length - 1 && <span>/</span>}
               </>
