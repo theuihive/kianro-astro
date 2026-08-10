@@ -1,0 +1,17 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  title: string;
+  className?: string;
+  titleClassName?: string;
+}
+
+const { title, className, titleClassName } = Astro.props;
+---
+
+<div class="">
+  <h2 class={cn("text-primary text-[32px] sm:text-5xl lg:text-[64px] font-bold leading-[1.1] tracking-[-1.5px]", titleClassName)}>
+    {title}
+  </h2>
+</div>

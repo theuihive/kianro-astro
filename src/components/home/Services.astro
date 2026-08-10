@@ -44,7 +44,7 @@ import Button from "@/components/ui/Button.astro";
 
               {/* Desktop Image Container Slot */}
               <div class="service-img-wrapper hidden h-0 overflow-hidden will-change-[height] md:block">
-                <div class="service-img-inner size-50 lg:w-96 scale-0 origin-top">
+                <div class="service-img-inner size-50 lg:w-96 h-72 scale-0 origin-top">
                   <img src={s.image} alt={s.title} loading="lazy" class="h-full w-full object-cover" />
                 </div>
               </div>
@@ -89,6 +89,9 @@ import Button from "@/components/ui/Button.astro";
 
 <script>
   import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
 
   function initServiceHover(): void {
     const rows = document.querySelectorAll<HTMLLIElement>(".service-row");
@@ -119,7 +122,7 @@ import Button from "@/components/ui/Button.astro";
 
         // Image expands
         if (imgWrapper && imgInner) {
-          tl.to(imgWrapper, { height: 200, duration: 0.7 }, 0).to(imgInner, { scale: 1, duration: 0.7 }, 0);
+          tl.to(imgWrapper, { height: 288, duration: 0.7 }, 0).to(imgInner, { scale: 1, duration: 0.7 }, 0);
         }
 
         // Description
@@ -159,6 +162,35 @@ import Button from "@/components/ui/Button.astro";
     });
   }
 
+  function initServiceReveal(): void {
+    const rows = document.querySelectorAll<HTMLLIElement>(".service-row");
+    if (rows.length === 0) return;
+
+    rows.forEach((row) => {
+      if (row.dataset.revealed === "true") return;
+
+      gsap.set(row, { opacity: 0, y: 100 });
+
+      gsap.to(row, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: row,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      row.dataset.revealed = "true";
+    });
+  }
+
+  initServiceReveal();
   initServiceHover();
-  document.addEventListener("astro:page-load", initServiceHover);
+  document.addEventListener("astro:page-load", () => {
+    initServiceReveal();
+    initServiceHover();
+  });
 </script>

@@ -1,0 +1,61 @@
+---
+import { cn } from "@/lib/utils";
+
+interface Props {
+  as?: "h1" | "h2" | "h3" | "p";
+  className?: string;
+  start?: string;
+}
+
+const { as: Tag = "h2", className, start = "top 85%" } = Astro.props;
+---
+
+<div class={cn("curve-reveal-wrapper overflow-hidden", className)} data-start={start}>
+  <Tag class="curve-reveal-target inline-block origin-bottom-left will-change-transform font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+    <slot />
+  </Tag>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initCurveReveal() {
+    const wrappers = document.querySelectorAll<HTMLElement>(".curve-reveal-wrapper");
+
+    wrappers.forEach((wrapper) => {
+      const target = wrapper.querySelector<HTMLElement>(".curve-reveal-target");
+      if (!target || target.dataset.revealed === "true") return;
+
+      const start = wrapper.dataset.start || "top 85%";
+
+      gsap.fromTo(
+        target,
+        {
+          yPercent: 120,
+          rotate: 8,
+          opacity: 0,
+        },
+        {
+          yPercent: 0,
+          rotate: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          scrollTrigger: {
+            trigger: wrapper,
+            start: start,
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+
+      target.dataset.revealed = "true";
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initCurveReveal);
+  document.addEventListener("astro:page-load", initCurveReveal);
+</script>

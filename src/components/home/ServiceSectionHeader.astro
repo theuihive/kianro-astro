@@ -2,6 +2,7 @@
 import FigmaIcon from "@/components/icons/FigmaIcon.astro";
 import FramerIcon from "@/components/icons/FramerIcon.astro";
 import WebflowIcon from "@/components/icons/WebflowIcon.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 
 type BrandIcon = "figma" | "webflow" | "framer";
 
@@ -24,12 +25,12 @@ const icons: Record<BrandIcon, typeof FigmaIcon> = {
 const COPIES = 4;
 ---
 
-<div class="grid grid-cols-12 gap-5 md:gap-10 mb-10 md:mb-20 items-center">
+<div class="grid grid-cols-12 gap-5 md:gap-10 mb-10 md:mb-20 items-center" id="ticker-section">
   <div class="col-span-12 sm:col-span-8 lg:col-span-6">
-    <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+    <TextReveal>
       Creative solutions built
       <span class="text-dark-shades-60"> around clarity and growth</span>
-    </h2>
+    </TextReveal>
   </div>
 
   <div class="col-span-12 sm:col-span-4 lg:col-span-6">
@@ -58,6 +59,9 @@ const COPIES = 4;
 
 <script>
   import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
 
   const initTicker = () => {
     const wrapper = document.querySelector<HTMLElement>(".ticker-wrapper");
@@ -115,14 +119,14 @@ const COPIES = 4;
 
 <style>
   .ticker-mask {
-    /* Mobile: horizontal fade (left-right) */
+    /* Mobile: horizontal fade */
     mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0, black 40px, black calc(100% - 40px), transparent 100%);
   }
 
   @media (min-width: 640px) {
     .ticker-mask {
-      /* sm and up: vertical fade (top-bottom), same as before */
+      /* sm and up: vertical fade */
       mask-image: linear-gradient(to bottom, transparent 0, black 75px, black calc(100% - 56px), transparent 100%);
       -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 75px, black calc(100% - 56px), transparent 100%);
     }

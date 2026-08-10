@@ -1,18 +1,20 @@
 ---
+import TextReveal from "../ui/TextReveal.astro";
+
 const thumbs = ["/images/testimonials/client-thumb-02.jpg", "/images/testimonials/client-thumb-03.jpg", "/images/testimonials/client-thumb-04.jpg", "/images/testimonials/client-thumb-05.jpg"];
 
 const tickerThumb = [...thumbs, ...thumbs, ...thumbs];
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-10 mb-10 md:mb-20 items-center">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-10 mb-10 md:mb-20 items-center" id="testimonial-header">
   <div>
-    <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+    <TextReveal>
       Trusted by brands who
       <span class="text-dark-shades-60"> aren’t afraid to stand out</span>
-    </h2>
+    </TextReveal>
   </div>
 
-  <div class="relative sm:ml-auto w-full sm:max-w-50 overflow-hidden">
+  <div class="relative sm:ml-auto w-full sm:max-w-50 overflow-hidden" id="clients-ticker">
     <h3 class="text-lg text-white tracking-[-1%] mb-5">150+ Happy Clients</h3>
     <div class="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_20%,black_80%,transparent)]">
       <div class="flex w-max items-center gap-2 animate-ticker will-change-transform">
@@ -27,6 +29,39 @@ const tickerThumb = [...thumbs, ...thumbs, ...thumbs];
     </div>
   </div>
 </div>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initScrollAnimation() {
+    const section = document.querySelector("#testimonial-header");
+    if (!section) return;
+
+    const clientsTicker = section.querySelector("#clients-ticker");
+    if (!clientsTicker) return;
+
+    gsap.set(section, { autoAlpha: 1 });
+
+    gsap.from(clientsTicker, {
+      x: 100,
+      opacity: 0,
+      filter: "blur(15px)",
+      duration: 0.9,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }
+
+  initScrollAnimation();
+  document.addEventListener("astro:page-load", initScrollAnimation);
+</script>
 
 <!-- Ticker Animation CSS Setup -->
 <style>
