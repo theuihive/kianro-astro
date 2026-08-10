@@ -2,6 +2,7 @@
 import HomeContactSection from "@/components/contact/HomeContactSection.astro";
 import MoreProjectsSection from "@/components/projects/MoreProjectsSection.astro";
 import Button from "@/components/ui/Button.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 import projectsData from "@/data/projects.json";
 import MainLayout from "@/layouts/MainLayout.astro";
 import type { Project } from "@/types/project";
@@ -39,15 +40,17 @@ const otherProjects = getOtherProjects(project.slug, 2);
       <div class="">
         <div class="space-y-10 md:space-y-20">
           <div class="flex flex-col sm:flex-row justify-between gap-5">
-            <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">{project?.title}</h2>
-            <div class="sm:self-end">
+            <TextReveal>
+              {project?.title}
+            </TextReveal>
+            <div class="sm:self-end live-link-btn">
               <Button variant="outline">View Live Link</Button>
             </div>
           </div>
           <div class="grid grid-cols-2 md:flex justify-between gap-6">
             {
               project.meta.map((m) => (
-                <div class="space-y-1 md:max-w-52">
+                <div class="space-y-1 md:max-w-52 meta-item">
                   <p class="text-sm sm:text-base font-medium leading-normal uppercase text-dark-shades-50">{m.label}</p>
                   <p class="text-base sm:text-xl font-semibold leading-normal text-white">{m.value}</p>
                 </div>
@@ -55,11 +58,11 @@ const otherProjects = getOtherProjects(project.slug, 2);
             }
           </div>
         </div>
-        <div class="h-full md:h-120 lg:h-185 overflow-hidden mt-10">
+        <div class="h-full md:h-120 lg:h-185 overflow-hidden mt-10 main-image-wrapper">
           <img src={project.backgroundImage} alt={project.title} class="h-full w-full object-cover" />
         </div>
         <div class="max-w-218 mx-auto space-y-10 md:space-y-18 prose prose-img:my-0">
-          <div class="">
+          <div class="reveal-block">
             <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mb-3">Project Overview</h3>
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal">
               Canvas Collective combines modern design, thoughtful user experiences, responsive performance, and immersive storytelling to showcase creative projects with clarity, consistency, intuitive navigation, seamless interactions, delivering memorable
@@ -69,47 +72,47 @@ const otherProjects = getOtherProjects(project.slug, 2);
           </div>
 
           <div class="grid grid-cols-2 gap-4 sm:gap-6">
-            <div class="">
+            <div class="reveal-image overflow-hidden">
               <img src={project.detailsImage1} alt="thumbnail one" />
             </div>
-            <div class="">
+            <div class="reveal-image overflow-hidden">
               <img src={project.detailsImage2} alt="thumbnail two" />
             </div>
           </div>
-          <div class="">
+          <div class="reveal-block">
             <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">The Challenge</h3>
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal">
               The client needed a modern portfolio capable of showcasing diverse creative work while maintaining a consistent visual language. The website also required responsive performance, intuitive navigation, and flexible content management for future
               updates.
             </p>
           </div>
-          <div class="">
+          <div class="reveal-block">
             <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">Our Solution</h3>
             <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal">
               We developed a refined portfolio experience using modern layouts, interactive animations, and a scalable CMS. Every page was optimized to deliver exceptional usability while highlighting the client's work through immersive storytelling and clean
               visual hierarchy.
             </p>
           </div>
-          <div class="">
+          <div class="reveal-image overflow-hidden">
             <img src={project.detailsImage3} alt="thumbnail three" />
           </div>
-          <div class="">
+          <div class="reveal-block">
             <div class="mb-10">
               <h3 class="text-3xl sm:text-[40px] text-white leading-none tracking-[-2%] uppercase font-jersey mt-0 mb-3">Project Impact</h3>
               <p class="text-lg text-dark-shades-50 tracking-[-1%] leading-normal mb-0">
                 See how thoughtful strategy, refined design, and measurable results came together to strengthen the brand, improve user engagement, enhance performance, and create a lasting digital impact across every customer touchpoint with confidence.
               </p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              <div class="flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
+            <div class="stat-cards grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              <div class="stat-card flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
                 <span class="text-5xl md:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">+68%</span>
                 <span class="text-lg text-dark-shades-50">Visitor Engagement</span>
               </div>
-              <div class="flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
+              <div class="stat-card flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
                 <span class="text-5xl md:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">+42%</span>
                 <span class="text-lg text-dark-shades-50">Average Session Duration</span>
               </div>
-              <div class="flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
+              <div class="stat-card flex flex-col justify-between bg-dark-shades-90 p-6 w-full h-40 lg:h-61">
                 <span class="text-5xl md:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">95+</span>
                 <span class="text-lg text-dark-shades-50">Performance Score</span>
               </div>
@@ -122,3 +125,100 @@ const otherProjects = getOtherProjects(project.slug, 2);
   <MoreProjectsSection projects={otherProjects} />
   <HomeContactSection />
 </MainLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initScrollAnimation() {
+    // Hero entrance animation
+    const imageWrapper = document.querySelector<HTMLElement>(".main-image-wrapper");
+    const liveLinkBtn = document.querySelector<HTMLElement>(".live-link-btn");
+    const metaItems = document.querySelectorAll<HTMLElement>(".meta-item");
+
+    const tl = gsap.timeline();
+
+    if (imageWrapper) {
+      tl.fromTo(imageWrapper, { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "power4.inOut" }, 0);
+    }
+
+    if (liveLinkBtn) {
+      tl.from(liveLinkBtn, { opacity: 0, x: "100px", duration: 0.5, filter: "blur(10px)", ease: "none" }, 0);
+    }
+
+    if (metaItems.length) {
+      tl.from(metaItems, { y: "30px", opacity: 0, duration: 0.5, stagger: 0.2, ease: "none" }, 0);
+    }
+
+    // Content section scroll animations
+
+    // Text blocks scroll
+    const revealBlocks = document.querySelectorAll<HTMLElement>(".reveal-block");
+    revealBlocks.forEach((block) => {
+      const children = block.querySelectorAll<HTMLElement>("h3, p");
+
+      gsap.set(children, { opacity: 0, y: 40 });
+
+      gsap.to(children, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: block,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    });
+
+    // Detail images clip-path reveal on scroll
+    const revealImages = document.querySelectorAll<HTMLElement>(".reveal-image");
+    revealImages.forEach((wrapper) => {
+      gsap.fromTo(
+        wrapper,
+        { clipPath: "inset(0% 100% 0% 0%)" },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1.2,
+          ease: "power4.inOut",
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+    });
+
+    // Stat cards stagger fade-up on scroll
+    const statCardGroups = document.querySelectorAll<HTMLElement>(".stat-cards");
+    statCardGroups.forEach((group) => {
+      const cards = group.querySelectorAll<HTMLElement>(".stat-card");
+
+      gsap.set(cards, { opacity: 0, y: 50 });
+
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: group,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    });
+
+    return tl;
+  }
+
+  initScrollAnimation();
+
+  document.addEventListener("astro:page-load", initScrollAnimation);
+</script>

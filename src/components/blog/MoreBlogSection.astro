@@ -1,6 +1,7 @@
 ---
 import ArticleCardGridStyle from "@/components/blog/ArticleCardGridStyle.astro";
 import Button from "@/components/ui/Button.astro";
+import TextReveal from "@/components/ui/TextReveal.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -10,18 +11,18 @@ interface Props {
 const { posts } = Astro.props;
 ---
 
-<section class="pb-15 md:pb-24 lg:pb-38">
+<section class="pb-15 md:pb-24 lg:pb-38" id="blog-insights-section">
   <div class="container">
     <!-- Heading -->
     <div class="mb-10 md:mb-19">
       <div class="flex justify-between gap-7">
         <div class="max-w-xl">
-          <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">
+          <TextReveal>
             More
             <span class="text-dark-shades-60"> Insights</span>
-          </h2>
+          </TextReveal>
         </div>
-        <div class="self-end">
+        <div class="self-end blog-header-right">
           <Button href="/blog">View All Insights</Button>
         </div>
       </div>
@@ -31,3 +32,59 @@ const { posts } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initBlogScrollAnimation() {
+    const section = document.querySelector("#blog-insights-section");
+    if (!section) return;
+
+    const headerRight = section.querySelector(".blog-header-right");
+    const cardItems = section.querySelectorAll(".blog-card-item");
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    if (headerRight) {
+      tl.from(
+        headerRight,
+        {
+          x: 80,
+          opacity: 0,
+          filter: "blur(15px)",
+          duration: 0.9,
+          ease: "power3.out",
+        },
+        0,
+      );
+    }
+
+    if (cardItems.length) {
+      tl.from(
+        cardItems,
+        {
+          y: 60,
+          scale: 0.9,
+          opacity: 0,
+          filter: "blur(15px)",
+          duration: 0.8,
+          ease: "power4.out",
+          stagger: 0.15,
+        },
+        0.2,
+      );
+    }
+  }
+
+  initBlogScrollAnimation();
+  document.addEventListener("astro:page-load", initBlogScrollAnimation);
+</script>

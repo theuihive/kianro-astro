@@ -2,6 +2,7 @@
 import ButtonArrowicon from "@/components/icons/ButtonArrowicon.astro";
 import Button from "@/components/ui/Button.astro";
 import type { Project } from "@/types/project";
+import TextReveal from "../ui/TextReveal.astro";
 
 interface Props {
   projects: Project[];
@@ -10,11 +11,11 @@ interface Props {
 const { projects } = Astro.props as Props;
 ---
 
-<div class="py-15 md:py-24 lg:py-40">
+<div class="py-15 md:py-24 lg:py-40" id="project-section">
   <div class="container">
     <div class="flex flex-col sm:flex-row justify-between gap-5 mb-10 sm:mb-20">
-      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">More <span class="text-dark-shades-60">projects</span></h2>
-      <div class="sm:self-end">
+      <TextReveal>More <span class="text-dark-shades-60">projects</span></TextReveal>
+      <div class="sm:self-end view-all-btn">
         <Button href="/projects" variant="outline">View All Projects</Button>
       </div>
     </div>
@@ -124,8 +125,28 @@ const { projects } = Astro.props as Props;
     });
   };
 
+  const initScrollAnimation = () => {
+    const section = document.querySelector<HTMLElement>("#project-section");
+    const viewAllBtn = document.querySelector<HTMLElement>(".view-all-btn");
+
+    gsap.from(viewAllBtn, {
+      x: 150,
+      opacity: 0,
+      filter: "blur(10px)",
+      duration: 0.4,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  };
+
+  initScrollAnimation();
   initProjectReveals();
   document.addEventListener("astro:page-load", () => {
     initProjectReveals();
+    initScrollAnimation;
   });
 </script>
