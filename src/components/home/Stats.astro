@@ -9,16 +9,16 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: "230+", label: "Projects Delivered", colStart: "lg:col-start-3", rowStart: "lg:row-start-1" },
+  { value: "245+", label: "Projects Delivered", colStart: "lg:col-start-3", rowStart: "lg:row-start-1" },
   { value: "98%", label: "Satisfaction Rate", colStart: "lg:col-start-2", rowStart: "lg:row-start-2" },
-  { value: "80+", label: "Long-Term Clients", colStart: "lg:col-start-1", rowStart: "lg:row-start-3" },
-  { value: "12+", label: "Years Creating", colStart: "lg:col-start-3", rowStart: "lg:row-start-3" },
+  { value: "87+", label: "Long-Term Clients", colStart: "lg:col-start-1", rowStart: "lg:row-start-3" },
+  { value: "15+", label: "Years Creating", colStart: "lg:col-start-3", rowStart: "lg:row-start-3" },
 ];
 
 const headingText = "From first conversations to final delivery, every collaboration focuses on creating purposeful design, measurable results, and experiences that leave a lasting impression.";
 ---
 
-<section id="about-stats-section" class="py-15 md:py-24 lg:py-40 overflow-hidden relative" style="visibility: hidden;">
+<section id="about-stats-section" class="py-15 md:py-24 lg:py-40 overflow-hidden relative opacity-0">
   <div class="container">
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-4 items-stretch relative">
       <!-- LEFT COLUMN -->
@@ -42,8 +42,20 @@ const headingText = "From first conversations to final delivery, every collabora
         {
           stats.map((s) => (
             <div class={`stat-card flex flex-col justify-between bg-dark-shades-90 border border-white/5 p-6 sm:p-8 lg:p-6 w-full min-h-40 sm:min-h-50 lg:min-h-0 lg:h-full transition-shadow duration-500 hover:border-white/20 ${s.colStart} ${s.rowStart}`}>
-              <span class="stat-value text-5xl sm:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]" data-target-value={s.value}>
-                0
+              <span class="stat-wrapper inline-flex text-5xl sm:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">
+                {[...s.value].map((ch) =>
+                  /\d/.test(ch) ? (
+                    <span class="odometer-digit inline-block overflow-hidden h-[1em] leading-none align-top">
+                      <span class="odometer-track flex flex-col" data-target={ch}>
+                        {Array.from({ length: 10 }).map((_, i) => (
+                          <span class="odometer-num block h-[1em] leading-none text-center">{i}</span>
+                        ))}
+                      </span>
+                    </span>
+                  ) : (
+                    <span class="odometer-static inline-block leading-none">{ch}</span>
+                  ),
+                )}
               </span>
               <span class="stat-label text-base sm:text-lg text-dark-shades-50">{s.label}</span>
             </div>
@@ -67,7 +79,6 @@ const headingText = "From first conversations to final delivery, every collabora
     const scrubWords = section.querySelectorAll(".scrub-word");
     const tickerWrap = section.querySelector(".about-ticker-wrap");
     const statCards = section.querySelectorAll(".stat-card");
-    const statValues = section.querySelectorAll(".stat-value");
 
     // Clear visibility hidden
     gsap.set(section, { autoAlpha: 1 });
@@ -103,7 +114,7 @@ const headingText = "From first conversations to final delivery, every collabora
       });
     }
 
-    // Card Reveal + Number Rolling
+    // Card Reveal
     const gridTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -137,30 +148,38 @@ const headingText = "From first conversations to final delivery, every collabora
       },
     );
 
-    // Number Counting Animation Synchronized with Reveal
-    statValues.forEach((statEl) => {
-      const rawValue = statEl.getAttribute("data-target-value") || "";
-      const numericMatch = rawValue.match(/\d+/);
+    // Odometer per-digit roll animation
+    statCards.forEach((card) => {
+      const tracks = card.querySelectorAll(".odometer-track");
+      if (!tracks.length) return;
 
-      if (numericMatch) {
-        const targetNumber = parseInt(numericMatch[0], 10);
-        const suffix = rawValue.replace(numericMatch[0], "");
+      tracks.forEach((track, i) => {
+        const digitWrapper = track.parentElement;
+        const firstNum = track.querySelector(".odometer-num");
+        const target = parseInt(track.getAttribute("data-target") || "0", 10);
+        if (isNaN(target)) return;
 
-        const counterObj = { val: 0 };
+        let digitHeight = 1;
+        if (firstNum instanceof HTMLElement && firstNum.offsetHeight) {
+          digitHeight = firstNum.offsetHeight;
+        } else if (digitWrapper instanceof HTMLElement && digitWrapper.offsetHeight) {
+          digitHeight = digitWrapper.offsetHeight;
+        }
 
+        // Ensure track starts at 0
+        gsap.set(track, { y: 0 });
+
+        // Stagger by digit
         gridTimeline.to(
-          counterObj,
+          track,
           {
-            val: targetNumber,
-            duration: 1,
+            y: -Math.round(digitHeight) * target,
+            duration: 1.4,
             ease: "power3.out",
-            onUpdate: () => {
-              statEl.textContent = `${Math.floor(counterObj.val)}${suffix}`;
-            },
           },
-          "<+=0.2",
+          i * 0.08,
         );
-      }
+      });
     });
   }
 
