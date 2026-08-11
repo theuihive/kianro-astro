@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("blog");
 
-const posts = allPosts.slice(0, 3);
+const posts = allPosts;
 ---
 
 <section class="pt-15 md:pt-24 lg:pt-32" id="blog-list-section">
