@@ -1,6 +1,6 @@
 ---
 import services from "@/data/services.json";
-import ServiceSectionHeader from "@/components/home/ServiceSectionHeader.astro";
+import ServiceSectionHeader from "@/components/services/ServiceSectionHeader.astro";
 import Button from "@/components/ui/Button.astro";
 ---
 
@@ -25,7 +25,7 @@ import Button from "@/components/ui/Button.astro";
               </div>
 
               {/* Description */}
-              <div class="pt-3">
+              <div class="pt-0 md:pt-3">
                 <p class="text-base leading-normal text-dark-shades-50">{s.description}</p>
               </div>
 
@@ -38,7 +38,7 @@ import Button from "@/components/ui/Button.astro";
             </div>
 
             {/* Desktop Grid Layout */}
-            <div class="hidden md:grid grid-cols-[36px_1fr_auto] items-start gap-4 md:grid-cols-[48px_200px_1fr_auto] lg:grid-cols-[48px_384px_1fr_auto] md:gap-7 lg:gap-16">
+            <div class="hidden md:grid grid-cols-[36px_1fr_auto] items-center gap-4 md:grid-cols-[48px_200px_1fr_auto] lg:grid-cols-[48px_384px_1fr_auto] md:gap-7 lg:gap-16">
               {/* Number */}
               <span class="service-num text-3xl lg:text-[40px] tracking-[-2%] text-dark-shades-60 leading-none font-jersey">{s.number}.</span>
 
@@ -50,7 +50,7 @@ import Button from "@/components/ui/Button.astro";
               </div>
 
               {/* Title and description */}
-              <div class="service-content flex flex-col gap-y-5 justify-between self-stretch">
+              <div class="service-content flex flex-col justify-between self-stretch">
                 <div>
                   <h3 class="service-title text-3xl lg:text-[40px] tracking-[-2%] text-white leading-none font-jersey">{s.title.toUpperCase()}</h3>
 
@@ -179,7 +179,7 @@ import Button from "@/components/ui/Button.astro";
         scrollTrigger: {
           trigger: row,
           start: "top 85%",
-          toggleActions: "play none none none",
+          toggleActions: "play none none reverse",
         },
       });
 

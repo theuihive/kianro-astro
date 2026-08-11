@@ -41,7 +41,7 @@ const headingText = "From first conversations to final delivery, every collabora
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[308px_228px_308px] lg:grid-rows-[246px_285px_246px] gap-4 sm:gap-6 lg:gap-0 perspective:1000px mt-0 lg:mt-16">
         {
           stats.map((s) => (
-            <div class={`stat-card flex flex-col justify-between bg-dark-shades-90 border border-white/5 p-6 sm:p-8 lg:p-6 w-full min-h-40 sm:min-h-50 lg:min-h-0 lg:h-full transition-shadow duration-500 hover:border-white/20 ${s.colStart} ${s.rowStart}`}>
+            <div class={`stat-card flex flex-col justify-between even:items-end sm:even:items-start bg-dark-shades-90 p-6 sm:p-8 lg:p-6 w-full min-h-40 sm:min-h-50 lg:min-h-0 lg:h-full ${s.colStart} ${s.rowStart}`}>
               <span class="stat-wrapper inline-flex text-5xl sm:text-[64px] text-white font-jersey tracking-[-3%] leading-[90%]">
                 {[...s.value].map((ch) =>
                   /\d/.test(ch) ? (
