@@ -1,5 +1,5 @@
 ---
-title: "Creating User Experiences That Feel Effortless"
+title: "Creating Experience That Feel Effortless"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
 author: "kianro Team"
 category:

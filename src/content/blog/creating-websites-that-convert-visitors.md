@@ -3,8 +3,8 @@ title: "Creating Websites That Convert Visitors"
 description: "Gardens are living spaces. Learn why consistency and thoughtful care matter more than just weekend aesthetics."
 author: "kianro Team"
 category:
-  name: "Web Design"
-  slug: "web-design"
+  name: "Strategy"
+  slug: "strategy"
   image: "/images/blog/blog-03.jpg"
 date: 2026-02-08
 tags:

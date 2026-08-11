@@ -1,12 +1,12 @@
 ---
 import ArticleCardGridStyle from "@/components/blog/ArticleCardGridStyle.astro";
-import Button from "@/components/ui/Button.astro";
 import TextReveal from "@/components/ui/TextReveal.astro";
 import { getCollection } from "astro:content";
+import { getUniqueCategories } from "@/lib/blogUtils";
 
 const allPosts = await getCollection("blog");
-
-const posts = allPosts;
+const posts = allPosts.filter((post) => !post.data.draft);
+const categories = getUniqueCategories(allPosts);
 ---
 
 <section class="pt-15 md:pt-24 lg:pt-32" id="blog-list-section">
@@ -20,12 +20,27 @@ const posts = allPosts;
           </TextReveal>
         </div>
         <div class="md:self-end">
-          <Button href="/blog">View All Insights</Button>
+          <div class="flex flex-wrap items-center gap-2 sm:gap-5">
+            <button type="button" class="filter-btn is-active bg-primary text-dark-primary border-primary text-base tracking-tight font-normal px-3 sm:px-4 py-1.25 sm:py-1.75 border transition-all duration-300 ease-out" data-cat="all"> All </button>
+            {
+              categories.map((cat) => (
+                <button type="button" class="filter-btn text-base tracking-tight font-normal px-3 sm:px-4 py-1.25 sm:py-1.75 border border-stroke hover:bg-primary hover:text-dark-primary transition-all duration-300 ease-out" data-cat={cat.slug}>
+                  {cat.name}
+                </button>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-15">
-      {posts.map((post) => <ArticleCardGridStyle post={post} />)}
+      {
+        posts.map((post) => (
+          <div class="blog-card-item" data-category={post.data.category.slug}>
+            <ArticleCardGridStyle post={post} />
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>
@@ -52,11 +67,75 @@ const posts = allPosts;
       scrollTrigger: {
         trigger: section,
         start: "top 75%",
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
       },
     });
   }
 
+  // Posts filter by category
+  function initCategoryFilter() {
+    const section = document.querySelector<HTMLElement>("#blog-list-section");
+    if (!section) return;
+
+    const filterButtons = section.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const cardItems = section.querySelectorAll<HTMLElement>(".blog-card-item");
+
+    if (filterButtons.length === 0 || cardItems.length === 0) return;
+
+    const setActiveButton = (activeButton: HTMLButtonElement) => {
+      filterButtons.forEach((button) => {
+        const isActive = button === activeButton;
+        button.classList.toggle("is-active", isActive);
+        button.classList.toggle("bg-primary", isActive);
+        button.classList.toggle("text-dark-primary", isActive);
+        button.classList.toggle("border-primary", isActive);
+        button.classList.toggle("border-stroke", !isActive);
+      });
+    };
+
+    const toggleCards = (selectedCat: string) => {
+      cardItems.forEach((card, index) => {
+        const cardCat = card.dataset.category;
+        const shouldShow = selectedCat === "all" || cardCat === selectedCat;
+
+        if (shouldShow) {
+          card.style.display = "block";
+          card.style.opacity = "0";
+          card.style.transform = "translateY(16px)";
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.35,
+            ease: "power2.out",
+            delay: index * 0.04,
+          });
+        } else {
+          gsap.to(card, {
+            opacity: 0,
+            y: 16,
+            duration: 0.25,
+            ease: "power2.inOut",
+            onComplete: () => {
+              card.style.display = "none";
+            },
+          });
+        }
+      });
+    };
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selectedCat = btn.dataset.cat ?? "all";
+        setActiveButton(btn);
+        toggleCards(selectedCat);
+      });
+    });
+  }
+
+  initCategoryFilter();
   initScrollAnimation();
-  document.addEventListener("astro:page-load", initScrollAnimation);
+  document.addEventListener("astro:page-load", () => {
+    initScrollAnimation();
+    initCategoryFilter();
+  });
 </script>
