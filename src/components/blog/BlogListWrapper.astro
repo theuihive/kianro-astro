@@ -93,6 +93,15 @@ const categories = getUniqueCategories(allPosts);
       });
     };
 
+    let refreshTimer: gsap.core.Tween | null = null;
+
+    const scheduleScrollRefresh = () => {
+      refreshTimer?.kill();
+      refreshTimer = gsap.delayedCall(0.35, () => {
+        ScrollTrigger.refresh();
+      });
+    };
+
     const toggleCards = (selectedCat: string) => {
       cardItems.forEach((card, index) => {
         const cardCat = card.dataset.category;
@@ -121,6 +130,8 @@ const categories = getUniqueCategories(allPosts);
           });
         }
       });
+
+      scheduleScrollRefresh();
     };
 
     filterButtons.forEach((btn) => {
