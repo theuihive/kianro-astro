@@ -1,12 +1,16 @@
 ---
 import ArticleCardGridStyle from "@/components/blog/ArticleCardGridStyle.astro";
+import Button from "@/components/ui/Button.astro";
 import TextReveal from "@/components/ui/TextReveal.astro";
 import { getCollection } from "astro:content";
 import { getUniqueCategories } from "@/lib/blogUtils";
+import LoaderIcon from "../icons/LoaderIcon.astro";
 
 const allPosts = await getCollection("blog");
 const posts = allPosts.filter((post) => !post.data.draft);
 const categories = getUniqueCategories(allPosts);
+
+const PAGE_SIZE = 6;
 ---
 
 <section class="pt-15 md:pt-24 lg:pt-32" id="blog-list-section">
@@ -33,15 +37,25 @@ const categories = getUniqueCategories(allPosts);
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-15">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-15" id="blog-list-grid" data-page-size={PAGE_SIZE}>
       {
-        posts.map((post) => (
-          <div class="blog-card-item" data-category={post.data.category.slug}>
+        posts.map((post, index) => (
+          <div class="blog-card-item" data-category={post.data.category.slug} style={index >= PAGE_SIZE ? "display:none" : undefined}>
             <ArticleCardGridStyle post={post} />
           </div>
         ))
       }
     </div>
+    {
+      posts.length > PAGE_SIZE && (
+        <div class="mt-10 md:mt-15 flex justify-center">
+          <Button id="blog-load-more" showArrow={false} variant="outline">
+            Load More
+            <LoaderIcon class="ml-1 size-4" />
+          </Button>
+        </div>
+      )
+    }
   </div>
 </section>
 
@@ -72,15 +86,22 @@ const categories = getUniqueCategories(allPosts);
     });
   }
 
-  // Posts filter by category
+  // Posts filter by category + load more pagination
   function initCategoryFilter() {
     const section = document.querySelector<HTMLElement>("#blog-list-section");
     if (!section) return;
 
+    const grid = section.querySelector<HTMLElement>("#blog-list-grid");
     const filterButtons = section.querySelectorAll<HTMLButtonElement>(".filter-btn");
     const cardItems = section.querySelectorAll<HTMLElement>(".blog-card-item");
+    const loadMoreBtn = section.querySelector<HTMLButtonElement>("#blog-load-more");
 
     if (filterButtons.length === 0 || cardItems.length === 0) return;
+
+    const pageSize = Number(grid?.dataset.pageSize) || cardItems.length;
+
+    let currentCategory = "all";
+    let visibleCount = pageSize;
 
     const setActiveButton = (activeButton: HTMLButtonElement) => {
       filterButtons.forEach((button) => {
@@ -102,41 +123,44 @@ const categories = getUniqueCategories(allPosts);
       });
     };
 
-    const toggleCards = (selectedCat: string) => {
-      const visibleCards: HTMLElement[] = [];
+    const getMatchingCards = (selectedCat: string) => Array.from(cardItems).filter((card) => selectedCat === "all" || card.dataset.category === selectedCat);
+
+    const render = (previousVisible: HTMLElement[], animate = true) => {
+      const matching = getMatchingCards(currentCategory);
+      const toShow = matching.slice(0, visibleCount);
+      const toShowSet = new Set(toShow);
+      const previousVisibleSet = new Set(previousVisible);
+      const newlyShown = toShow.filter((card) => !previousVisibleSet.has(card));
 
       cardItems.forEach((card) => {
-        const cardCat = card.dataset.category;
-        const shouldShow = selectedCat === "all" || cardCat === selectedCat;
-
-        if (shouldShow) {
-          gsap.killTweensOf(card);
-          card.style.display = "block";
-          visibleCards.push(card);
-        } else {
-          gsap.to(card, {
-            opacity: 0,
-            y: 40,
-            duration: 0.3,
-            ease: "power2.inOut",
-            onComplete: () => {
-              card.style.display = "none";
-            },
-          });
-        }
+        if (toShowSet.has(card)) return;
+        gsap.killTweensOf(card);
+        card.style.display = "none";
       });
 
-      gsap.fromTo(
-        visibleCards,
-        { y: 80, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.15,
-          ease: "power3.out",
-        }
-      );
+      toShow.forEach((card) => {
+        gsap.killTweensOf(card);
+        card.style.display = "block";
+      });
+
+      if (animate) {
+        const animateTargets = newlyShown.length > 0 ? newlyShown : toShow;
+        gsap.fromTo(
+          animateTargets,
+          { y: 80, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+          },
+        );
+      }
+
+      if (loadMoreBtn) {
+        loadMoreBtn.style.display = matching.length > visibleCount ? "" : "none";
+      }
 
       scheduleScrollRefresh();
     };
@@ -144,10 +168,22 @@ const categories = getUniqueCategories(allPosts);
     filterButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const selectedCat = btn.dataset.cat ?? "all";
+        if (selectedCat === currentCategory) return;
+
         setActiveButton(btn);
-        toggleCards(selectedCat);
+        currentCategory = selectedCat;
+        visibleCount = pageSize;
+        render([]);
       });
     });
+
+    loadMoreBtn?.addEventListener("click", () => {
+      const previousVisible = getMatchingCards(currentCategory).slice(0, visibleCount);
+      visibleCount += pageSize;
+      render(previousVisible);
+    });
+
+    render([], false);
   }
 
   initCategoryFilter();
