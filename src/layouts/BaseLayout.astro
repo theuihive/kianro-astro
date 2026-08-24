@@ -2,19 +2,19 @@
 import "@/assets/css/global.css";
 import "@/assets/css/switzer.css";
 import "@fontsource/jersey-20";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const siteName = "kianro";
-const siteUrl = "https://kianro-astro.netlify.app";
+const { siteName, siteUrl, siteAuthor, siteKeywords, favicon, seo } = siteConfig;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
-const ogImageUrl = new URL("/images/og-image.jpg", siteUrl).toString();
-const { title = "Home", description = "kianro agency portfolio theme" } = Astro.props;
+const ogImageUrl = new URL(seo.ogImage, siteUrl).toString();
+const { title = "Home", description = siteConfig.siteDescription } = Astro.props;
 const pageTitle = title ? `${title} | ${siteName}` : siteName;
-const metaDescription = description || "kianro agency portfolio theme";
+const metaDescription = description || siteConfig.siteDescription;
 ---
 
 <!doctype html>
@@ -22,11 +22,12 @@ const metaDescription = description || "kianro agency portfolio theme";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href={favicon} />
     <meta name="generator" content={Astro.generator} />
     <meta name="title" content={pageTitle} />
     <meta name="description" content={metaDescription} />
+    <meta name="author" content={siteAuthor} />
+    {siteKeywords.length > 0 && <meta name="keywords" content={siteKeywords.join(", ")} />}
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />

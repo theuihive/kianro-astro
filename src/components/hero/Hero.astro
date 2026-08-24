@@ -1,13 +1,18 @@
 ---
 import HeroWordmark from "@/components/hero/HeroWordmark.astro";
 import HeroGalleryTicker from "./HeroGalleryTicker.astro";
+import { siteConfig } from "@/config/site";
 
-const socials = [
-  { label: "BE", uri: "https://behance.net" },
-  { label: "IG", uri: "https://instagram.com" },
-  { label: "X", uri: "https://x.com" },
-  { label: "FB", uri: "https://facebook.com" },
-];
+const socialLabels: Partial<Record<keyof typeof siteConfig.socials, string>> = {
+  behance: "BE",
+  instagram: "IG",
+  twitter: "X",
+  facebook: "FB",
+};
+
+const socials = (Object.entries(socialLabels) as [keyof typeof siteConfig.socials, string][])
+  .map(([key, label]) => ({ label, uri: siteConfig.socials[key] }))
+  .filter((s): s is { label: string; uri: string } => !!s.uri);
 ---
 
 <section class="relative overflow-hidden">

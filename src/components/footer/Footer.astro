@@ -1,33 +1,24 @@
 ---
 import Logo from "@/components/header/Logo.astro";
 import ButtonArrowicon from "@/components/icons/ButtonArrowicon.astro";
+import { siteConfig } from "@/config/site";
 
-const pagesLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Insights", href: "/blog" },
-];
+const { columns: footerColumns, copyrightText, credit } = siteConfig.footer;
 
-const resourceLinks = [
-  { label: "Contact", href: "/contact" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms-conditions" },
-  { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
-  { label: "404", href: "/404" },
-];
+const socialLabels: Record<keyof typeof siteConfig.socials, string> = {
+  facebook: "Facebook",
+  instagram: "Instagram",
+  twitter: "X (Twitter)",
+  linkedin: "LinkedIn",
+  youtube: "YouTube",
+  github: "GitHub",
+  dribbble: "Dribbble",
+  behance: "Behance",
+};
 
-const followLinks = [
-  { label: "Facebook", href: "https://facebook.com" },
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "X (Twitter)", href: "https://x.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Dribbble", href: "https://dribbble.com" },
-  { label: "Behance", href: "https://behance.net" },
-];
+const followLinks = (Object.entries(siteConfig.socials) as [keyof typeof siteConfig.socials, string | undefined][])
+  .filter(([, href]) => !!href)
+  .map(([key, href]) => ({ label: socialLabels[key], href: href as string }));
 
 const currentYear = new Date().getFullYear();
 ---
@@ -56,37 +47,23 @@ const currentYear = new Date().getFullYear();
 
       <!-- Right: Link columns -->
       <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-16 lg:gap-24">
-        <div>
-          <h4 class="text-white font-semibold text-xl mb-5.5 leading-none">Pages</h4>
-          <ul class="flex flex-col gap-3 footer-links">
-            {
-              pagesLinks.map((link) => (
-                <li>
-                  <a href={link.href} class="group relative inline-flex items-center text-sm font-medium uppercase text-dark-shades-50 transition-colors duration-500 hover:text-white">
-                    <span class="absolute -left-4 size-2 bg-primary opacity-0 transition-all duration-500 group-hover:left-0 group-hover:opacity-100" />
-                    <span class="transition-transform duration-500 group-hover:translate-x-4">{link.label}</span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-white font-semibold text-xl mb-5.5 leading-none">Resources</h4>
-          <ul class="flex flex-col gap-3 footer-links">
-            {
-              resourceLinks.map((link) => (
-                <li>
-                  <a href={link.href} class="group relative inline-flex items-center text-sm font-medium uppercase text-dark-shades-50 transition-colors duration-500 hover:text-white">
-                    <span class="absolute -left-4 size-2 bg-primary opacity-0 transition-all duration-500 group-hover:left-0 group-hover:opacity-100" />
-                    <span class="transition-transform duration-500 group-hover:translate-x-4">{link.label}</span>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        {
+          footerColumns.map((column) => (
+            <div>
+              <h4 class="text-white font-semibold text-xl mb-5.5 leading-none">{column.title}</h4>
+              <ul class="flex flex-col gap-3 footer-links">
+                {column.links.map((link) => (
+                  <li>
+                    <a href={link.href} class="group relative inline-flex items-center text-sm font-medium uppercase text-dark-shades-50 transition-colors duration-500 hover:text-white">
+                      <span class="absolute -left-4 size-2 bg-primary opacity-0 transition-all duration-500 group-hover:left-0 group-hover:opacity-100" />
+                      <span class="transition-transform duration-500 group-hover:translate-x-4">{link.label}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
 
         <div class="col-span-2 sm:col-span-1">
           <h4 class="text-white font-semibold text-xl mb-5.5 leading-none">Follow</h4>
@@ -108,12 +85,8 @@ const currentYear = new Date().getFullYear();
 
     <!-- Bottom bar -->
     <div class="py-8 border-t border-stroke flex flex-col sm:flex-row items-center justify-between gap-4 text-sm md:text-base text-dark-shades-50">
-      <p>&copy; {currentYear} kianro. All Rights Reserved.</p>
-      <p class="flex items-center gap-1.5">
-        Designed by <span class="text-white">UI Hive</span>
-        <span class="mx-1 text-white/20">|</span>
-        Powered by <span class="text-white">Astro</span>
-      </p>
+      <p>&copy; {currentYear} {copyrightText}</p>
+      {credit && <p class="flex items-center gap-1.5">{credit}</p>}
     </div>
   </div>
 

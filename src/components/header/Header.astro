@@ -3,14 +3,9 @@ import Logo from "@/components/header/Logo.astro";
 import BarIcon from "@/components/icons/BarIcon.astro";
 import Button from "@/components/ui/Button.astro";
 import MobileMenu from "@/components/header/MobileMenu.astro";
+import { siteConfig } from "@/config/site";
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
-  { label: "Services", href: "/services" },
-  { label: "Blog", href: "/blog" },
-];
+const navLinks = siteConfig.navigation;
 ---
 
 <header class="py-3 lg:py-6.5 bg-dark-primary border-b border-stroke" id="site-header">
