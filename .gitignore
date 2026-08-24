@@ -99,5 +99,6 @@ yarn.lock
 .vscode
 .yarn
 .astro
+.claude
 
 

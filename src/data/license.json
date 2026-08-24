@@ -1,0 +1,23 @@
+{
+  "sections": [
+    {
+      "title": "Image",
+      "description": "All images used in this template are licensed for personal and commercial use. Please review the image source licenses below for more details.",
+      "sourcesTitle": "Sources",
+      "sources": [
+        { "name": "Freepik", "label": "License", "url": "https://www.freepikcompany.com/legal#nav-freepik-license" },
+        { "name": "Lummi", "label": "License", "url": "https://www.lummi.ai/license" }
+      ],
+      "gallery": ["/images/creative/creative-01.jpg", "/images/creative/creative-02.jpg", "/images/contact/contact.jpg", "/images/about/about-hero.jpg"]
+    },
+    {
+      "title": "Font",
+      "description": "All fonts used in this template are licensed for both personal and commercial use. Please review the font license below for more details.",
+      "sourcesTitle": "Sources",
+      "sources": [
+        { "name": "Jersey 20", "label": "License", "url": "https://fonts.google.com/specimen/Jersey+20/about" },
+        { "name": "Switzer Variable", "label": "License", "url": "https://www.fontshare.com/licenses/general-license-agreement" }
+      ]
+    }
+  ]
+}

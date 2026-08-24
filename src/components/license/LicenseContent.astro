@@ -1,0 +1,64 @@
+---
+interface Source {
+  name: string;
+  label: string;
+  url: string;
+}
+
+interface Section {
+  title: string;
+  description: string;
+  sourcesTitle: string;
+  sources: Source[];
+  gallery?: string[];
+}
+
+interface Props {
+  data: Section[];
+  title: string;
+}
+
+const { data, title } = Astro.props;
+---
+
+<section class="py-20 md:py-24 lg:py-32">
+  <div class="container">
+    <div class="mb-10 md:mb-15 text-center">
+      <h2 class="font-jersey text-5xl md:text-6xl lg:text-[80px] leading-[80%] tracking-[-4%] uppercase text-white">{title}</h2>
+    </div>
+    <div class="max-w-218 mx-auto">
+      <div class="">
+        {
+          data.map((section) => (
+            <div>
+              <h3 class="text-xl sm:text-2xl font-medium text-white tracking-tight mb-3">{section.title}</h3>
+              <p class="text-base sm:text-lg text-dark-shades-50 leading-normal mb-8">{section.description}</p>
+
+              <h4 class="text-xl sm:text-2xl font-medium text-white tracking-tight mb-3">{section.sourcesTitle}</h4>
+              <div class="space-y-1.5">
+                {section.sources.map((source) => (
+                  <div class="grid grid-cols-[8rem_auto] sm:grid-cols-[10rem_auto]">
+                    <span class="text-base sm:text-lg text-white">{source.name}</span>
+                    <a href={source.url} target="_blank" rel="noopener noreferrer" class="text-base sm:text-lg text-white underline underline-offset-2 hover:text-primary transition-colors duration-300">
+                      {source.label}
+                    </a>
+                  </div>
+                ))}
+              </div>
+
+              {section.gallery && (
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 py-10 md:py-16">
+                  {section.gallery.map((image) => (
+                    <div class="aspect-square overflow-hidden rounded-sm bg-dark-shades-90">
+                      <img src={image} alt="" class="size-full object-cover" loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

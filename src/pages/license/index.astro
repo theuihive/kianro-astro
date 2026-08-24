@@ -1,0 +1,9 @@
+---
+import LicenseContent from "@/components/license/LicenseContent.astro";
+import data from "@/data/license.json";
+import MainLayout from "@/layouts/MainLayout.astro";
+---
+
+<MainLayout title="License">
+  <LicenseContent data={data.sections} title="License" />
+</MainLayout>
