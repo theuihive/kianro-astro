@@ -103,26 +103,21 @@ const categories = getUniqueCategories(allPosts);
     };
 
     const toggleCards = (selectedCat: string) => {
-      cardItems.forEach((card, index) => {
+      const visibleCards: HTMLElement[] = [];
+
+      cardItems.forEach((card) => {
         const cardCat = card.dataset.category;
         const shouldShow = selectedCat === "all" || cardCat === selectedCat;
 
         if (shouldShow) {
+          gsap.killTweensOf(card);
           card.style.display = "block";
-          card.style.opacity = "0";
-          card.style.transform = "translateY(16px)";
-          gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            duration: 0.35,
-            ease: "power2.out",
-            delay: index * 0.04,
-          });
+          visibleCards.push(card);
         } else {
           gsap.to(card, {
             opacity: 0,
-            y: 16,
-            duration: 0.25,
+            y: 40,
+            duration: 0.3,
             ease: "power2.inOut",
             onComplete: () => {
               card.style.display = "none";
@@ -130,6 +125,18 @@ const categories = getUniqueCategories(allPosts);
           });
         }
       });
+
+      gsap.fromTo(
+        visibleCards,
+        { y: 80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+        }
+      );
 
       scheduleScrollRefresh();
     };
