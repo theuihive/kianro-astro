@@ -74,7 +74,7 @@ const data = [
 
     const slides = gsap.utils.toArray<HTMLElement>(".slide-item");
     const total = slides.length;
-    const distancePerSlide = window.innerHeight * 0.4;
+    const distancePerSlide = window.innerHeight * 1.2;
 
     let currentIndex = 0;
 
@@ -162,7 +162,7 @@ const data = [
       start: "top top",
       end: () => `+=${distancePerSlide * (total - 1)}`,
       pin: ".pin-wrap",
-      scrub: 0.6,
+      scrub: 1.5,
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => {

@@ -7,7 +7,11 @@ import TestimonialSectionHeader from "@/components/home/TestimonialSectionHeader
 <section class="overflow-x-hidden">
   <div class="container">
     <TestimonialSectionHeader />
-    <div data-embla-viewport class="overflow-hidden lg:w-[calc(100%+((100vw-100%)/2))] lg:mr-[calc((100vw-100%)/-2)]" id="testimonial-carousel">
+  </div>
+
+  <!-- container থেকে বের করে full viewport width claim করা হচ্ছে -->
+  <div class="lg:relative lg:left-1/2 lg:w-screen lg:-translate-x-1/2">
+    <div data-embla-viewport class="overflow-hidden lg:pl-[max(calc((100vw-82rem)/2),1.5rem)]" id="testimonial-carousel">
       <div data-embla-container class="flex gap-6">
         {
           testimonialsData.map((testimonial) => (
@@ -36,7 +40,9 @@ import TestimonialSectionHeader from "@/components/home/TestimonialSectionHeader
         }
       </div>
     </div>
+  </div>
 
+  <div class="container">
     <!-- Dots — click to jump to a slide -->
     <div data-embla-dots class="mt-5 sm:mt-12 flex items-center justify-center gap-2">
       {testimonialsData.map((_, i) => <button type="button" data-embla-dot={i} aria-label={`Go to testimonial ${i + 1}`} class:list={["size-1.5 rounded-full transition-all", i === 0 ? "bg-primary" : "bg-dark-shades-70"]} />)}

@@ -122,19 +122,19 @@ import Button from "@/components/ui/Button.astro";
 
         // Image expands
         if (imgWrapper && imgInner) {
-          tl.to(imgWrapper, { height: 288, duration: 0.7 }, 0).to(imgInner, { scale: 1, duration: 0.7 }, 0);
+          tl.to(imgWrapper, { height: 288, duration: 0.5 }, 0).to(imgInner, { scale: 1, duration: 0.5 }, 0);
         }
 
         // Description
         const targetDetailsHeight = detailsInner.scrollHeight;
-        tl.to(details, { height: targetDetailsHeight, opacity: 1, duration: 0.5 }, 0).to(detailsInner, { y: 0, opacity: 1, duration: 0.5 }, 0);
+        tl.to(details, { height: targetDetailsHeight, opacity: 1, duration: 0.3 }, 0).to(detailsInner, { y: 0, opacity: 1, duration: 0.3 }, 0);
 
         // Tags
         const targetTagsHeight = tags.scrollHeight;
-        tl.to(tagsWrapper, { height: targetTagsHeight, duration: 0.5 }, 0).to(tags, { opacity: 1, y: 0, duration: 0.5 }, 0.1);
+        tl.to(tagsWrapper, { height: targetTagsHeight, duration: 0.3 }, 0).to(tags, { opacity: 1, y: 0, duration: 0.3 }, 0.1);
 
         // Icon & Number
-        tl.to(iconV, { rotate: 90, scaleY: 0, duration: 0.5, ease: "none" }, 0).to(num, { color: "#FFFFFF", duration: 0.5 }, 0);
+        tl.to(iconV, { rotate: 90, scaleY: 0, duration: 0.3, ease: "none" }, 0).to(num, { color: "#FFFFFF", duration: 0.3 }, 0);
       };
 
       const reverse = () => {
