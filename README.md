@@ -1,46 +1,96 @@
-# Astro Starter Kit: Basics
+# kianro
 
-```sh
-yarn create astro@latest -- --template basics
-```
+Modern agency portfolio website built with Astro, Tailwind CSS, and motion-enhanced interactions for creative agencies, freelancers, startups, and digital studios.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Overview
 
-## 🚀 Project Structure
+This project is a landing page and portfolio website designed for a modern creative business. It includes sections for services, projects, about, blog, and contact information, with a polished visual identity and smooth animated experience.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Tech Stack
+
+- Astro 7
+- Tailwind CSS
+- TypeScript
+- GSAP for animation
+- Lenis for smooth scrolling
+- Embla Carousel for sliders
+
+## Project Structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   ├── favicon.png
+│   └── images/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── config/
+│   │   └── site.ts
+│   ├── layouts/
+│   ├── lib/
+│   ├── pages/
+│   ├── styles/
+│   └── utils/
+├── package.json
+├── astro.config.mjs
+├── tsconfig.json
+└── README.md
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Local Development
 
-## 🧞 Commands
+Install dependencies:
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm install
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn build`           | Build your production site to `./dist/`          |
-| `yarn preview`         | Preview your build locally, before deploying     |
-| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn astro -- --help` | Get help using the Astro CLI                     |
+Start the development server:
 
-## 👀 Want to learn more?
+```bash
+npm run dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site will be available at:
+
+```text
+http://localhost:4321
+```
+
+Build for production:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Available Scripts
+
+| Command | Action |
+| :------ | :----- |
+| `npm run dev` | Start Astro dev server |
+| `npm run build` | Generate production build |
+| `npm run preview` | Preview built site locally |
+| `npm run astro` | Run Astro CLI commands |
+
+## Configuration
+
+Core site metadata such as the brand name, description, contact details, navigation, and footer content are centralized in:
+
+- `src/config/site.ts`
+
+This is the main file to edit when updating the site information without changing page components.
+
+## Deployment
+
+This project is configured for deployment as a static Astro site and is ready to be published to platforms such as Netlify, Vercel, or any static hosting provider.
+
+## License
+
+This project is for demo and portfolio use. Please check the project ownership and licensing terms before production deployment or redistribution.
