@@ -74,8 +74,8 @@ export const siteConfig: SiteConfig = {
   favicon: "/favicon.png",
 
   contact: {
-    email: "hello.kianro@gmail.com",
-    phone: "+1 (415) 555-2847",
+    email: "hello@example.com",
+    phone: "01234567899",
     address: "250 Market San Francisco, CA 94105 United States",
     businessDays: "Monday – Friday",
     businessHours: "9:00 AM – 6:00 PM",
@@ -106,7 +106,7 @@ export const siteConfig: SiteConfig = {
 
   footer: {
     copyrightText: "kianro. All Rights Reserved.",
-    credit: "Designed by UI Hive | Powered by Astro",
+    credit: "Designed by Kianro",
     columns: [
       {
         title: "Pages",

@@ -16,9 +16,7 @@ const socialLabels: Record<keyof typeof siteConfig.socials, string> = {
   behance: "Behance",
 };
 
-const followLinks = (Object.entries(siteConfig.socials) as [keyof typeof siteConfig.socials, string | undefined][])
-  .filter(([, href]) => !!href)
-  .map(([key, href]) => ({ label: socialLabels[key], href: href as string }));
+const followLinks = (Object.entries(siteConfig.socials) as [keyof typeof siteConfig.socials, string | undefined][]).filter(([, href]) => !!href).map(([key, href]) => ({ label: socialLabels[key], href: href as string }));
 
 const currentYear = new Date().getFullYear();
 ---
@@ -38,7 +36,7 @@ const currentYear = new Date().getFullYear();
 
         <form class="relative flex items-center sm:w-100" id="newsletter-form">
           <label for="newsletter-email" class="sr-only">Email address</label>
-          <input id="newsletter-email" name="email" type="email" required placeholder="ethanwalker@gmail.com" class="w-full h-14 pl-4 bg-dark-shades-80 text-base text-dark-shades-50 focus:outline-none transition-colors duration-300" />
+          <input id="newsletter-email" name="email" type="email" required placeholder="example@gmail.com" class="w-full h-14 pl-4 bg-dark-shades-80 text-base text-dark-shades-50 focus:outline-none transition-colors duration-300" />
           <button type="submit" aria-label="Subscribe" class="shrink-0 absolute right-2 inline-flex items-center justify-center size-10 bg-dark-primary text-white transition-colors duration-300">
             <ButtonArrowicon />
           </button>
